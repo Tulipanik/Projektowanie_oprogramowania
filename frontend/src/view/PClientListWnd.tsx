@@ -19,21 +19,21 @@ export class PClientListWnd extends PresentationDispatcher {
   showEmptyClientListWnd() {
     this.data.clients = [];
     alert("empty data!");
-    this.gUpdateView?.(ScreenId.CLIENTLISTWND);
+    this.globalUpdateView?.(ScreenId.CLIENTLISTWND);
   }
 
   showPreviousClientListWnd() {
-    this.gUpdateView?.(ScreenId.CLIENTLISTWND);
+    this.globalUpdateView?.(ScreenId.CLIENTLISTWND);
   }
 
   showUpdatedClientListWnd(list: Client[]) {
     this.data.clients = list;
-    this.gUpdateView?.(ScreenId.CLIENTLISTWND);
+    this.globalUpdateView?.(ScreenId.CLIENTLISTWND);
   }
 
   showClientListWndAdd(client: Client) {
     alert(client.name);
     this.data.clients.push(client);
-    this.gUpdateView?.(ScreenId.CLIENTLISTWND);
+    this.globalUpdateView?.(ScreenId.CLIENTLISTWND);
   }
 }

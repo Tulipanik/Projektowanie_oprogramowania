@@ -62,16 +62,16 @@ export default function VClientListWnd(
 
       <button
         onClick={addSelected}
-        //() => {
-        //clientListDispatch(ActionId.REFRESH);
+      //() => {
+      //clientListDispatch(ActionId.REFRESH);
       >
         Add
       </button>
       <button
         onClick={backSelected}
-        //() => {
-        //clientListDispatch(ActionId.REFRESH);
-        //}
+      //() => {
+      //clientListDispatch(ActionId.REFRESH);
+      //}
       >
         Back
       </button>

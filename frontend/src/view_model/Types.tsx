@@ -1,6 +1,8 @@
 export enum ScreenId {
   MAINMENU,
-  CLIENTLISTWND
+  CLIENTLISTWND,
+  CLIENT_MAIN_WINDOW,
+  CLIENT_DISHES,
 }
 
 export enum ActionId {

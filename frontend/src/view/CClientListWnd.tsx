@@ -20,9 +20,11 @@ export function CClientListWnd(
   state: ClientListWndData,
   ucSCL: UCShowClientList
 ) {
+
   function backSelected() {
     ucSCL.backSelected();
   }
+
   function addSelected() {
     let nc: Client = Object.create(state.new_client);
     state.new_client = new Client();

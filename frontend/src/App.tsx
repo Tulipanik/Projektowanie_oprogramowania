@@ -1,5 +1,5 @@
 import "./styles.css";
-import { useReducer } from "react";
+import { useEffect, useReducer } from "react";
 import { AppState, ScreenId } from "./view_model/Types";
 import VMainMenu from "./view/VMainMenu";
 import VClientListWnd from "./view/VClientListWnd";
@@ -7,23 +7,23 @@ import { PClientListWnd } from "./view/PClientListWnd";
 import { PMainMenu } from "./view/PMainMenu";
 import { UCShowClientList } from "./use_cases/UCShowClientList";
 import { IClients, ClientsProxy } from "./services/IClients";
+import { PClientMainWindow } from "./view/client/ClientMainWindow/PClientMainWindow";
+import { UCShowClientMainWindow } from "./use_cases/UCSShowClientWindow";
+import { VClientMainWindow } from "./view/client/ClientMainWindow/VClientMainWindow";
+import { PClientDishes } from "./view/client/ClientDishes/PClientDishes";
+import { UCSShowClientDishList } from "./use_cases/UCSShowClientDishList";
+import { DishesProxy, IDishesApi } from "./services/IDishes";
 
-const pCLW: PClientListWnd = new PClientListWnd();
-const pMM: PMainMenu = new PMainMenu();
+const pClientListWindow = new PClientListWnd();
+const pMainMenu = new PMainMenu();
+const pClientMainWindow = new PClientMainWindow();
 
-const iCl: IClients = new ClientsProxy();
 
-const ucSCL: UCShowClientList = new UCShowClientList(pCLW, pMM, iCl);
+const usShowClientMainWindow = new UCShowClientMainWindow(pMainMenu, pClientMainWindow);
 
 function switchView(state: AppState, action: ScreenId) {
   let newState = { ...state };
-  switch (action) {
-    case ScreenId.CLIENTLISTWND:
-      newState.screen = ScreenId.CLIENTLISTWND;
-      break;
-    case ScreenId.MAINMENU:
-      newState.screen = ScreenId.MAINMENU;
-  }
+  newState.screen = action;
   return newState;
 }
 
@@ -33,14 +33,18 @@ export default function App() {
     login: ""
   });
 
-  pCLW.injectGlobalUpdateView(globalUpdateView);
-  pMM.injectGlobalUpdateView(globalUpdateView);
+  useEffect(() => {
+    console.log("App state: ", state);
+  }, [state])
+
+  pClientListWindow.injectGlobalUpdateView(globalUpdateView);
+  pMainMenu.injectGlobalUpdateView(globalUpdateView);
+  pClientMainWindow.injectGlobalUpdateView(globalUpdateView);
 
   return (
     <div className="App">
-      <h1>Money Transfer System ({state.screen}) </h1>
-      {VMainMenu(state.screen === ScreenId.MAINMENU, pMM, ucSCL)}
-      {VClientListWnd(state.screen === ScreenId.CLIENTLISTWND, pCLW, ucSCL)}
+      {VMainMenu(state.screen === ScreenId.MAINMENU, usShowClientMainWindow)}
+      {VClientMainWindow(state.screen === ScreenId.CLIENT_MAIN_WINDOW, pClientMainWindow)}
     </div>
   );
 }

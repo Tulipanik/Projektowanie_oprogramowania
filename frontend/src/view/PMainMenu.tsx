@@ -14,6 +14,6 @@ export class PMainMenu extends PresentationDispatcher {
   showMainMenu() {
     this.mState.visible = !this.mState.visible;
     this.uView?.(ActionId.ADD);
-    this.gUpdateView?.(ScreenId.MAINMENU);
+    this.globalUpdateView?.(ScreenId.MAINMENU);
   }
 }
