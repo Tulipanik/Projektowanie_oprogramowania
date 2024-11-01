@@ -4,15 +4,15 @@ import { DishViewFilters } from "../../../../view_model/Client";
 
 export function ClientDishesForm(
   filters: DishViewFilters,
-  onSubmit: (filters: DishViewFilters) => void,
-  clearFilters: () => void
+  pressUpdateFiltersBtn: (filters: DishViewFilters) => void,
+  pressClearFiltersBtn: () => void
 ) {
 
   return (
     <Formik
       initialValues={filters}
       onSubmit={(values) => {
-        onSubmit(values);
+        pressUpdateFiltersBtn(values);
       }}
     >
       {({ resetForm }) => (
@@ -31,7 +31,7 @@ export function ClientDishesForm(
           </div>
           <div className="flex justify-end w-full md:w-auto gap-2">
             {!DishViewFilters.isEmpty(filters) && (
-              <button type="button" onClick={() => { clearFilters(); resetForm() }} className="px-4 py-2 bg-slate-300 text-white rounded-md hover:bg-slate-400">
+              <button type="button" onClick={() => { pressClearFiltersBtn(); resetForm() }} className="px-4 py-2 bg-slate-300 text-white rounded-md hover:bg-slate-400">
                 Clear
               </button>
             )}

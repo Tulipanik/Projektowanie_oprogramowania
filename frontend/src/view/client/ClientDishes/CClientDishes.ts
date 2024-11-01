@@ -7,26 +7,26 @@ import { FindDishDTO } from "../../../view_model/Dish";
 
 export function CClientDishes(ucsShowClientDishList: UCSShowClientDishList, ucsShowClientWindow: UCShowClientMainWindow,) {
 
-  function updateFilters(filters: DishViewFilters) {
+  function pressUpdateFiltersBtn(filters: DishViewFilters) {
     ucsShowClientDishList.updateFilters(filters)
   }
 
-  function showClientMainWindow() {
+  function pressShowClientMainWindowBtn() {
     ucsShowClientWindow.showClientMainWindow();
   }
 
-  function clearFilters() {
+  function pressClearFiltersBtn() {
     ucsShowClientDishList.updateFilters(new DishViewFilters());
   }
   //todo
-  function addToCart(dish: FindDishDTO) {
+  function pressAddToCartBtn(dish: FindDishDTO) {
     return;
   }
 
   //TODO obgługa koszyka
-  function showClientCart() {
+  function pressShowClientCartBtn() {
     return;
   }
 
-  return { updateFilters, showClientMainWindow, showClientCart, addToCart, clearFilters };
+  return { pressUpdateFiltersBtn, pressShowClientMainWindowBtn, pressShowClientCartBtn, pressAddToCartBtn, pressClearFiltersBtn };
 }

@@ -3,7 +3,7 @@ import { FindDishDTO } from "../../../../view_model/Dish";
 
 export function ClientDishesList(
   dishes: FindDishDTO[],
-  addToCart: (dish: FindDishDTO) => void
+  pressAddToCartBtn: (dish: FindDishDTO) => void
 ) {
 
   return (
@@ -22,7 +22,7 @@ export function ClientDishesList(
               <p className="text-gray-600 mb-4 text-left">Ingredients: {dish.ingredients.join(", ")}</p>
             </div>
             <button
-              onClick={() => addToCart(dish)}
+              onClick={() => pressAddToCartBtn(dish)}
               className="w-full bg-violet-600 text-white py-2 rounded-md hover:bg-violet-700 flex items-center flex-row justify-center gap-2"
             >
               <span className="material-icons">

@@ -12,14 +12,14 @@ export class UCSShowClientDishList {
 
   async showClientDishes(): Promise<void> {
     return await this.dishesApi.getDishList(1, []).then((dishes) => {
-      this.pClientDishes.showClientDishes(dishes);
+      this.pClientDishes.showDishList(dishes);
     })
   }
 
   async updateFilters(filters: DishViewFilters): Promise<void> {
     this.pClientDishes.updateFilters(filters);
     return await this.dishesApi.getDishList(1, []).then((dishes) => {
-      this.pClientDishes.showClientDishes(dishes);
+      this.pClientDishes.showDishList(dishes);
     })
   }
 

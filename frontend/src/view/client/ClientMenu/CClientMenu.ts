@@ -3,17 +3,17 @@ import { UCShowClientMainWindow } from "../../../use_cases/UCSShowClientWindow";
 
 
 export function CClientMenu(ucshowClientMainWindow: UCShowClientMainWindow, ucsShowClientDishList: UCSShowClientDishList) {
-  function showClientDishes() {
+  function pressShowDishListBtn() {
     ucsShowClientDishList.showClientDishes();
   }
 
-  function showClientCart() {
+  function pressCartBtn() {
     return;
   }
 
-  function backToMainWindow() {
+  function pressBackToMainWindowBtn() {
     ucshowClientMainWindow.backSelected();
   };
 
-  return { showClientDishes, showClientCart, backToMainWindow };
+  return { pressShowDishListBtn, pressCartBtn, pressBackToMainWindowBtn };
 }

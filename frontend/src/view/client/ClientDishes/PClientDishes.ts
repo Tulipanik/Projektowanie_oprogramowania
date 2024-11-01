@@ -10,8 +10,8 @@ export class PClientDishes extends ClientPresentationDispatcher {
     this.clientDispatch?.({ type: "CHANGE_FILTERS", filters: filters });
   }
 
-  showClientDishes(dishes: FindDishDTO[]) {
-    this.clientDispatch?.({ type: "UPDATE_DISHES", dishes: dishes });
+  showDishList(dishList: FindDishDTO[]) {
+    this.clientDispatch?.({ type: "UPDATE_DISHES", dishes: dishList });
     this.clientDispatch?.({ type: "CHANGE_SCREEN", screen: ClientScreenId.DISHES });
   }
 
