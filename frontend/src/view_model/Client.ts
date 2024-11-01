@@ -17,6 +17,10 @@ export class DishViewFilters {
   companyName = "";
   kitchenType = "";
   mealType = "";
+
+  static isEmpty(filters: DishViewFilters): boolean {
+    return filters.companyName === "" && filters.kitchenType === "" && filters.mealType === "";
+  }
 }
 
 export interface UpdateClientViewAction {

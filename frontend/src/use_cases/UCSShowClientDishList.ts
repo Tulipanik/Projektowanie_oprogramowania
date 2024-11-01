@@ -17,14 +17,13 @@ export class UCSShowClientDishList {
   }
 
   async updateFilters(filters: DishViewFilters): Promise<void> {
-
     this.pClientDishes.updateFilters(filters);
     return await this.dishesApi.getDishList(1, []).then((dishes) => {
       this.pClientDishes.showClientDishes(dishes);
     })
   }
 
-  backSelected() {
+  showClientMainWindow() {
     this.pClientDishes.showClientMainWindow()
   }
 

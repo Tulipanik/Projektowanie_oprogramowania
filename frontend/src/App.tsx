@@ -1,20 +1,12 @@
-import "./styles.css";
 import { useEffect, useReducer } from "react";
-import { AppState, ScreenId } from "./view_model/Types";
-import VMainMenu from "./view/VMainMenu";
-import VClientListWnd from "./view/VClientListWnd";
-import { PClientListWnd } from "./view/PClientListWnd";
-import { PMainMenu } from "./view/PMainMenu";
-import { UCShowClientList } from "./use_cases/UCShowClientList";
-import { IClients, ClientsProxy } from "./services/IClients";
-import { PClientMainWindow } from "./view/client/ClientMainWindow/PClientMainWindow";
+import "./styles.css";
 import { UCShowClientMainWindow } from "./use_cases/UCSShowClientWindow";
+import { PClientMainWindow } from "./view/client/ClientMainWindow/PClientMainWindow";
 import { VClientMainWindow } from "./view/client/ClientMainWindow/VClientMainWindow";
-import { PClientDishes } from "./view/client/ClientDishes/PClientDishes";
-import { UCSShowClientDishList } from "./use_cases/UCSShowClientDishList";
-import { DishesProxy, IDishesApi } from "./services/IDishes";
+import { PMainMenu } from "./view/PMainMenu";
+import VMainMenu from "./view/VMainMenu";
+import { AppState, ScreenId } from "./view_model/Types";
 
-const pClientListWindow = new PClientListWnd();
 const pMainMenu = new PMainMenu();
 const pClientMainWindow = new PClientMainWindow();
 
@@ -29,7 +21,7 @@ function switchView(state: AppState, action: ScreenId) {
 
 export default function App() {
   const [state, globalUpdateView] = useReducer(switchView, {
-    screen: ScreenId.MAINMENU,
+    screen: ScreenId.MAIN_MENU,
     login: ""
   });
 
@@ -37,14 +29,13 @@ export default function App() {
     console.log("App state: ", state);
   }, [state])
 
-  pClientListWindow.injectGlobalUpdateView(globalUpdateView);
   pMainMenu.injectGlobalUpdateView(globalUpdateView);
   pClientMainWindow.injectGlobalUpdateView(globalUpdateView);
 
   return (
     <div className="App">
-      {VMainMenu(state.screen === ScreenId.MAINMENU, usShowClientMainWindow)}
-      {VClientMainWindow(state.screen === ScreenId.CLIENT_MAIN_WINDOW, pClientMainWindow)}
+      {VMainMenu(state.screen === ScreenId.MAIN_MENU, usShowClientMainWindow)}
+      {VClientMainWindow(state.screen === ScreenId.CLIENT_MAIN_WINDOW, usShowClientMainWindow, pClientMainWindow)}
     </div>
   );
 }

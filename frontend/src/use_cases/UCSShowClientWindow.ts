@@ -6,7 +6,7 @@ export class UCShowClientMainWindow {
   constructor(private pMainMenu: PMainMenu, private pClientMainWindow: PClientMainWindow) {
   }
 
-  showClientListSelected() {
+  showClientMainWindow() {
     this.pClientMainWindow.showClientMainWindow();
   }
 

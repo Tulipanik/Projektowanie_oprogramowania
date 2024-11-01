@@ -1,8 +1,8 @@
 import { UCSShowClientDishList } from "../../../use_cases/UCSShowClientDishList";
-import { PClientMainWindow } from "../ClientMainWindow/PClientMainWindow";
+import { UCShowClientMainWindow } from "../../../use_cases/UCSShowClientWindow";
 
 
-export function CClientMenu(pClientMainWindow: PClientMainWindow, ucsShowClientDishList: UCSShowClientDishList) {
+export function CClientMenu(ucshowClientMainWindow: UCShowClientMainWindow, ucsShowClientDishList: UCSShowClientDishList) {
   function showClientDishes() {
     ucsShowClientDishList.showClientDishes();
   }
@@ -12,7 +12,7 @@ export function CClientMenu(pClientMainWindow: PClientMainWindow, ucsShowClientD
   }
 
   function backToMainWindow() {
-    pClientMainWindow.showMainWindow();
+    ucshowClientMainWindow.backSelected();
   };
 
   return { showClientDishes, showClientCart, backToMainWindow };
