@@ -15,8 +15,6 @@ public class Client {
     @GeneratedValue
     private int clientId;
 
-    private String password;
-
     @Email
     @Column(unique = true)
     private String email;

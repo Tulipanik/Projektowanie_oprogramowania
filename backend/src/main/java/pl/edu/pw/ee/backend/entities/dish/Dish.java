@@ -28,8 +28,7 @@ public class Dish {
     @Enumerated(EnumType.STRING)
     private MealType mealType;
 
-    @Enumerated(EnumType.STRING)
-    private KitchenType kitchenType;
+    private String kitchenType;
 
     private float price;
 

@@ -5,6 +5,7 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import lombok.Data;
@@ -28,9 +29,11 @@ public class Order {
     private OrderStatus orderStatus;
 
     @OneToOne
+    @JoinColumn(name = "client_id")
     private Client client;
 
     @OneToMany
+    @JoinColumn(name = "dish_id")
     private List<Dish> dishes;
 
 }
