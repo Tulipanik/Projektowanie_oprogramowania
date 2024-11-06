@@ -5,11 +5,13 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import lombok.Data;
 
 @Data
 @Entity
+@Table(name = "CateringCompanies")
 public class CateringCompany {
 
     @Id
@@ -23,7 +25,7 @@ public class CateringCompany {
     @Column(unique = true)
     private String email;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.ORDINAL)
     private CompanyType companyType;
 
     private String nip;

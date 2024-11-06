@@ -3,9 +3,13 @@ package pl.edu.pw.ee.backend.entities.user;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
+import lombok.Data;
 
+@Data
 @Entity
+@Table(name = "Users")
 public class User {
 
     @Id
