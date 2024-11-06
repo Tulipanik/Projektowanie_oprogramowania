@@ -1,4 +1,4 @@
-package pl.edu.pw.ee.backend.entities.client;
+package pl.edu.pw.ee.backend.entities.order.data;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -10,11 +10,14 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "Clients")
-public class Client {
+@Table(name = "OrderData")
+public class OrderData {
 
     @Id
     @GeneratedValue
+    private int orderDataId;
+
+    //TODO: change when auth is implemented
     private int clientId;
 
     @Email
@@ -23,7 +26,7 @@ public class Client {
 
     private String city;
 
-    private String comments;
+    private String comment;
 
     private String street;
 
