@@ -1,5 +1,6 @@
 package pl.edu.pw.ee.backend.entities.dish;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -9,15 +10,18 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 import lombok.Data;
 import pl.edu.pw.ee.backend.entities.catering.company.CateringCompany;
 import pl.edu.pw.ee.backend.entities.dish.image.DishImage;
 
 @Data
+@Table(name = "Dishes")
 @Entity
 public class Dish {
 
     @Id
+    @Column(name = "dish_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int dishId;
 
@@ -25,7 +29,7 @@ public class Dish {
 
     private int calories;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.ORDINAL)
     private MealType mealType;
 
     private String kitchenType;

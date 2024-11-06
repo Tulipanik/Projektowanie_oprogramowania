@@ -1,4 +1,4 @@
-FROM alpine:3.19.1
+FROM alpine:3.19.1 AS build
 
 RUN apk update --no-cache && apk upgrade --no-cache && apk add --no-cache gradle openjdk17 curl
 
