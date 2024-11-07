@@ -11,7 +11,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
-import pl.edu.pw.ee.backend.entities.client.Client;
+import pl.edu.pw.ee.backend.entities.data.Client;
 import pl.edu.pw.ee.backend.entities.dish.Dish;
 
 import java.time.LocalDate;

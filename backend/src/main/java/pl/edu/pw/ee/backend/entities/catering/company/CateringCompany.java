@@ -28,7 +28,7 @@ public class CateringCompany {
     @Enumerated(EnumType.ORDINAL)
     private CompanyType companyType;
 
-    private String nip;
+    private String NIP;
 
     private String phoneNumber;
 
