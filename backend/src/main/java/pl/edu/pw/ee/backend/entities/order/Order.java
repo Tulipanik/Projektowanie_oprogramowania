@@ -11,8 +11,8 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
-import pl.edu.pw.ee.backend.entities.data.Client;
 import pl.edu.pw.ee.backend.entities.dish.Dish;
+import pl.edu.pw.ee.backend.entities.order.data.OrderData;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -32,8 +32,8 @@ public class Order {
     private OrderStatus orderStatus;
 
     @OneToOne
-    @JoinColumn(name = "client_id")
-    private Client client;
+    @JoinColumn(name = "order_data_id")
+    private OrderData orderData;
 
     @OneToMany
     @JoinColumn(name = "dish_id")
