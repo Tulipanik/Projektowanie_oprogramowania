@@ -1,5 +1,6 @@
 package pl.edu.pw.ee.backend.entities.order;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -23,6 +24,7 @@ import java.util.List;
 public class Order {
 
     @Id
+    @Column(name = "order_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int orderId;
 

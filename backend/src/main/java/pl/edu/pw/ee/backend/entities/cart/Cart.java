@@ -3,6 +3,7 @@ package pl.edu.pw.ee.backend.entities.cart;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
@@ -20,6 +21,7 @@ public class Cart {
     private int cartId;
 
     @OneToMany
+    @JoinColumn(name = "dish_id")
     private List<Dish> dishes;
 
 }
