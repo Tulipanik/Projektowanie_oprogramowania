@@ -11,13 +11,19 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import pl.edu.pw.ee.backend.entities.catering.company.CateringCompany;
 import pl.edu.pw.ee.backend.entities.dish.image.DishImage;
 
 @Data
-@Table(name = "Dishes")
+@Builder
 @Entity
+@AllArgsConstructor
+@Table(name = "Dishes")
+@NoArgsConstructor
 public class Dish {
 
     @Id
