@@ -39,7 +39,7 @@ public class Client {
     private Cart cart;
 
     @OneToMany
-    @JoinColumn(name = "order_id")
+    @JoinColumn(name = "client_id")
     private List<Order> dishOrders;
 
 }
