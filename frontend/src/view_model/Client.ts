@@ -1,4 +1,4 @@
-import { FindDishDTO } from "./Dish";
+import { FindDishDTO, OrderDishDTO } from "./Dish";
 
 export enum ClientScreenId {
   DISHES = "DISHES",
@@ -9,7 +9,7 @@ export enum ClientScreenId {
 export class ClientViewState {
   dishes: FindDishDTO[] = [];
   filters = new DishViewFilters();
-  cart: unknown[] = [];
+  cart: OrderDishDTO[] = [];
   screen: ClientScreenId = ClientScreenId.MAIN_WINDOW;
 }
 
@@ -28,5 +28,6 @@ export interface UpdateClientViewAction {
   filters?: DishViewFilters;
   dishes?: FindDishDTO[];
   screen?: ClientScreenId;
+  cart?: OrderDishDTO[];
 }
 

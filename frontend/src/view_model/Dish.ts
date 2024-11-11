@@ -10,3 +10,7 @@ export interface FindDishDTO {
   price: number,
 }
 
+export interface OrderDishDTO {
+  date: Date,
+  dish: FindDishDTO,
+}

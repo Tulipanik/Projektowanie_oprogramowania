@@ -12,7 +12,6 @@ export class DishesProxy implements IDishesApi {
     throw new Error("Method not implemented.");
   }
 
-
   getDishList(clientId: number, filtrList: unknown[]): Promise<FindDishDTO[]> {
     return new Promise((resolve, reject) => { resolve(MOCK_FIND_DISH_DTO) })
   }
