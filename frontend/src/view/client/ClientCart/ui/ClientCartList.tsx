@@ -1,21 +1,25 @@
-import { OrderDishDTO } from "../../../../view_model/Dish";
+import { FindDishDTO, OrderDishDTO } from "../../../../view_model/Dish";
 
 export function ClientCartList(
 	cart: OrderDishDTO[],
+	error: string,
 	pressRemoveFromCartBtn: (dishId: number) => void,
-	pressOrderBtn: () => void,
+	pressOrderBtn: (cart: OrderDishDTO[]) => void,
+	setCartDishDate: (dish: FindDishDTO, date: Date) => void,
 	totalCartPrice = cart.reduce((sum, item) => sum + item.dish.price, 0),
-	totalCalories = cart.reduce((sum, item) => sum + item.dish.calories, 0),
+	totalCalories = cart.reduce((sum, item) => sum + item.dish.calories, 0)
 ) {
 	return (
 		<div className="border border-gray-300 p-4 md:p-8 lg:p-16 m-4 md:m-8 lg:m-16 rounded-md shadow-md">
 			{cart.length !== 0 ? (
 				<div className="flex flex-col items-center gap-4">
 					<p className="w-full text-4xl p-4 font-bold text-gray-600 mb-4 border-b-2">
-						Total: <span className="text-violet-600">{totalCartPrice}/per day</span>
+						Total:{" "}
+						<span className="text-violet-600">{totalCartPrice}/per day</span>
 					</p>
 					<p className="w-full text-4xl p-4 font-bold text-gray-600 mb-4 border-b-2">
-						Total calories: <span className="text-violet-600">{totalCalories} kcal</span>
+						Total calories:{" "}
+						<span className="text-violet-600">{totalCalories} kcal</span>
 					</p>
 					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 p-2 md:p-4">
 						{cart.map((item) => (
@@ -48,7 +52,17 @@ export function ClientCartList(
 										</div>
 										<p className="mb-1 text-left">
 											<span className="text-violet-600">Date</span>:{" "}
-											{item.date.toDateString()}
+											<input
+												type="date"
+												className="border-2"
+												value={item.date ? item.date.toISOString().split("T")[0] : ""}
+												onInput={(event) =>
+													setCartDishDate(
+														item.dish,
+														new Date((event.target as HTMLInputElement).value)
+													)
+												}
+											/>
 										</p>
 									</div>
 									<button
@@ -61,12 +75,17 @@ export function ClientCartList(
 							</div>
 						))}
 					</div>
-
 					<button
-						onClick={() => pressOrderBtn()}
-						className="w-11/12 bg-violet-600 text-white mx-auto center py-2 rounded-md hover:bg-violet-700 flex items-center flex-row justify-center gap-2">
+						onClick={() => pressOrderBtn(cart)}
+						disabled={error !== ""}
+						className="disabled:opacity-75 w-11/12 bg-violet-600 text-white mx-auto center py-2 rounded-md hover:bg-violet-700 disabled:hover:bg-violet-600 flex items-center flex-row justify-center gap-2">
 						Proceed to checkout
 					</button>
+					{error !== "" && (
+						<p className="text-lg font-bold text-red-600 mb-2 text-center">
+							{error}
+						</p>
+					)}
 				</div>
 			) : (
 				<p className="text-lg font-bold text-violet-600 mb-2 text-center">

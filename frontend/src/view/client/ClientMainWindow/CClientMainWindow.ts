@@ -21,6 +21,22 @@ export function updateClientViewState(
 		case "CHANGE_SCREEN":
 			newState.screen = action.screen!;
 			break;
+		case "UPDATE_CART_DISH_DATE":
+			newState.cart = newState.cart.filter(
+				(item) => item.dish.dishId !== action.dish?.dish.dishId
+			);
+			if (action.dish) {
+				newState.cart = [ ...newState.cart, action.dish ];
+			}
+			if (newState.cart.find((item) => item.date === null)) {
+				newState.error = "All dishes must have delivery dates set!";
+			} else {
+				newState.error = "";
+			}
+			break;
+		case "SET_ERROR_MESSAGE":
+			newState.error = action.message!;
+			break;
 	}
 	return newState;
 }

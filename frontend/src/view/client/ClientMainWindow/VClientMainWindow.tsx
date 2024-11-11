@@ -60,7 +60,7 @@ export function VClientMainWindow(
 				ucsShowClientCart,
 				ucshowClientMainWindow,
 				ucsShowClientDishList,
-				{ cart: clientState.cart }
+				{ cart: clientState.cart, error: clientState.error }
 			)}
 		</div>
 	);

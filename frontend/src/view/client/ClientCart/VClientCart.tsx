@@ -10,7 +10,7 @@ export function VClientCart(
 	ucsShowClientCart: UCSShowClientCart,
 	ucsShowClientWindow: UCShowClientMainWindow,
 	ucsShowClientDishList: UCSShowClientDishList,
-	state: Pick<ClientViewState, "cart">
+	state: Pick<ClientViewState, "cart" | "error">
 ) {
 	if (!isActive) return;
 
@@ -19,6 +19,7 @@ export function VClientCart(
 		pressRemoveFromCartBtn,
 		pressOrderBtn,
 		pressShowDishListBtn,
+		setCartDishDate
 	} = CClientCart(
 		ucsShowClientCart,
 		ucsShowClientWindow,
@@ -43,7 +44,7 @@ export function VClientCart(
 					Show dish list
 				</button>
 			</div>
-			{ClientCartList(state?.cart, pressRemoveFromCartBtn, pressOrderBtn)}
+			{ClientCartList(state?.cart, state?.error, pressRemoveFromCartBtn, pressOrderBtn, setCartDishDate)}
 		</div>
 	);
 }

@@ -11,6 +11,17 @@ export class PClientCart extends ClientPresentationDispatcher {
 		});
 	}
 
+	updateCartDishDate(dishToUpdate: OrderDishDTO) {
+		this.clientDispatch?.({
+			type: "UPDATE_CART_DISH_DATE",
+			dish: dishToUpdate,
+		});
+	}
+
+	setErrorMessage(errorMessage: string) {
+		this.clientDispatch?.({ type: "SET_ERROR_MESSAGE", message: errorMessage });
+	}
+
 	removeDishFromCart(dishList: OrderDishDTO[]) {
 		this.clientDispatch?.({ type: "UPDATE_CART", cart: dishList });
 	}
