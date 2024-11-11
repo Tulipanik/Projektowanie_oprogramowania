@@ -4,5 +4,5 @@ import lombok.Builder;
 
 @Builder
 public record OrderDataDTO(String city, int clientId, String email, String name, String orderDate, int orderId,
-                            String phoneNumber, float price, String street, String surname, String zipCode) {
+                            String phoneNumber, float price, String street, String surname, String zipCode, String comment) {
 }
