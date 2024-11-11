@@ -1,5 +1,6 @@
 package pl.edu.pw.ee.backend.entities.user.client;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -30,7 +31,7 @@ public class Client {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long clientId;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private User user;
 

@@ -1,8 +1,11 @@
-package pl.edu.pw.ee.backend.entities.catering.company;
+package pl.edu.pw.ee.backend.entities.external.company;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
@@ -22,10 +25,11 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "CateringCompanies")
-public class CateringCompany {
+@Table(name = "ExternalCompanies")
+public class ExternalCompany {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int companyId;
 
     private String address;
@@ -37,7 +41,7 @@ public class CateringCompany {
 
     private String phoneNumber;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private User user;
 
