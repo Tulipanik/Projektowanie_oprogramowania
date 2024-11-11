@@ -1,3 +1,4 @@
+import { UCSShowClientCart } from "../../../use_cases/UCSShowClientCart";
 import { UCSShowClientDishList } from "../../../use_cases/UCSShowClientDishList";
 import { UCShowClientMainWindow } from "../../../use_cases/UCSShowClientWindow";
 import { CClientMenu } from "./CClientMenu";
@@ -5,12 +6,13 @@ import { CClientMenu } from "./CClientMenu";
 export function VClientMenu(
   isActive: boolean,
   ucshowClientMainWindow: UCShowClientMainWindow,
-  ucsShowClientDishList: UCSShowClientDishList
+  ucsShowClientDishList: UCSShowClientDishList,
+  ucsShowClientCart: UCSShowClientCart,
 ) {
 
   if (!isActive) return;
 
-  const { pressShowDishListBtn, pressCartBtn, pressBackToMainWindowBtn } = CClientMenu(ucshowClientMainWindow, ucsShowClientDishList);
+  const { pressShowDishListBtn, pressShowCartBtn, pressBackToMainWindowBtn } = CClientMenu(ucshowClientMainWindow, ucsShowClientDishList, ucsShowClientCart);
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
@@ -31,7 +33,7 @@ export function VClientMenu(
           Show dish list
         </button>
         <button
-          onClick={pressCartBtn}
+          onClick={pressShowCartBtn}
           className="px-6 py-3 mb-4 bg-indigo-400 text-white rounded-md hover:bg-indigo-500 flex flex-row items-center gap-2 justify-center"
         >
           <span className="material-icons">shopping_cart</span>

@@ -1,19 +1,20 @@
+import { UCSShowClientCart } from "../../../use_cases/UCSShowClientCart";
 import { UCSShowClientDishList } from "../../../use_cases/UCSShowClientDishList";
 import { UCShowClientMainWindow } from "../../../use_cases/UCSShowClientWindow";
 
 
-export function CClientMenu(ucshowClientMainWindow: UCShowClientMainWindow, ucsShowClientDishList: UCSShowClientDishList) {
+export function CClientMenu(ucshowClientMainWindow: UCShowClientMainWindow, ucsShowClientDishList: UCSShowClientDishList, ucsShowClientCart: UCSShowClientCart) {
   function pressShowDishListBtn() {
     ucsShowClientDishList.showClientDishes();
   }
 
-  function pressCartBtn() {
-    return;
+  function pressShowCartBtn() {
+    ucsShowClientCart.showClientCart();
   }
 
   function pressBackToMainWindowBtn() {
     ucshowClientMainWindow.backSelected();
   };
 
-  return { pressShowDishListBtn, pressCartBtn, pressBackToMainWindowBtn };
+  return { pressShowDishListBtn, pressShowCartBtn, pressBackToMainWindowBtn };
 }
