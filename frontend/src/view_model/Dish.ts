@@ -11,6 +11,6 @@ export interface FindDishDTO {
 }
 
 export interface OrderDishDTO {
-  date: Date,
+  date: Date | null,
   dish: FindDishDTO,
 }
