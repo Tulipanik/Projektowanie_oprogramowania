@@ -11,13 +11,13 @@ public abstract class AbstractException extends RuntimeException {
 
     private final HttpStatus status;
 
-    AbstractException(HttpStatus status, String reason, Exception exception) {
+    protected AbstractException(HttpStatus status, String reason, Exception exception) {
         super(reason, exception);
 
         this.status = status;
     }
 
-    AbstractException(HttpStatus status, String reason) {
+    protected AbstractException(HttpStatus status, String reason) {
         super(reason);
 
         this.status = status;

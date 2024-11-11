@@ -4,6 +4,7 @@ services:
             -   .env
         container_name: postgres
         image: postgres:alpine
+        hostname: postgres
         ports:
             - "5000:5432"
         healthcheck:
@@ -11,6 +12,24 @@ services:
             interval: 10s
             timeout: 5s
             retries: 5
+
+    images-nginx:
+        container_name: images-nginx
+        image: images-nginx:prod
+        hostname: images-nginx
+        build:
+            context: images-nginx
+            dockerfile: Dockerfile
+        ports:
+            - "4000:4000"
+        healthcheck:
+            test: [ "CMD", "curl", "--fail", "http://localhost:4000" ]
+            interval: 1s
+            retries: 120
+            start_period: 15s
+            timeout: 5s
+        volumes:
+            - "images:/etc/nginx/html/images"
 
     catering-backend:
         env_file:
@@ -24,5 +43,10 @@ services:
         depends_on:
             postgres:
                 condition: service_healthy
+        volumes:
+            -   "images:/etc/nginx/html/images"
         ports:
             - "8080:8080"
+
+volumes:
+    images:
