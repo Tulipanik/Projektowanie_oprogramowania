@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pl.edu.pw.ee.backend.api.order.data.OrderDTO;
-import pl.edu.pw.ee.backend.api.order.interfaces.OrderController;
+import pl.edu.pw.ee.backend.api.order.interfaces.IZamowieniaAPI;
 import pl.edu.pw.ee.backend.api.order.interfaces.OrderService;
 
 @RestController
@@ -16,7 +16,7 @@ import pl.edu.pw.ee.backend.api.order.interfaces.OrderService;
         produces = MediaType.APPLICATION_JSON_VALUE
 )
 @RequiredArgsConstructor
-public class OrderControllerImpl implements OrderController {
+public class ZamowieniaAPI implements IZamowieniaAPI {
     private final OrderService orderService;
 
 

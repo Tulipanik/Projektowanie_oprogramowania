@@ -28,7 +28,7 @@ public class Client {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long clientId;
+    private int clientId;
 
     @OneToOne
     @JoinColumn(name = "user_id")

@@ -36,6 +36,8 @@ public class OrderData {
 
     private String street;
 
+    private String name;
+
     private String surname;
 
     private String zipCode;
