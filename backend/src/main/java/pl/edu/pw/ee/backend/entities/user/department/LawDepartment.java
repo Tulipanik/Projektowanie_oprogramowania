@@ -1,33 +1,30 @@
-package pl.edu.pw.ee.backend.entities.user;
+package pl.edu.pw.ee.backend.entities.user.department;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import pl.edu.pw.ee.backend.entities.user.User;
 
 @Data
 @Entity
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "Users")
-public class User {
+@Table(name = "LawDepartments")
+public class LawDepartment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int userId;
+    private long lawDepartmentId;
 
-    @Email
-    private String username;
-
-    private String name;
-
-    private Role role;
+    @OneToOne
+    private User user;
 
 }

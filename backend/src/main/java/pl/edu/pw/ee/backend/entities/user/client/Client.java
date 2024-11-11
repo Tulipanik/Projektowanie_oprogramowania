@@ -1,8 +1,8 @@
-package pl.edu.pw.ee.backend.entities.catering.company;
+package pl.edu.pw.ee.backend.entities.user.client;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
@@ -12,7 +12,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import pl.edu.pw.ee.backend.entities.dish.Dish;
+import pl.edu.pw.ee.backend.entities.cart.Cart;
+import pl.edu.pw.ee.backend.entities.order.Order;
 import pl.edu.pw.ee.backend.entities.user.User;
 
 import java.util.List;
@@ -22,27 +23,23 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "CateringCompanies")
-public class CateringCompany {
+@Table(name = "Clients")
+public class Client {
 
     @Id
-    private int companyId;
-
-    private String address;
-
-    @Enumerated(EnumType.ORDINAL)
-    private CompanyType companyType;
-
-    private String NIP;
-
-    private String phoneNumber;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long clientId;
 
     @OneToOne
     @JoinColumn(name = "user_id")
     private User user;
 
+    @OneToOne
+    @JoinColumn(name = "cart_id")
+    private Cart cart;
+
     @OneToMany
-    @JoinColumn(name = "company_id")
-    private List<Dish> companyDishes;
+    @JoinColumn(name = "client_id")
+    private List<Order> dishOrders;
 
 }

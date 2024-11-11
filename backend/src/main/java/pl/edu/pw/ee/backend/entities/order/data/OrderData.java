@@ -4,21 +4,27 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import pl.edu.pw.ee.backend.entities.user.client.Client;
 
 @Data
 @Entity
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "OrderData")
 public class OrderData {
 
     @Id
     @GeneratedValue
     private int orderDataId;
-
-    //TODO: change when auth is implemented
-    private int clientId;
 
     @Email
     @Column(unique = true)
@@ -35,5 +41,9 @@ public class OrderData {
     private String zipCode;
 
     private String phone;
+
+    @OneToOne
+    @JoinColumn(name = "client_id")
+    private Client client;
 
 }

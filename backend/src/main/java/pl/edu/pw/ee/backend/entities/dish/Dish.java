@@ -8,16 +8,26 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import pl.edu.pw.ee.backend.entities.cart.Cart;
 import pl.edu.pw.ee.backend.entities.catering.company.CateringCompany;
 import pl.edu.pw.ee.backend.entities.dish.image.DishImage;
 
+import java.util.List;
+
 @Data
-@Table(name = "Dishes")
+@Builder
 @Entity
+@AllArgsConstructor
+@Table(name = "Dishes")
+@NoArgsConstructor
 public class Dish {
 
     @Id
@@ -45,5 +55,8 @@ public class Dish {
     @ManyToOne
     @JoinColumn(name = "company_id")
     private CateringCompany cateringCompany;
+
+    @ManyToMany(mappedBy = "dishes")
+    private List<Cart> carts;
 
 }

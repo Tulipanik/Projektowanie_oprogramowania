@@ -1,5 +1,6 @@
 package pl.edu.pw.ee.backend.entities.order;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -7,10 +8,14 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import pl.edu.pw.ee.backend.entities.dish.Dish;
 import pl.edu.pw.ee.backend.entities.order.data.OrderData;
 
@@ -18,11 +23,15 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Data
-@Table(name = "Orders")
+@Builder
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "Orders")
 public class Order {
 
     @Id
+    @Column(name = "order_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int orderId;
 
@@ -35,8 +44,12 @@ public class Order {
     @JoinColumn(name = "order_data_id")
     private OrderData orderData;
 
-    @OneToMany
-    @JoinColumn(name = "dish_id")
+    @ManyToMany
+    @JoinTable(
+            name = "order_dishes",
+            joinColumns = @JoinColumn(name = "order_id"),
+            inverseJoinColumns = @JoinColumn(name = "dish_id")
+    )
     private List<Dish> dishes;
 
 }
