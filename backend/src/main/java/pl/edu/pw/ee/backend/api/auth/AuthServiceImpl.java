@@ -5,7 +5,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import pl.edu.pw.ee.backend.api.auth.data.LoginRequest;
 import pl.edu.pw.ee.backend.api.auth.data.TokenResponse;
@@ -14,9 +13,9 @@ import pl.edu.pw.ee.backend.config.constants.TokenRevokeStatus;
 import pl.edu.pw.ee.backend.config.jwt.interfaces.JwtService;
 import pl.edu.pw.ee.backend.entities.user.User;
 import pl.edu.pw.ee.backend.entities.user.UserRepository;
-import pl.edu.pw.ee.backend.utils.exceptions.InvalidTokenException;
-import pl.edu.pw.ee.backend.utils.exceptions.TokenDoesNotExistException;
-import pl.edu.pw.ee.backend.utils.exceptions.UserDoesNotExistException;
+import pl.edu.pw.ee.backend.utils.exceptions.auth.InvalidTokenException;
+import pl.edu.pw.ee.backend.utils.exceptions.auth.TokenDoesNotExistException;
+import pl.edu.pw.ee.backend.utils.exceptions.auth.UserDoesNotExistException;
 
 import java.util.Optional;
 

@@ -16,8 +16,8 @@ import pl.edu.pw.ee.backend.config.jwt.interfaces.JwtKeyService;
 import pl.edu.pw.ee.backend.config.jwt.interfaces.JwtService;
 import pl.edu.pw.ee.backend.entities.user.User;
 import pl.edu.pw.ee.backend.entities.user.UserRepository;
-import pl.edu.pw.ee.backend.utils.exceptions.InvalidTokenException;
-import pl.edu.pw.ee.backend.utils.exceptions.UserDoesNotExistException;
+import pl.edu.pw.ee.backend.utils.exceptions.auth.InvalidTokenException;
+import pl.edu.pw.ee.backend.utils.exceptions.auth.UserDoesNotExistException;
 
 import java.util.Date;
 import java.util.HashMap;

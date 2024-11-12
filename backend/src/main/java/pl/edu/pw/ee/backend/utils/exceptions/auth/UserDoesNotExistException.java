@@ -1,6 +1,7 @@
-package pl.edu.pw.ee.backend.utils.exceptions;
+package pl.edu.pw.ee.backend.utils.exceptions.auth;
 
 import org.springframework.http.HttpStatus;
+import pl.edu.pw.ee.backend.utils.exceptions.AbstractException;
 
 import java.io.Serial;
 

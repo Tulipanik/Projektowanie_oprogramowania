@@ -17,7 +17,7 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import pl.edu.pw.ee.backend.entities.user.UserRepository;
-import pl.edu.pw.ee.backend.utils.exceptions.UserDoesNotExistException;
+import pl.edu.pw.ee.backend.utils.exceptions.auth.UserDoesNotExistException;
 
 import java.security.SecureRandom;
 import java.util.List;
