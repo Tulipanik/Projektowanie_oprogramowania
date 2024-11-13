@@ -1,4 +1,4 @@
-package pl.edu.pw.ee.backend.entities.catering.company;
+package pl.edu.pw.ee.backend.entities.external.company;
 
 public enum CompanyType {
 

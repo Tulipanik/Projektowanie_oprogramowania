@@ -1,5 +1,6 @@
 package pl.edu.pw.ee.backend.entities.user.storekeeper;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -25,7 +26,7 @@ public class Storekeeper {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long storekeeperId;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private User user;
 

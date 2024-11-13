@@ -1,5 +1,6 @@
 package pl.edu.pw.ee.backend.entities.user.manager;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -24,7 +25,7 @@ public class Manager {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long managerId;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private User user;
 
 }

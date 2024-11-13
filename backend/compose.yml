@@ -1,12 +1,10 @@
 services:
     postgres:
+        env_file:
+            -   .env
         container_name: postgres
         image: postgres:alpine
         hostname: postgres
-        environment:
-            - POSTGRES_USER=postgres
-            - POSTGRES_PASSWORD=none
-            - POSTGRES_DB=catering
         ports:
             - "5000:5432"
         healthcheck:
@@ -34,6 +32,8 @@ services:
             - "images:/etc/nginx/html/images"
 
     catering-backend:
+        env_file:
+            -   .env
         container_name: catering-backend
         hostname: catering-backend
         image: catering-backend:prod
@@ -43,10 +43,6 @@ services:
         depends_on:
             postgres:
                 condition: service_healthy
-        environment:
-            - POSTGRES_USER=postgres
-            - POSTGRES_PASSWORD=none
-            - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/catering
         volumes:
             -   "images:/etc/nginx/html/images"
         ports:

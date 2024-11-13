@@ -6,7 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import pl.edu.pw.ee.backend.entities.cart.Cart;
-import pl.edu.pw.ee.backend.entities.catering.company.CateringCompany;
+import pl.edu.pw.ee.backend.entities.external.company.ExternalCompany;
 import pl.edu.pw.ee.backend.entities.dish.image.DishImage;
 
 import java.util.List;
@@ -46,7 +46,7 @@ public class Dish {
 
     @ManyToOne
     @JoinColumn(name = "company_id")
-    private CateringCompany cateringCompany;
+    private ExternalCompany externalCompany;
 
     @ManyToMany(mappedBy = "dishes")
     private List<Cart> carts;

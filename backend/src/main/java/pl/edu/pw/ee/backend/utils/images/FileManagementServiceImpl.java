@@ -3,7 +3,7 @@ package pl.edu.pw.ee.backend.utils.images;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-import pl.edu.pw.ee.backend.utils.exceptions.FileCouldNotBeCreatedException;
+import pl.edu.pw.ee.backend.utils.exceptions.dish.image.FileCouldNotBeCreatedException;
 import pl.edu.pw.ee.backend.utils.images.interfaces.FileManagementService;
 
 import java.io.File;

@@ -57,7 +57,7 @@ public class OrderMapperImpl implements OrderMapper {
     public final FindDishDto toFindDishDTO(Dish dish) {
         return FindDishDto.builder()
                 .calories(dish.getCalories())
-                .companyName(dish.getCateringCompany().getAddress())
+                .companyName(dish.getExternalCompany().getAddress())
                 .dishId(dish.getDishId())
                 .ingredients(dish.getIngredients())
                 .kitchenType(dish.getKitchenType())

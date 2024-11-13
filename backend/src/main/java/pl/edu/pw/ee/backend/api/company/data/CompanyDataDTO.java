@@ -1,7 +1,7 @@
 package pl.edu.pw.ee.backend.api.company.data;
 
 import lombok.Builder;
-import pl.edu.pw.ee.backend.entities.catering.company.CompanyType;
+import pl.edu.pw.ee.backend.entities.external.company.CompanyType;
 
 @Builder
 public record CompanyDataDTO(String address, int companyId, CompanyType companyType, String email,

@@ -1,5 +1,6 @@
 package pl.edu.pw.ee.backend.entities.user.courier;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -29,7 +30,7 @@ public class Courier {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long courierId;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private User user;
 
