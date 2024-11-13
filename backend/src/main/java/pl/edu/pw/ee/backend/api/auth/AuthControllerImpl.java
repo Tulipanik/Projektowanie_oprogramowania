@@ -11,7 +11,7 @@ import pl.edu.pw.ee.backend.api.auth.interfaces.AuthService;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/auth")
+@RequestMapping("/api/v1/auth")
 public class AuthControllerImpl implements AuthController {
 
     private final AuthService authService;
