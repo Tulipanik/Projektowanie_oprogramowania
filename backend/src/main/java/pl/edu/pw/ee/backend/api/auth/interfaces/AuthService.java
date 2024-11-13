@@ -1,13 +1,13 @@
 package pl.edu.pw.ee.backend.api.auth.interfaces;
 
-import pl.edu.pw.ee.backend.api.auth.data.LoginRequest;
-import pl.edu.pw.ee.backend.api.auth.data.TokenResponse;
+import pl.edu.pw.ee.backend.api.auth.data.LoginDTO;
+import pl.edu.pw.ee.backend.api.auth.data.TokenDTO;
 
 public interface AuthService {
 
-    TokenResponse login(LoginRequest loginRequest);
+    TokenDTO login(LoginDTO loginDTO);
 
-    TokenResponse refreshToken(String refreshToken);
+    TokenDTO refreshToken(String refreshToken);
 
 }
 
