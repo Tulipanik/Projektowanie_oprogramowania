@@ -5,13 +5,21 @@ import { PClientMainWindow } from "./view/client/ClientMainWindow/PClientMainWin
 import { VClientMainWindow } from "./view/client/ClientMainWindow/VClientMainWindow";
 import { PMainMenu } from "./view/PMainMenu";
 import VMainMenu from "./view/VMainMenu";
+import VAuthMenu from "./view/VAuthMenu";
 import { AppState, ScreenId } from "./view_model/Types";
+import { UCAuthorizeUser } from "./use_cases/UCSAuthorization";
+import { PAuthMenu } from "./view/PAuthMenu";
+import { AuthorizationConst } from "./services/AuthorizationConst";
+import { AuthServiceMock } from "./services/AuthServiceMock";
+import { AuthService } from "./services/AuthService";
 
 const pMainMenu = new PMainMenu();
 const pClientMainWindow = new PClientMainWindow();
+const pAuthorization = new PAuthMenu();
 
 
 const usShowClientMainWindow = new UCShowClientMainWindow(pMainMenu, pClientMainWindow);
+const usAuthorization = new UCAuthorizeUser(pAuthorization,pMainMenu);
 
 function switchView(state: AppState, action: ScreenId) {
   let newState = { ...state };
@@ -21,7 +29,7 @@ function switchView(state: AppState, action: ScreenId) {
 
 export default function App() {
   const [state, globalUpdateView] = useReducer(switchView, {
-    screen: ScreenId.MAIN_MENU,
+    screen: ScreenId.AUTH,
     login: ""
   });
 
@@ -31,10 +39,14 @@ export default function App() {
 
   pMainMenu.injectGlobalUpdateView(globalUpdateView);
   pClientMainWindow.injectGlobalUpdateView(globalUpdateView);
+  pAuthorization.injectGlobalUpdateView(globalUpdateView);
+
+  AuthorizationConst.inject(new AuthService());
 
   return (
     <div className="App">
-      {VMainMenu(state.screen === ScreenId.MAIN_MENU, usShowClientMainWindow)}
+      {VAuthMenu(state.screen === ScreenId.AUTH,usAuthorization)}
+      {VMainMenu(state.screen === ScreenId.MAIN_MENU, usShowClientMainWindow,usAuthorization)}
       {VClientMainWindow(state.screen === ScreenId.CLIENT_MAIN_WINDOW, usShowClientMainWindow, pClientMainWindow)}
     </div>
   );
