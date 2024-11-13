@@ -41,7 +41,7 @@ export default function App() {
   pClientMainWindow.injectGlobalUpdateView(globalUpdateView);
   pAuthorization.injectGlobalUpdateView(globalUpdateView);
 
-  AuthorizationConst.inject(new AuthService());
+  AuthorizationConst.inject(new AuthServiceMock());
 
   return (
     <div className="App">
