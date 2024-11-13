@@ -12,7 +12,7 @@ import pl.edu.pw.ee.backend.api.order.interfaces.OrderService;
 
 @RestController
 @RequestMapping(
-        value = "/api/orders",
+        value = "/api/v1/orders",
         produces = MediaType.APPLICATION_JSON_VALUE
 )
 @RequiredArgsConstructor
