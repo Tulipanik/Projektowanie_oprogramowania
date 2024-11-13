@@ -6,8 +6,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Service;
-import pl.edu.pw.ee.backend.api.auth.data.LoginRequest;
-import pl.edu.pw.ee.backend.api.auth.data.TokenResponse;
+import pl.edu.pw.ee.backend.api.auth.data.LoginDTO;
+import pl.edu.pw.ee.backend.api.auth.data.TokenDTO;
 import pl.edu.pw.ee.backend.api.auth.interfaces.AuthService;
 import pl.edu.pw.ee.backend.config.constants.TokenRevokeStatus;
 import pl.edu.pw.ee.backend.config.jwt.interfaces.JwtService;
@@ -31,7 +31,7 @@ public class AuthServiceImpl implements AuthService {
     private final JwtService jwtService;
 
     @Override
-    public TokenResponse login(LoginRequest loginRequest) {
+    public TokenDTO login(LoginDTO loginRequest) {
         log.info("Logging user with data: \n{}", loginRequest);
 
         String username = loginRequest.username();
@@ -48,7 +48,7 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public TokenResponse refreshToken(String refreshToken) {
+    public TokenDTO refreshToken(String refreshToken) {
         log.info("Refresh token : {}", refreshToken);
 
         User user = validateRefreshTokenData(refreshToken);
@@ -84,7 +84,7 @@ public class AuthServiceImpl implements AuthService {
         return user;
     }
 
-    private TokenResponse buildTokensIntoResponse(User user, TokenRevokeStatus shouldBeRevoked) {
+    private TokenDTO buildTokensIntoResponse(User user, TokenRevokeStatus shouldBeRevoked) {
         User jwtUser = null;
 
         if (shouldBeRevoked == TokenRevokeStatus.TO_REVOKE) {
@@ -96,8 +96,8 @@ public class AuthServiceImpl implements AuthService {
         return buildTokensIntoResponse(authToken, refreshToken);
     }
 
-    private TokenResponse buildTokensIntoResponse(String authToken, String refreshToken) {
-        return TokenResponse
+    private TokenDTO buildTokensIntoResponse(String authToken, String refreshToken) {
+        return TokenDTO
                 .builder()
                 .authToken(authToken)
                 .refreshToken(refreshToken)

@@ -5,8 +5,8 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import pl.edu.pw.ee.backend.api.auth.data.LoginRequest;
-import pl.edu.pw.ee.backend.api.auth.data.TokenResponse;
+import pl.edu.pw.ee.backend.api.auth.data.LoginDTO;
+import pl.edu.pw.ee.backend.api.auth.data.TokenDTO;
 import pl.edu.pw.ee.backend.api.auth.interfaces.AuthController;
 import pl.edu.pw.ee.backend.api.auth.interfaces.AuthService;
 
@@ -22,8 +22,8 @@ public class AuthControllerImpl implements AuthController {
 
     @Override
     @PostMapping("/login")
-    public final TokenResponse login(LoginRequest loginRequest) {
-        return authService.login(loginRequest);
+    public final TokenDTO login(LoginDTO loginDTO) {
+        return authService.login(loginDTO);
     }
 
 }
