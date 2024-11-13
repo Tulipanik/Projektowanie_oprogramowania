@@ -3,8 +3,8 @@ export enum ScreenId {
   CLIENT_MAIN_WINDOW,
   CLIENT_DISHES,
   CLIENT_CART,
+  COURIER_COMPANY_MAIN_WINDOW,
 }
-
 
 export type AppState = {
   screen: ScreenId;
