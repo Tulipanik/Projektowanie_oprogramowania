@@ -11,9 +11,9 @@ export class AuthService implements IAuthService{
                 headers: {
                 'accept': '*/*'}
             });
-            //TODO Get token from request
+            console.log(response);
             if(response.status===200)
-                return "mock";
+                return (await response.json()).authToken;
             return "";
         }catch(error){
             return "";
