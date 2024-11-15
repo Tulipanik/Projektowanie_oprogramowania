@@ -1,4 +1,5 @@
 export enum ScreenId {
+  AUTH,
   MAIN_MENU,
   CLIENT_MAIN_WINDOW,
   CLIENT_DISHES,
