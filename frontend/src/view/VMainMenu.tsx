@@ -7,8 +7,8 @@ import { CMainMenu,CMainMenuLogout } from "./CMainMenu";
 export default function VMainMenu(
   isActive: boolean,
   ucsShowClientMainWindow: UCShowClientMainWindow,
-  ucsAuthorizeUser:UCAuthorizeUser,
-  usShowCourierCompanyMainWindow: UCShowCourierCompanyMainWindow
+  usShowCourierCompanyMainWindow: UCShowCourierCompanyMainWindow,
+  ucsAuthorizeUser:UCAuthorizeUser
 ) {
   if (!isActive) return;
 
