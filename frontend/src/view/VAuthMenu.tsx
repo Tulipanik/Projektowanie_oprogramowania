@@ -2,14 +2,15 @@ import "../styles.css";
 import { Formik, Form, Field } from "formik";
 import { CAuthMenu } from "./CAuthMenu";
 import { UCAuthorizeUser } from "../use_cases/UCSAuthorization";
+import { LoginData } from "../view_model/Authorization";
 
 export default function VAuthMenu(
     isActive: boolean,
-    ucAuthorizeUSer:UCAuthorizeUser
+    ucAuthorizeUser:UCAuthorizeUser
 ) {
 
     if (!isActive) return;
-    const {tryUserAuthorization} = CAuthMenu(ucAuthorizeUSer);
+    const {tryUserAuthorization} = CAuthMenu(ucAuthorizeUser);
 
     return (
         <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
@@ -18,7 +19,7 @@ export default function VAuthMenu(
             <Formik
                 initialValues={{ username: '', password: '' }}
                 onSubmit={(values) => {
-                    tryUserAuthorization(values);
+                    tryUserAuthorization(new LoginData(values.username,values.password));
                 }}
             >
                 {() => (

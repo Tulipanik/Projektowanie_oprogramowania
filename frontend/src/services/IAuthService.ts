@@ -1,4 +1,5 @@
+import { LoginData } from "../view_model/Authorization";
 
 export interface IAuthService{
-    fetchToken(values:any):Promise<string>;
+    fetchToken(loginData:LoginData):Promise<string>;
 }

@@ -10,7 +10,7 @@ import { AppState, ScreenId } from "./view_model/Types";
 import { UCAuthorizeUser } from "./use_cases/UCSAuthorization";
 import { PAuthMenu } from "./view/PAuthMenu";
 import { AuthorizationConst } from "./services/AuthorizationConst";
-import { AuthServiceMock } from "./services/AuthServiceMock";
+import { AuthServiceMock } from "./mock/AuthServiceMock";
 import { AuthService } from "./services/AuthService";
 
 const pMainMenu = new PMainMenu();
