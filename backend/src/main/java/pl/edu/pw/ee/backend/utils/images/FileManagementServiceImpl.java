@@ -4,7 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import pl.edu.pw.ee.backend.utils.exceptions.dish.image.FileCouldNotBeCreatedException;
-import pl.edu.pw.ee.backend.utils.images.interfaces.FileManagementService;
+import pl.edu.pw.ee.backend.utils.images.interfaces.IFileManagementService;
 
 import java.io.File;
 import java.io.IOException;
@@ -13,7 +13,7 @@ import java.nio.file.Path;
 
 @Slf4j
 @Service
-public class FileManagementServiceImpl implements FileManagementService {
+public class FileManagementServiceImpl implements IFileManagementService {
 
     @Override
     public final void saveFile(Path filePath, MultipartFile file) {

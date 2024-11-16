@@ -7,8 +7,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import pl.edu.pw.ee.backend.entities.dish.image.DishImage;
 import pl.edu.pw.ee.backend.entities.dish.image.DishImageRepository;
-import pl.edu.pw.ee.backend.utils.images.interfaces.FileManagementService;
-import pl.edu.pw.ee.backend.utils.images.interfaces.ImageService;
+import pl.edu.pw.ee.backend.utils.images.interfaces.IFileManagementService;
+import pl.edu.pw.ee.backend.utils.images.interfaces.IImageService;
 
 import java.nio.file.Path;
 import java.time.LocalDateTime;
@@ -17,12 +17,12 @@ import java.time.format.DateTimeFormatter;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class ImageServiceImpl implements ImageService {
+public class ImageServiceImpl implements IImageService {
 
     private static final String IMAGE_VOLUME_PATH = "/etc/nginx/html/images";
     private static final String IMAGE_URL_PATH = "http://localhost:4000/images";
 
-    private final FileManagementService fileManagementService;
+    private final IFileManagementService fileManagementService;
     private final DishImageRepository dishImageRepository;
 
     @Override

@@ -8,9 +8,9 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.stereotype.Service;
 import pl.edu.pw.ee.backend.api.auth.data.LoginDTO;
 import pl.edu.pw.ee.backend.api.auth.data.TokenDTO;
-import pl.edu.pw.ee.backend.api.auth.interfaces.AuthService;
+import pl.edu.pw.ee.backend.api.auth.interfaces.IAuthService;
 import pl.edu.pw.ee.backend.config.constants.TokenRevokeStatus;
-import pl.edu.pw.ee.backend.config.jwt.interfaces.JwtService;
+import pl.edu.pw.ee.backend.config.jwt.interfaces.IJwtService;
 import pl.edu.pw.ee.backend.entities.user.User;
 import pl.edu.pw.ee.backend.entities.user.UserRepository;
 import pl.edu.pw.ee.backend.utils.exceptions.auth.InvalidTokenException;
@@ -22,13 +22,13 @@ import java.util.Optional;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class AuthServiceImpl implements AuthService {
+public class AuthServiceImpl implements IAuthService {
 
     private static final String USER_NOT_EXIST_MESSAGE = "Such user does not exist!";
 
     private final UserRepository userRepository;
     private final AuthenticationManager authenticationManager;
-    private final JwtService jwtService;
+    private final IJwtService jwtService;
 
     @Override
     public TokenDTO login(LoginDTO loginRequest) {

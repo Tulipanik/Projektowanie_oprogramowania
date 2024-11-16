@@ -5,8 +5,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import pl.edu.pw.ee.backend.api.auth.data.AccountRequest;
-import pl.edu.pw.ee.backend.api.auth.data.ExternalCompanyRequest;
+import pl.edu.pw.ee.backend.api.auth.data.AccountCreateDTO;
+import pl.edu.pw.ee.backend.api.auth.data.ExternalCompanyCreateDTO;
 import pl.edu.pw.ee.backend.entities.external.company.ExternalCompany;
 import pl.edu.pw.ee.backend.entities.external.company.ExternalCompanyRepository;
 import pl.edu.pw.ee.backend.entities.user.Role;
@@ -23,7 +23,7 @@ import pl.edu.pw.ee.backend.entities.user.storekeeper.StorekeeperRepository;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class AccountCreationServiceImpl implements AccountCreationService {
+public class AccountCreationServiceImpl implements IAccountCreationService {
 
     private final ClientRepository clientRepository;
     private final CourierRepository courierRepository;
@@ -34,7 +34,7 @@ public class AccountCreationServiceImpl implements AccountCreationService {
 
     @Override
     @Transactional
-    public Client createClientAccount(AccountRequest request) {
+    public Client createClientAccount(AccountCreateDTO request) {
         log.info("Creating client account : {}", request);
 
         Client client = Client
@@ -51,7 +51,7 @@ public class AccountCreationServiceImpl implements AccountCreationService {
 
     @Override
     @Transactional
-    public Courier createCourierAccount(AccountRequest request) {
+    public Courier createCourierAccount(AccountCreateDTO request) {
         log.info("Creating courier account : {}", request);
 
         Courier courier = Courier
@@ -68,7 +68,7 @@ public class AccountCreationServiceImpl implements AccountCreationService {
 
     @Override
     @Transactional
-    public ExternalCompany createExternalCompanyAccount(ExternalCompanyRequest request) {
+    public ExternalCompany createExternalCompanyAccount(ExternalCompanyCreateDTO request) {
         log.info("Creating catering company account : {}", request);
 
         ExternalCompany externalCompany = ExternalCompany
@@ -89,7 +89,7 @@ public class AccountCreationServiceImpl implements AccountCreationService {
 
     @Override
     @Transactional
-    public Manager createManagerAccount(AccountRequest request) {
+    public Manager createManagerAccount(AccountCreateDTO request) {
         log.info("Creating manager account : {}", request);
 
         Manager manager = Manager
@@ -106,7 +106,7 @@ public class AccountCreationServiceImpl implements AccountCreationService {
 
     @Override
     @Transactional
-    public Storekeeper createStorekeeperAccount(AccountRequest request) {
+    public Storekeeper createStorekeeperAccount(AccountCreateDTO request) {
         log.info("Creating storekeeper account : {}", request);
 
         Storekeeper storekeeper = Storekeeper
@@ -121,11 +121,11 @@ public class AccountCreationServiceImpl implements AccountCreationService {
         return storekeeper;
     }
 
-    private User buildUserFromRequest(ExternalCompanyRequest request, Role role) {
+    private User buildUserFromRequest(ExternalCompanyCreateDTO request, Role role) {
         return buildUserFromRequest(request.name(), request.username(), request.password(), role);
     }
 
-    private User buildUserFromRequest(AccountRequest request, Role role) {
+    private User buildUserFromRequest(AccountCreateDTO request, Role role) {
         return buildUserFromRequest(request.name(), request.username(), request.password(), role);
     }
 

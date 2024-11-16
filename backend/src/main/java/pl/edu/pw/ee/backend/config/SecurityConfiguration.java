@@ -2,7 +2,6 @@ package pl.edu.pw.ee.backend.config;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -16,7 +15,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.LogoutHandler;
-import pl.edu.pw.ee.backend.config.jwt.interfaces.JwtAuthenticationFilter;
+import pl.edu.pw.ee.backend.config.jwt.interfaces.IJwtAuthenticationFilter;
 
 import static pl.edu.pw.ee.backend.config.constants.Matchers.AUTH_MATCHERS;
 import static pl.edu.pw.ee.backend.config.constants.Matchers.LOGOUT_URL;
@@ -32,7 +31,7 @@ import static pl.edu.pw.ee.backend.config.constants.Matchers.LOGOUT_URL;
 public class SecurityConfiguration {
 
     private final AuthenticationProvider authenticationProvider;
-    private final JwtAuthenticationFilter jwtAuthenticationFilter;
+    private final IJwtAuthenticationFilter jwtAuthenticationFilter;
     private final LogoutHandler logoutHandler;
 
     @Bean

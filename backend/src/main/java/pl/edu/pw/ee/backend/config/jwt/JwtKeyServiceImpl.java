@@ -1,7 +1,7 @@
 package pl.edu.pw.ee.backend.config.jwt;
 
 import org.springframework.stereotype.Component;
-import pl.edu.pw.ee.backend.config.jwt.interfaces.JwtKeyService;
+import pl.edu.pw.ee.backend.config.jwt.interfaces.IJwtKeyService;
 
 import java.security.KeyFactory;
 import java.security.NoSuchAlgorithmException;
@@ -13,7 +13,7 @@ import java.security.spec.X509EncodedKeySpec;
 import java.util.Base64;
 
 @Component
-public class JwtKeyServiceImpl implements JwtKeyService {
+public class JwtKeyServiceImpl implements IJwtKeyService {
 
     private static final String JWT_PUB_KEY = "JWT_PUB_KEY";
     private static final String JWT_PRIVATE_KEY = "JWT_PRIVATE_KEY";

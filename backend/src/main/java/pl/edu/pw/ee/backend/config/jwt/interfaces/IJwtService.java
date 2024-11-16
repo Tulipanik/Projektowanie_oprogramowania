@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.function.Function;
 
-public interface JwtService {
+public interface IJwtService {
 
     Optional<Long> getJwtVersionClaimFromToken(String jwtToken);
 
@@ -18,8 +18,6 @@ public interface JwtService {
 
     String generateToken(User userDetails);
 
-    String generatePasswordRefreshToken(User userDetails);
-
     String generateRefreshToken(User userDetails);
 
     String generateToken(Map<String, Object> additionalClaims, User userDetails, long expiration);
@@ -27,7 +25,5 @@ public interface JwtService {
     boolean isTokenNotValid(String jwtToken);
 
     User revokeUserTokens(User user);
-
-    String generateKafkaJwtToken();
 
 }

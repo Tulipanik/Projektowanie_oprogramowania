@@ -4,7 +4,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.nio.file.Path;
 
-public interface FileManagementService {
+public interface IFileManagementService {
 
     void saveFile(Path filePath, MultipartFile file);
 

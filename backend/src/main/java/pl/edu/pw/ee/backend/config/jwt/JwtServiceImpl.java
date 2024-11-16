@@ -12,8 +12,8 @@ import pl.edu.pw.ee.backend.config.constants.Headers;
 import pl.edu.pw.ee.backend.config.constants.Matchers;
 import pl.edu.pw.ee.backend.config.jwt.constants.JwtClaims;
 import pl.edu.pw.ee.backend.config.jwt.constants.TokenType;
-import pl.edu.pw.ee.backend.config.jwt.interfaces.JwtKeyService;
-import pl.edu.pw.ee.backend.config.jwt.interfaces.JwtService;
+import pl.edu.pw.ee.backend.config.jwt.interfaces.IJwtKeyService;
+import pl.edu.pw.ee.backend.config.jwt.interfaces.IJwtService;
 import pl.edu.pw.ee.backend.entities.user.User;
 import pl.edu.pw.ee.backend.entities.user.UserRepository;
 import pl.edu.pw.ee.backend.utils.exceptions.auth.InvalidTokenException;
@@ -27,19 +27,17 @@ import java.util.function.Function;
 
 @Slf4j
 @Service
-public class JwtServiceImpl implements JwtService {
+public class JwtServiceImpl implements IJwtService {
 
     private static final String EXPIRATION_PROPERTY = "${spring.security.jwt.expiration-time}";
     private static final String REFRESH_PROPERTY = "${spring.security.jwt.refresh-time}";
-    private static final long PASSWORD_REFRESH_TOKEN_TIME = 600_000L;
-    private static final long KAFKA_EXPIRATION_TIME = Long.MAX_VALUE / 2L;
 
     private final long expirationTime;
     private final long refreshTime;
-    private final JwtKeyService jwtKeyService;
+    private final IJwtKeyService jwtKeyService;
     private final UserRepository userRepository;
 
-    public JwtServiceImpl(JwtKeyService jwtKeyService, UserRepository userRepository,
+    public JwtServiceImpl(IJwtKeyService jwtKeyService, UserRepository userRepository,
                           @Value(REFRESH_PROPERTY) long refreshTime,
                           @Value(EXPIRATION_PROPERTY) long expirationTime) {
         this.jwtKeyService = jwtKeyService;
@@ -57,18 +55,6 @@ public class JwtServiceImpl implements JwtService {
         log.info("User with revoked tokens : {}", updatedUser);
 
         return updatedUser;
-    }
-
-    @Override
-    public final String generateKafkaJwtToken() {
-        User user = User
-                .builder()
-                .username("kafka@social365.com")
-                .jwtVersion(0L)
-                .userId(-1)
-                .build();
-
-        return buildToken(buildMinimumClaimsForUser(user), user, KAFKA_EXPIRATION_TIME);
     }
 
     @Override
@@ -105,15 +91,6 @@ public class JwtServiceImpl implements JwtService {
     @Override
     public final String generateToken(User userDetails) {
         return generateToken(buildMinimumClaimsForUser(userDetails), userDetails, expirationTime);
-    }
-
-    @Override
-    public final String generatePasswordRefreshToken(User userDetails) {
-        Map<String, Object> claims = new HashMap<>(buildMinimumClaimsForUser(userDetails));
-
-        claims.put(JwtClaims.PASSWORD_RESET, true);
-
-        return generateToken(claims, userDetails, PASSWORD_REFRESH_TOKEN_TIME);
     }
 
     @Override

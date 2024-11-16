@@ -9,7 +9,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.LogoutHandler;
 import org.springframework.stereotype.Service;
-import pl.edu.pw.ee.backend.config.jwt.interfaces.JwtService;
+import pl.edu.pw.ee.backend.config.jwt.interfaces.IJwtService;
 import pl.edu.pw.ee.backend.entities.user.User;
 import pl.edu.pw.ee.backend.entities.user.UserRepository;
 import pl.edu.pw.ee.backend.utils.exceptions.auth.InvalidTokenException;
@@ -23,7 +23,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class LogoutServiceImpl implements LogoutHandler {
 
-    private final JwtService jwtService;
+    private final IJwtService jwtService;
     private final UserRepository userRepository;
 
     @Override

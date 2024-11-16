@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pl.edu.pw.ee.backend.api.auth.data.LoginDTO;
 import pl.edu.pw.ee.backend.api.auth.data.TokenDTO;
-import pl.edu.pw.ee.backend.api.auth.interfaces.AuthController;
-import pl.edu.pw.ee.backend.api.auth.interfaces.AuthService;
+import pl.edu.pw.ee.backend.api.auth.interfaces.IAuthController;
+import pl.edu.pw.ee.backend.api.auth.interfaces.IAuthService;
 
 @RestController
 @RequiredArgsConstructor
@@ -16,9 +16,9 @@ import pl.edu.pw.ee.backend.api.auth.interfaces.AuthService;
         value = "/api/v1/auth",
         produces = MediaType.APPLICATION_JSON_VALUE
 )
-public class AuthControllerImpl implements AuthController {
+public class AuthControllerImpl implements IAuthController {
 
-    private final AuthService authService;
+    private final IAuthService authService;
 
     @Override
     @PostMapping("/login")

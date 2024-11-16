@@ -14,18 +14,18 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
-import pl.edu.pw.ee.backend.config.jwt.interfaces.JwtAuthenticationFilter;
-import pl.edu.pw.ee.backend.config.jwt.interfaces.JwtService;
+import pl.edu.pw.ee.backend.config.jwt.interfaces.IJwtAuthenticationFilter;
+import pl.edu.pw.ee.backend.config.jwt.interfaces.IJwtService;
 
 import java.io.IOException;
 import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor
-public class JwtAuthenticationFilterImpl extends OncePerRequestFilter implements JwtAuthenticationFilter {
+public class JwtAuthenticationFilterImpl extends OncePerRequestFilter implements IJwtAuthenticationFilter {
 
     private final UserDetailsService userDetailsService;
-    private final JwtService jwtService;
+    private final IJwtService jwtService;
 
     @Override
     public final void doFilterInternal(@NonNull HttpServletRequest request,

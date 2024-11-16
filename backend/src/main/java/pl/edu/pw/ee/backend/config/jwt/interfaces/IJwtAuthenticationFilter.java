@@ -9,7 +9,7 @@ import org.springframework.lang.NonNull;
 
 import java.io.IOException;
 
-public interface JwtAuthenticationFilter extends Filter {
+public interface IJwtAuthenticationFilter extends Filter {
 
     void doFilterInternal(@NonNull HttpServletRequest request,
                           @NonNull HttpServletResponse response,

@@ -4,9 +4,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import pl.edu.pw.ee.backend.api.auth.account.AccountCreationService;
-import pl.edu.pw.ee.backend.api.auth.data.AccountRequest;
-import pl.edu.pw.ee.backend.api.auth.data.ExternalCompanyRequest;
+import pl.edu.pw.ee.backend.api.auth.account.IAccountCreationService;
+import pl.edu.pw.ee.backend.api.auth.data.AccountCreateDTO;
+import pl.edu.pw.ee.backend.api.auth.data.ExternalCompanyCreateDTO;
 import pl.edu.pw.ee.backend.entities.external.company.CompanyType;
 
 @SpringBootApplication
@@ -19,9 +19,9 @@ public class BackendApplication {
     }
 
     @Bean
-    public CommandLineRunner commandLineRunner(AccountCreationService accountCreationService) {
+    public CommandLineRunner commandLineRunner(IAccountCreationService accountCreationService) {
         return args -> {
-            AccountRequest request = AccountRequest
+            AccountCreateDTO request = AccountCreateDTO
                     .builder()
                     .name("John Doe")
                     .username("john.doe@gmail.com")
@@ -30,7 +30,7 @@ public class BackendApplication {
 
             accountCreationService.createCourierAccount(request);
 
-            request = AccountRequest
+            request = AccountCreateDTO
                     .builder()
                     .name("Marie Doe")
                     .username("marie.doe@gmail.com")
@@ -39,7 +39,7 @@ public class BackendApplication {
 
             accountCreationService.createClientAccount(request);
 
-            request = AccountRequest
+            request = AccountCreateDTO
                     .builder()
                     .name("Jane Doe")
                     .username("jane.doe@gmail.com")
@@ -48,7 +48,7 @@ public class BackendApplication {
 
             accountCreationService.createManagerAccount(request);
 
-            request = AccountRequest
+            request = AccountCreateDTO
                     .builder()
                     .name("Jack Doe")
                     .username("jack.doe@gmail.com")
@@ -57,7 +57,7 @@ public class BackendApplication {
 
             accountCreationService.createStorekeeperAccount(request);
 
-            ExternalCompanyRequest cateringCompany = ExternalCompanyRequest
+            ExternalCompanyCreateDTO cateringCompany = ExternalCompanyCreateDTO
                     .builder()
                     .name("Ropucha")
                     .username("ropucha@staw.pl")
@@ -70,7 +70,7 @@ public class BackendApplication {
 
             accountCreationService.createExternalCompanyAccount(cateringCompany);
 
-            ExternalCompanyRequest courierCompany = ExternalCompanyRequest
+            ExternalCompanyCreateDTO courierCompany = ExternalCompanyCreateDTO
                     .builder()
                     .name("OutPost")
                     .username("outpost@niepaczkomat.pl")
