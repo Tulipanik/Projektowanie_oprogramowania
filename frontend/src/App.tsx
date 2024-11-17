@@ -32,6 +32,7 @@ export default function App() {
   pMainMenu.injectGlobalUpdateView(globalUpdateView);
   pClientMainWindow.injectGlobalUpdateView(globalUpdateView);
 
+
   return (
     <div className="App">
       {VMainMenu(state.screen === ScreenId.MAIN_MENU, usShowClientMainWindow)}

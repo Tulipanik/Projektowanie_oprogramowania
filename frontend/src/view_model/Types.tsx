@@ -3,6 +3,7 @@ export enum ScreenId {
   CLIENT_MAIN_WINDOW,
   CLIENT_DISHES,
   CLIENT_CART,
+  PLACE_ORDER,
 }
 
 

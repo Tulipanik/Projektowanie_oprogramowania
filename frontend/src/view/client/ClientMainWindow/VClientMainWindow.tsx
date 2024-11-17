@@ -12,9 +12,13 @@ import { CartProxy, ICartApi } from "../../../services/ICart";
 import { UCSShowClientCart } from "../../../use_cases/UCSShowClientCart";
 import { PClientCart } from "../ClientCart/PClientCart";
 import { VClientCart } from "../ClientCart/VClientCart";
+import { VClientPlaceOrder } from "../ClientPlaceOrder/VClientPlaceOrder";
+import { UCSClientPlaceOrder } from "../../../use_cases/UCSClientPlaceOrder";
+import { PClientPlaceOrder } from "../ClientPlaceOrder/PClientPlaceOrder";
 
 const pClientDishes = new PClientDishes();
 const pClientCart = new PClientCart();
+const pClientPlaceOrder = new PClientPlaceOrder();
 const iDishes: IDishesApi = new DishesProxy();
 const iCart: ICartApi = new CartProxy();
 const ucsShowClientDishList = new UCSShowClientDishList(
@@ -23,6 +27,7 @@ const ucsShowClientDishList = new UCSShowClientDishList(
 	iCart
 );
 const ucsShowClientCart = new UCSShowClientCart(pClientCart, iCart);
+const ucsClientPlaceOrder = new UCSClientPlaceOrder(pClientPlaceOrder);
 
 export function VClientMainWindow(
 	isActive: boolean,
@@ -39,6 +44,7 @@ export function VClientMainWindow(
 	pClientDishes.injectClientDispatch(clientStateUpdate);
 	pClientCart.injectClientDispatch(clientStateUpdate);
 	pClientMainWindow.injectClientDispatch(clientStateUpdate);
+	pClientPlaceOrder.injectClientDispatch(clientStateUpdate);
 
 	return (
 		<div>
@@ -60,7 +66,14 @@ export function VClientMainWindow(
 				ucsShowClientCart,
 				ucshowClientMainWindow,
 				ucsShowClientDishList,
+				ucsClientPlaceOrder,
 				{ cart: clientState.cart, error: clientState.error }
+			)}
+			{VClientPlaceOrder(
+				clientState.screen === ClientScreenId.PLACE_ORDER,
+				ucsShowClientCart,
+				ucsClientPlaceOrder,
+				{ address: clientState.address}
 			)}
 		</div>
 	);

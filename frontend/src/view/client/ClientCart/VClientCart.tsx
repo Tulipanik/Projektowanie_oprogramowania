@@ -1,3 +1,4 @@
+import { UCSClientPlaceOrder } from "../../../use_cases/UCSClientPlaceOrder";
 import { UCSShowClientCart } from "../../../use_cases/UCSShowClientCart";
 import { UCSShowClientDishList } from "../../../use_cases/UCSShowClientDishList";
 import { UCShowClientMainWindow } from "../../../use_cases/UCSShowClientWindow";
@@ -10,6 +11,7 @@ export function VClientCart(
 	ucsShowClientCart: UCSShowClientCart,
 	ucsShowClientWindow: UCShowClientMainWindow,
 	ucsShowClientDishList: UCSShowClientDishList,
+	ucsClientPlaceOrder: UCSClientPlaceOrder,
 	state: Pick<ClientViewState, "cart" | "error">
 ) {
 	if (!isActive) return;
@@ -23,7 +25,8 @@ export function VClientCart(
 	} = CClientCart(
 		ucsShowClientCart,
 		ucsShowClientWindow,
-		ucsShowClientDishList
+		ucsShowClientDishList,
+		ucsClientPlaceOrder
 	);
 
 	return (
