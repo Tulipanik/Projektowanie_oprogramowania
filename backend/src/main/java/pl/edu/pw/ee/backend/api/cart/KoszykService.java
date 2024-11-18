@@ -9,7 +9,6 @@ import pl.edu.pw.ee.backend.entities.cart.Cart;
 import pl.edu.pw.ee.backend.entities.cart.CartRepository;
 import pl.edu.pw.ee.backend.entities.dish.Dish;
 import pl.edu.pw.ee.backend.entities.dish.DishRepository;
-import pl.edu.pw.ee.backend.utils.exceptions.cart.CartNotFoundException;
 import pl.edu.pw.ee.backend.utils.exceptions.dish.DishNotFoundException;
 
 @Service
@@ -25,7 +24,7 @@ public class KoszykService implements IKoszykAPI {
         log.debug("Adding dish with ID {} to cart with ID {}", dishId, cartId);
 
         Cart cart = cartRepository.findById(cartId)
-                .orElseThrow(() -> new CartNotFoundException(cartId));
+                .orElseThrow(() -> new DishNotFoundException(cartId));
 
         Dish dish = dishRepository.findById(dishId)
                 .orElseThrow(() -> new DishNotFoundException(dishId));

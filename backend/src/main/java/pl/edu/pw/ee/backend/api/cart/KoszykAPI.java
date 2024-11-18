@@ -1,4 +1,4 @@
-package main.java.pl.edu.pw.ee.backend.api.cart;
+package pl.edu.pw.ee.backend.api.cart;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
