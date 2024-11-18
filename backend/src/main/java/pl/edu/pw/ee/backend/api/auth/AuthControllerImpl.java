@@ -3,6 +3,7 @@ package pl.edu.pw.ee.backend.api.auth;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pl.edu.pw.ee.backend.api.auth.data.LoginDTO;
@@ -22,7 +23,7 @@ public class AuthControllerImpl implements IAuthController {
 
     @Override
     @PostMapping("/login")
-    public final TokenDTO login(LoginDTO loginDTO) {
+    public final TokenDTO login(@RequestBody LoginDTO loginDTO) {
         return authService.login(loginDTO);
     }
 
