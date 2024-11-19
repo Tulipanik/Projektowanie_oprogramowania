@@ -4,7 +4,7 @@ import { AddDishDTO } from "../view_model/Dish";
 
 const MOCK_CLIENT_ID = 1;
 
-export class UCShowCourierCompanyDishesList {
+export class UCCourierCompanyAddNewDish {
   constructor(
     private pCourierCompanyDishes: PCourierCompanyDishes,
     private dishesApi: IDishesApi

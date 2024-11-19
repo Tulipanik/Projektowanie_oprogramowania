@@ -8,7 +8,7 @@ import {
 } from "../../../view_model/CourierCompany";
 import { VCourierCompanyMenu } from "../CourierCompanyMenu/VCourierCompanyMenu";
 import { DishesProxy, IDishesApi } from "../../../services/IDishes";
-import { UCShowCourierCompanyDishesList } from "../../../use_cases/UCSShowCourierCompanyDishesList";
+import { UCCourierCompanyAddNewDish } from "../../../use_cases/UCSCourierCompanyAddNewDish";
 import { PCourierCompanyDishes } from "../CourierCompanyDishes/PCourierCompanyDishes";
 import { VCourierCompanyDishes } from "../CourierCompanyDishes/VCourierCompanyDishes";
 import { VCourierCompanyAddDish } from "../CourierCompanyAddDish/VCourierCompanyAddDish";
@@ -17,7 +17,7 @@ import { VCourierCompanyAddDishFailWindow } from "../CourierCompanyAddDish/Couri
 
 const pCourierCompanyDishes = new PCourierCompanyDishes();
 const iDishes: IDishesApi = new DishesProxy();
-const ucsShowCourierCompanyDishesList = new UCShowCourierCompanyDishesList(
+const ucsCourierCompanyAddNewDish = new UCCourierCompanyAddNewDish(
   pCourierCompanyDishes,
   iDishes
 );
@@ -43,27 +43,27 @@ export function VCourierCompanyMainWindow(
       {VCourierCompanyMenu(
         courierCompanyState.screen === CourierCompanyScreenId.MAIN_WINDOW,
         ucshowCourierCompanyMainWindow,
-        ucsShowCourierCompanyDishesList
+        ucsCourierCompanyAddNewDish
       )}
       {VCourierCompanyDishes(
         courierCompanyState.screen === CourierCompanyScreenId.OFFER,
         ucshowCourierCompanyMainWindow,
-        ucsShowCourierCompanyDishesList,
+        ucsCourierCompanyAddNewDish,
         { offer: courierCompanyState.offer }
       )}
       {VCourierCompanyAddDish(
         courierCompanyState.screen === CourierCompanyScreenId.ADD_DISH,
         ucshowCourierCompanyMainWindow,
-        ucsShowCourierCompanyDishesList
+        ucsCourierCompanyAddNewDish
       )}
       {VCourierCompanyAddDishSuccessWindow(
         courierCompanyState.screen === CourierCompanyScreenId.ADD_DISH_SUCCESS,
-        ucsShowCourierCompanyDishesList,
+        ucsCourierCompanyAddNewDish,
         ucshowCourierCompanyMainWindow
       )}
       {VCourierCompanyAddDishFailWindow(
         courierCompanyState.screen === CourierCompanyScreenId.ADD_DISH_FAIL,
-        ucsShowCourierCompanyDishesList,
+        ucsCourierCompanyAddNewDish,
         ucshowCourierCompanyMainWindow
       )}
     </div>

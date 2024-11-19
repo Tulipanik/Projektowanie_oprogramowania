@@ -1,18 +1,18 @@
-import { UCShowCourierCompanyDishesList } from "../../../use_cases/UCSShowCourierCompanyDishesList";
+import { UCCourierCompanyAddNewDish } from "../../../use_cases/UCSCourierCompanyAddNewDish";
 import { UCShowCourierCompanyMainWindow } from "../../../use_cases/UCSShowCourierCompanyMainWindow";
 import { CCourierCompanyMenu } from "./CCourierCompanyMenu";
 
 export function VCourierCompanyMenu(
   isActive: boolean,
   ucshowCourierCompanyMainWindow: UCShowCourierCompanyMainWindow,
-  ucsShowCourierCompanyDishesList: UCShowCourierCompanyDishesList
+  ucsCourierCompanyAddNewDish: UCCourierCompanyAddNewDish
 ) {
   if (!isActive) return;
 
   const { pressBackToMainWindowBtn, pressShowDishListBtn } =
     CCourierCompanyMenu(
       ucshowCourierCompanyMainWindow,
-      ucsShowCourierCompanyDishesList
+      ucsCourierCompanyAddNewDish
     );
 
   return (
