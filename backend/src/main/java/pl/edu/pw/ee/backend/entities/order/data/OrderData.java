@@ -26,26 +26,25 @@ public class OrderData {
     @GeneratedValue
     private int orderDataId;
 
-    @Email
-    @Column(unique = true)
-    private String email;
-
     private String city;
-
-    private String comment;
-
-    private String street;
-
-    private String name;
-
-    private String surname;
-
-    private String zipCode;
-
-    private String phone;
 
     @OneToOne
     @JoinColumn(name = "client_id")
     private Client client;
 
+    private String comment;
+
+    @Email
+    @Column(unique = true)
+    private String email;
+
+    private String name;
+
+    private String phone;
+
+    private String street;
+
+    private String surname;
+
+    private String zipCode;
 }

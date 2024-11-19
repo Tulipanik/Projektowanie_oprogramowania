@@ -8,7 +8,7 @@ import pl.edu.pw.ee.backend.api.order.data.OrderDTO;
 import pl.edu.pw.ee.backend.api.order.data.OrderDataDTO;
 import pl.edu.pw.ee.backend.api.order.data.OrderDishDTO;
 import pl.edu.pw.ee.backend.api.order.interfaces.OrderMapper;
-import pl.edu.pw.ee.backend.api.order.interfaces.OrderService;
+import pl.edu.pw.ee.backend.api.order.interfaces.IBazaZamowien;
 import pl.edu.pw.ee.backend.entities.dish.Dish;
 import pl.edu.pw.ee.backend.entities.dish.DishRepository;
 import pl.edu.pw.ee.backend.entities.order.Order;
@@ -26,28 +26,27 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class OrderServiceImpl implements OrderService {
+public class BazaZamowien implements IBazaZamowien {
     private final OrderRepository orderRepository;
     private final DishRepository dishRepository;
     private final ClientRepository clientRepository;
-    private final OrderMapper orderMapper;
 
     @Override
     @Transactional
-    public OrderDTO createOrder(OrderDTO order) {
-        log.debug("Creating order for request: {}", order);
+    public int setOrderData(OrderDTO orderData) {
+        log.info("Creating order for request: {}", orderData);
 
-        OrderDataDTO orderData = order.orderData();
-        List<OrderDishDTO> meals = order.meals();
+        OrderDataDTO orderDataDto = orderData.orderData();
+        List<OrderDishDTO> meals = orderData.meals();
 
-        log.debug("Retrieving client with id: {}", orderData.clientId());
+        log.info("Retrieving client with id: {}", orderDataDto.clientId());
 
-        Client client = clientRepository.findById(orderData.clientId())
-                .orElseThrow(() -> new ClientNotFoundException(orderData.clientId()));
+        Client client = clientRepository.findById(orderDataDto.clientId())
+                .orElseThrow(() -> new ClientNotFoundException(orderDataDto.clientId()));
 
-        OrderData orderDataToSave = buildOrderDataToSave(orderData, client);
+        OrderData orderDataToSave = buildOrderDataToSave(orderDataDto, client);
 
-        log.debug("Retrieving {} dishes", meals.size());
+        log.info("Retrieving {} dishes", meals.size());
 
         List<Dish> dishes = meals.stream()
                 .map(meal -> dishRepository.findById(meal.dish().dishId())
@@ -56,13 +55,13 @@ public class OrderServiceImpl implements OrderService {
 
         Order orderToSave = buildOrderToSave(orderDataToSave, dishes);
 
-        log.debug("Saving order: {}", orderToSave);
+        log.info("Saving order: {}", orderToSave);
 
         Order savedOrder = orderRepository.save(orderToSave);
 
-        log.debug("Returning response for saved order: {}", savedOrder);
+        log.info("Returning id of saved order: {}", savedOrder.getOrderId());
 
-        return orderMapper.toOrderDTO(savedOrder);
+        return savedOrder.getOrderId();
     }
 
     private OrderData buildOrderDataToSave(OrderDataDTO orderData, Client client) {
@@ -73,7 +72,7 @@ public class OrderServiceImpl implements OrderService {
                 .street(orderData.street())
                 .surname(orderData.surname())
                 .zipCode(orderData.zipCode())
-                .phone(orderData.phoneNumber())
+                .phone(orderData.phone())
                 .client(client)
                 .build();
     }

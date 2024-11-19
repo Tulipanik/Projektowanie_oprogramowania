@@ -2,7 +2,7 @@ package pl.edu.pw.ee.backend.api.order.interfaces;
 
 import pl.edu.pw.ee.backend.api.order.data.OrderDTO;
 
-public interface OrderService {
+public interface IBazaZamowien {
 
-    OrderDTO createOrder(OrderDTO order);
+    int setOrderData(OrderDTO order);
 }
