@@ -1,4 +1,4 @@
-import { UCShowCourierCompanyDishesList } from "../../../use_cases/UCSShowCourierCompanyDishesList";
+import { UCCourierCompanyAddNewDish } from "../../../use_cases/UCSCourierCompanyAddNewDish";
 import { UCShowCourierCompanyMainWindow } from "../../../use_cases/UCSShowCourierCompanyMainWindow";
 import { AddDishDTO, mealType } from "../../../view_model/Dish";
 import { CCourierCompanyDishes } from "../CourierCompanyDishes/CCourierCompanyDishes";
@@ -8,10 +8,10 @@ import { CourierCompanyAddDishForm } from "./ui/CourierCompanyAddDishForm";
 export function VCourierCompanyAddDish(
   isActive: boolean,
   ucshowCourierCompanyMainWindow: UCShowCourierCompanyMainWindow,
-  ucsShowCourierCompanyDishesList: UCShowCourierCompanyDishesList
+  ucsCourierCompanyAddNewDish: UCCourierCompanyAddNewDish
 ) {
   const { pressAddNewDishBtn, pressShowDishListBtn } = CCourierCompanyDishes(
-    ucsShowCourierCompanyDishesList,
+    ucsCourierCompanyAddNewDish,
     ucshowCourierCompanyMainWindow
   );
 

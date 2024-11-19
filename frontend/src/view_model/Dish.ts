@@ -17,11 +17,11 @@ export interface OrderDishDTO {
 
 export enum mealType {
   BREAKFAST = "Breakfast",
-  DINNER = "Dinner",
   SUPPER = "Supper",
-  DESSERT = "Dessert",
-  BRUNCH = "Brunch",
+  DINNER = "Dinner",
   SECOND_BREAKFAST = "Second Breakfast",
+  TEA = "Tea",
+  DESSERT = "Dessert",
 }
 
 export interface AddDishDTO {
