@@ -7,7 +7,6 @@ import org.springframework.transaction.annotation.Transactional;
 import pl.edu.pw.ee.backend.api.order.data.OrderDTO;
 import pl.edu.pw.ee.backend.api.order.data.OrderDataDTO;
 import pl.edu.pw.ee.backend.api.order.data.OrderDishDTO;
-import pl.edu.pw.ee.backend.api.order.interfaces.OrderMapper;
 import pl.edu.pw.ee.backend.api.order.interfaces.IBazaZamowien;
 import pl.edu.pw.ee.backend.entities.dish.Dish;
 import pl.edu.pw.ee.backend.entities.dish.DishRepository;
@@ -22,12 +21,14 @@ import pl.edu.pw.ee.backend.utils.exceptions.user.client.ClientNotFoundException
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 @Slf4j
 public class BazaZamowien implements IBazaZamowien {
     private final OrderRepository orderRepository;
+    private final OrderMapperImpl orderMapper;
     private final DishRepository dishRepository;
     private final ClientRepository clientRepository;
 
@@ -62,6 +63,12 @@ public class BazaZamowien implements IBazaZamowien {
         log.info("Returning id of saved order: {}", savedOrder.getOrderId());
 
         return savedOrder.getOrderId();
+    }
+
+    @Override
+    public OrderDTO getOrderData(int orderId) {
+        final Optional<Order> order = orderRepository.findById(orderId);
+        return order.map(orderMapper::toOrderDTO).orElse(null);
     }
 
     private OrderData buildOrderDataToSave(OrderDataDTO orderData, Client client) {
