@@ -1,4 +1,4 @@
-import { FindDishDTO } from "../view_model/Dish";
+import { FindDishDTO, mealType } from "../view_model/Dish";
 
 export const MOCK_FIND_DISH_DTO: FindDishDTO[] = [
   {
@@ -7,10 +7,10 @@ export const MOCK_FIND_DISH_DTO: FindDishDTO[] = [
     dishId: 1,
     ingredients: ["pasta", "eggs", "cheese", "pancetta", "pepper"],
     kitchenType: "Italian",
-    mealType: "Main Course",
+    mealType: mealType.DINNER,
     name: "Spaghetti Carbonara",
     photoLink: "https://example.com/spaghetti-carbonara.jpg",
-    price: 12.99
+    price: 12.99,
   },
   {
     calories: 300,
@@ -18,21 +18,26 @@ export const MOCK_FIND_DISH_DTO: FindDishDTO[] = [
     dishId: 2,
     ingredients: ["tomatoes", "mozzarella cheese", "basil", "olive oil"],
     kitchenType: "Italian",
-    mealType: "Main Course",
+    mealType: mealType.DINNER,
     name: "Margherita Pizza",
     photoLink: "https://example.com/margherita-pizza.jpg",
-    price: 10.99
+    price: 10.99,
   },
   {
     calories: 200,
     companyName: "Salad Bar",
     dishId: 3,
-    ingredients: ["romaine lettuce", "croutons", "Parmesan cheese", "Caesar dressing"],
+    ingredients: [
+      "romaine lettuce",
+      "croutons",
+      "Parmesan cheese",
+      "Caesar dressing",
+    ],
     kitchenType: "American",
-    mealType: "Appetizer",
+    mealType: mealType.BREAKFAST,
     name: "Caesar Salad",
     photoLink: "https://example.com/caesar-salad.jpg",
-    price: 8.99
+    price: 8.99,
   },
   {
     calories: 400,
@@ -40,10 +45,10 @@ export const MOCK_FIND_DISH_DTO: FindDishDTO[] = [
     dishId: 4,
     ingredients: ["tortillas", "beef", "lettuce", "cheese", "salsa"],
     kitchenType: "Mexican",
-    mealType: "Main Course",
+    mealType: mealType.DINNER,
     name: "Beef Tacos",
     photoLink: "https://example.com/beef-tacos.jpg",
-    price: 9.99
+    price: 9.99,
   },
   {
     calories: 600,
@@ -51,10 +56,10 @@ export const MOCK_FIND_DISH_DTO: FindDishDTO[] = [
     dishId: 5,
     ingredients: ["fettuccine", "Alfredo sauce", "chicken"],
     kitchenType: "Italian",
-    mealType: "Main Course",
+    mealType: mealType.DINNER,
     name: "Chicken Alfredo",
     photoLink: "https://example.com/chicken-alfredo.jpg",
-    price: 13.99
+    price: 13.99,
   },
   {
     calories: 350,
@@ -62,10 +67,10 @@ export const MOCK_FIND_DISH_DTO: FindDishDTO[] = [
     dishId: 6,
     ingredients: ["mixed vegetables", "soy sauce", "rice"],
     kitchenType: "Asian",
-    mealType: "Main Course",
+    mealType: mealType.DINNER,
     name: "Vegetable Stir Fry",
     photoLink: "https://example.com/vegetable-stir-fry.jpg",
-    price: 11.99
+    price: 11.99,
   },
   {
     calories: 450,
@@ -73,42 +78,62 @@ export const MOCK_FIND_DISH_DTO: FindDishDTO[] = [
     dishId: 7,
     ingredients: ["salmon", "lemon butter sauce"],
     kitchenType: "American",
-    mealType: "Main Course",
+    mealType: mealType.DINNER,
     name: "Grilled Salmon",
     photoLink: "https://example.com/grilled-salmon.jpg",
-    price: 15.99
+    price: 15.99,
   },
   {
     calories: 550,
     companyName: "Burger Joint",
     dishId: 8,
-    ingredients: ["beef patty", "cheddar cheese", "lettuce", "tomato", "pickles", "bun"],
+    ingredients: [
+      "beef patty",
+      "cheddar cheese",
+      "lettuce",
+      "tomato",
+      "pickles",
+      "bun",
+    ],
     kitchenType: "American",
-    mealType: "Main Course",
+    mealType: mealType.DINNER,
     name: "Cheeseburger",
     photoLink: "https://example.com/cheeseburger.jpg",
-    price: 10.49
+    price: 10.49,
   },
   {
     calories: 300,
     companyName: "Wraps & More",
     dishId: 9,
-    ingredients: ["chicken", "romaine lettuce", "Parmesan cheese", "Caesar dressing", "tortilla"],
+    ingredients: [
+      "chicken",
+      "romaine lettuce",
+      "Parmesan cheese",
+      "Caesar dressing",
+      "tortilla",
+    ],
     kitchenType: "American",
-    mealType: "Main Course",
+    mealType: mealType.DINNER,
     name: "Chicken Caesar Wrap",
     photoLink: "https://example.com/chicken-caesar-wrap.jpg",
-    price: 9.49
+    price: 9.49,
   },
   {
     calories: 700,
     companyName: "Dessert Haven",
     dishId: 10,
-    ingredients: ["chocolate", "flour", "sugar", "butter", "eggs", "vanilla ice cream"],
+    ingredients: [
+      "chocolate",
+      "flour",
+      "sugar",
+      "butter",
+      "eggs",
+      "vanilla ice cream",
+    ],
     kitchenType: "American",
-    mealType: "Dessert",
+    mealType: mealType.DESSERT,
     name: "Chocolate Lava Cake",
     photoLink: "https://example.com/chocolate-lava-cake.jpg",
-    price: 6.99
-  }
+    price: 6.99,
+  },
 ];
