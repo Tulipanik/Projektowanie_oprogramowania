@@ -5,13 +5,15 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import pl.edu.pw.ee.backend.api.order.data.*;
-import pl.edu.pw.ee.backend.api.order.interfaces.OrderMapper;
+import pl.edu.pw.ee.backend.api.order.data.OrderDTO;
+import pl.edu.pw.ee.backend.api.order.data.OrderDataDTO;
+import pl.edu.pw.ee.backend.api.order.data.OrderDishDTO;
 import pl.edu.pw.ee.backend.api.order.interfaces.IBazaZamowien;
+import pl.edu.pw.ee.backend.api.order.interfaces.OrderMapper;
 import pl.edu.pw.ee.backend.entities.dish.Dish;
 import pl.edu.pw.ee.backend.entities.dish.DishRepository;
-import pl.edu.pw.ee.backend.entities.order.OrderRepository;
 import pl.edu.pw.ee.backend.entities.order.Order;
+import pl.edu.pw.ee.backend.entities.order.OrderRepository;
 import pl.edu.pw.ee.backend.entities.order.OrderStatus;
 import pl.edu.pw.ee.backend.entities.order.data.OrderData;
 import pl.edu.pw.ee.backend.entities.user.client.Client;
@@ -22,7 +24,6 @@ import pl.edu.pw.ee.backend.utils.exceptions.user.client.ClientNotFoundException
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -32,8 +33,6 @@ public class BazaZamowien implements IBazaZamowien {
     private final OrderMapperImpl orderMapper;
     private final DishRepository dishRepository;
     private final ClientRepository clientRepository;
-
-    private final OrderMapper orderMapper;
 
     @Override
     @Transactional
@@ -66,12 +65,6 @@ public class BazaZamowien implements IBazaZamowien {
         log.info("Returning id of saved order: {}", savedOrder.getOrderId());
 
         return savedOrder.getOrderId();
-    }
-
-    @Override
-    public OrderDTO getOrderData(int orderId) {
-        final Optional<Order> order = orderRepository.findById(orderId);
-        return order.map(orderMapper::toOrderDTO).orElse(null);
     }
 
     @Override

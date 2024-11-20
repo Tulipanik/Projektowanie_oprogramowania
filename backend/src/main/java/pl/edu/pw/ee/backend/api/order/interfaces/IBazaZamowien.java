@@ -8,6 +8,4 @@ public interface IBazaZamowien {
     List<OrderDTO> getOrdersForClient(int clientId);
     OrderDTO getOrderData(int orderId);
     int setOrderData(OrderDTO order);
-
-    OrderDTO getOrderData(int orderId);
 }
