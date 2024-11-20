@@ -9,14 +9,48 @@ export function AddressForm(
   pressOrderSummaryBtn: (cart: OrderDishDTO[], orderData: orderDataDTO) => void,
   cart: OrderDishDTO[]
 ) {
+
+  // Custom validation function
+  const validate = (values: orderDataDTO) => {
+    let errors: Partial<Record<keyof orderDataDTO, string>> = {};
+
+    if (!values.name) {
+      errors.name = "Name is required";
+    }
+    if (!values.surname) {
+      errors.surname = "Last name is required";
+    }
+    if (!values.phone) {
+      errors.phone = "Phone number is required";
+    } else if (!/^\+?\d{1,12}$/.test(values.phone)) {
+      errors.phone = "Phone number must contain only digits, optionally start with '+' and be no longer than 13 characters";
+    }
+    if (!values.email) {
+      errors.email = "E-mail is required";
+    }
+    if (!values.zipCode) {
+      errors.zipCode = "Zip code is required";
+    } else if (!/^\d{2}-\d{3}$/.test(values.zipCode)) {
+      errors.zipCode = "Zip code must be in the format XX-XXX where X is a digit";
+    }
+    if (!values.city) {
+      errors.city = "City is required";
+    }
+    if (!values.street) {
+      errors.street = "Street, Building/Apartment No. is required";
+    }
+    return errors;
+  };
+
   return (
     <Formik
       initialValues={INITIAL_CLIENT_ORDER_DATA_VALUES}
+      validate={validate}
       onSubmit={(values) => {
         pressOrderSummaryBtn(cart, values);
       }}
     >
-      {() => (
+      {({ errors, touched }) => (
         <Form className="p-4 m-4 rounded-md">
           <div className="flex space-x-4">
             <div className="flex-1">
@@ -28,6 +62,9 @@ export function AddressForm(
                 name="name"
                 className="w-full p-2 border rounded-md"
               />
+              {errors.name && touched.name && (
+                <div className="text-red-500 text-sm">{errors.name}</div>
+              )}
             </div>
             <div className="flex-1">
               <label htmlFor="surname" className="block mb-1">
@@ -38,6 +75,9 @@ export function AddressForm(
                 name="surname"
                 className="w-full p-2 border rounded-md"
               />
+              {errors.surname && touched.surname && (
+                <div className="text-red-500 text-sm">{errors.surname}</div>
+              )}
             </div>
           </div>
 
@@ -51,6 +91,9 @@ export function AddressForm(
                 name="phone"
                 className="w-full p-2 border rounded-md"
               />
+              {errors.phone && touched.phone && (
+                <div className="text-red-500 text-sm">{errors.phone}</div>
+              )}
             </div>
             <div className="flex-1">
               <label htmlFor="email" className="block mb-1">
@@ -62,6 +105,9 @@ export function AddressForm(
                 type="email"
                 className="w-full p-2 border rounded-md"
               />
+              {errors.email && touched.email && (
+                <div className="text-red-500 text-sm">{errors.email}</div>
+              )}
             </div>
           </div>
 
@@ -74,8 +120,11 @@ export function AddressForm(
                 id="zipCode"
                 name="zipCode"
                 className="w-full p-2 border rounded-md"
-                maxLength="5"
+                maxLength="6"
               />
+              {errors.zipCode && touched.zipCode && (
+                <div className="text-red-500 text-sm">{errors.zipCode}</div>
+              )}
             </div>
             <div className="flex-1">
               <label htmlFor="city" className="block mb-1">
@@ -86,6 +135,9 @@ export function AddressForm(
                 name="city"
                 className="w-full p-2 border rounded-md"
               />
+              {errors.city && touched.city && (
+                <div className="text-red-500 text-sm">{errors.city}</div>
+              )}
             </div>
           </div>
 
@@ -98,6 +150,9 @@ export function AddressForm(
               name="street"
               className="w-full p-2 border rounded-md"
             />
+            {errors.street && touched.street && (
+              <div className="text-red-500 text-sm">{errors.street}</div>
+            )}
           </div>
 
           <div>
