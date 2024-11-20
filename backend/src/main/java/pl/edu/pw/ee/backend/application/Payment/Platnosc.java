@@ -1,8 +1,10 @@
 package pl.edu.pw.ee.backend.application.Payment;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 import pl.edu.pw.ee.backend.application.Payment.interfaces.IPlatnosc;
 
+@Component
 @RequiredArgsConstructor
 public class Platnosc implements IPlatnosc {
 

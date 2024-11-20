@@ -1,8 +1,10 @@
 package pl.edu.pw.ee.backend.application.Payment;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 import pl.edu.pw.ee.backend.application.Payment.interfaces.ISkarbonka;
 
+@Service
 @RequiredArgsConstructor
 public class ManagerPlatnosci {
 

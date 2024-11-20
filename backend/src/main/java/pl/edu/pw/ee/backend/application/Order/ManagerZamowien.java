@@ -1,6 +1,7 @@
 package pl.edu.pw.ee.backend.application.Order;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 import pl.edu.pw.ee.backend.api.order.data.OrderDTO;
 import pl.edu.pw.ee.backend.api.order.exception.OrderNotFoundException;
 import pl.edu.pw.ee.backend.api.order.interfaces.IBazaZamowien;
@@ -8,6 +9,7 @@ import pl.edu.pw.ee.backend.application.Payment.interfaces.IPlatnosc;
 
 import java.util.Objects;
 
+@Service
 @RequiredArgsConstructor
 public class ManagerZamowien {
 
