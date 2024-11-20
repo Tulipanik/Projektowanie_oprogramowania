@@ -4,7 +4,7 @@ import { UCSShowClientDishList } from "../../../../use_cases/UCSShowClientDishLi
 import { UCShowClientMainWindow } from "../../../../use_cases/UCSShowClientWindow";
 import { CClientCart } from "../../ClientCart/CClientCart";
 
-export function showOrderNotPlacedWindow(
+export function VOrderNotPlacedWindow(
 	isActive: boolean,
 	ucsShowClientCart: UCSShowClientCart,
 	ucsShowClientWindow: UCShowClientMainWindow,

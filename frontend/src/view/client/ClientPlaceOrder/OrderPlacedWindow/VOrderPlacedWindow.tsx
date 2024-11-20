@@ -1,10 +1,4 @@
-import { UCSClientPlaceOrder } from "../../../../use_cases/UCSClientPlaceOrder";
-import { UCSShowClientCart } from "../../../../use_cases/UCSShowClientCart";
-import { UCSShowClientDishList } from "../../../../use_cases/UCSShowClientDishList";
-import { UCShowClientMainWindow } from "../../../../use_cases/UCSShowClientWindow";
-import { CClientCart } from "../../ClientCart/CClientCart";
-
-export function showOrderPlacedWindow(isActive: boolean) {
+export function VOrderPlacedWindow(isActive: boolean) {
   if (!isActive) return;
 
   return (

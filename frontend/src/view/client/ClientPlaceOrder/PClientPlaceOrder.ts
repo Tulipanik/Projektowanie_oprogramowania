@@ -1,11 +1,10 @@
 import { ClientPresentationDispatcher } from "../ClientPresentationDispatcher";
 import {
   ClientScreenId,
-  DishViewFilters,
   UpdateClientViewAction,
 } from "../../../view_model/Client";
 import { Dispatch } from "react";
-import { orderDataDTO, orderDTO } from "../../../view_model/Order";
+import { orderDTO } from "../../../view_model/Order";
 
 export class PClientPlaceOrder extends ClientPresentationDispatcher {
   displayConfirmation(message: string) {

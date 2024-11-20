@@ -1,6 +1,6 @@
 import { IOrderAPi } from "../services/IOrder";
 import { PClientPlaceOrder } from "../view/client/ClientPlaceOrder/PClientPlaceOrder";
-import { orderDataDTO, orderDTO } from "../view_model/Order";
+import { orderDTO } from "../view_model/Order";
 
 export class UCSClientPlaceOrder {
   constructor(

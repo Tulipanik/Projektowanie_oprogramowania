@@ -16,9 +16,9 @@ import { VClientPlaceOrder } from "../ClientPlaceOrder/VClientPlaceOrder";
 import { UCSClientPlaceOrder } from "../../../use_cases/UCSClientPlaceOrder";
 import { PClientPlaceOrder } from "../ClientPlaceOrder/PClientPlaceOrder";
 import { IOrderAPi, OrderProxy } from "../../../services/IOrder";
-import { showOrderNotPlacedWindow } from "../ClientPlaceOrder/ui/OrderNotPlacedWindow";
-import { showOrderPlacedWindow } from "../ClientPlaceOrder/ui/OrderPlacedWindow";
-import { showOrderSummaryWindow } from "../ClientPlaceOrder/ui/OrderSummaryWindow";
+import { VOrderNotPlacedWindow } from "../ClientPlaceOrder/OrderNotPlacedWindow/VOrderNotPlacedWindow";
+import { VOrderPlacedWindow } from "../ClientPlaceOrder/OrderPlacedWindow/VOrderPlacedWindow";
+import { VOrderSummaryWindow } from "../ClientPlaceOrder/OrderSummaryWindow/VOrderSummaryWindow";
 
 const pClientDishes = new PClientDishes();
 const pClientCart = new PClientCart();
@@ -80,22 +80,20 @@ export function VClientMainWindow(
         ucsClientPlaceOrder,
         { cart: clientState.cart, error: clientState.error }
       )}
-      {showOrderPlacedWindow(
+      {VOrderPlacedWindow(
         clientState.screen === ClientScreenId.PLACE_ORDER_SUCESS
       )}
-      {showOrderNotPlacedWindow(
+      {VOrderNotPlacedWindow(
         clientState.screen === ClientScreenId.PLACE_ORDER_FAIL,
         ucsShowClientCart,
         ucshowClientMainWindow,
         ucsShowClientDishList,
         ucsClientPlaceOrder
       )}
-      {showOrderSummaryWindow(
+      {VOrderSummaryWindow(
         clientState.screen === ClientScreenId.ORDER_SUMMARY,
         ucsClientPlaceOrder,
         ucsShowClientCart,
-        ucshowClientMainWindow,
-        ucsShowClientDishList,
         {
           cart: clientState.cart,
           error: clientState.error,

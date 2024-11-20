@@ -1,18 +1,12 @@
-import { useEffect } from "react";
 import { UCSClientPlaceOrder } from "../../../../use_cases/UCSClientPlaceOrder";
 import { UCSShowClientCart } from "../../../../use_cases/UCSShowClientCart";
-import { UCSShowClientDishList } from "../../../../use_cases/UCSShowClientDishList";
-import { UCShowClientMainWindow } from "../../../../use_cases/UCSShowClientWindow";
 import { ClientViewState } from "../../../../view_model/Client";
-import { CClientCart } from "../../ClientCart/CClientCart";
 import { CClientPlaceOrder } from "../CClientPlaceOrder";
 
-export function showOrderSummaryWindow(
+export function VOrderSummaryWindow(
   isActive: boolean,
   ucsClientPlaceOrder: UCSClientPlaceOrder,
   ucsShowClientCart: UCSShowClientCart,
-  ucsShowClientWindow: UCShowClientMainWindow,
-  ucsShowClientDishList: UCSShowClientDishList,
   state: Pick<ClientViewState, "cart" | "error" | "order">
 ) {
   if (!isActive) return;
@@ -21,7 +15,7 @@ export function showOrderSummaryWindow(
     ucsClientPlaceOrder,
     ucsShowClientCart
   );
-  const { clientData, meals, orderDate, orderId, price, status } = state.order;
+  const { clientData, price} = state.order;
 
   return (
     <div className="p-4">

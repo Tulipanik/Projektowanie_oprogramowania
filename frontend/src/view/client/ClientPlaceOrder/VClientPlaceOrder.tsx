@@ -1,8 +1,5 @@
-import React, { useState } from "react";
 import { CClientPlaceOrder } from "../ClientPlaceOrder/CClientPlaceOrder";
 import { UCSClientPlaceOrder } from "../../../use_cases/UCSClientPlaceOrder";
-import { PClientPlaceOrder } from "../ClientPlaceOrder/PClientPlaceOrder";
-import { orderDataDTO } from "../../../view_model/Order";
 import { UCSShowClientCart } from "../../../use_cases/UCSShowClientCart";
 import { AddressForm } from "./ui/ClientCheckoutForm";
 import { ClientViewState } from "../../../view_model/Client";

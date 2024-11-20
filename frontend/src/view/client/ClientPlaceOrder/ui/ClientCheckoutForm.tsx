@@ -1,5 +1,4 @@
 import {
-  ClientViewState,
   INITIAL_CLIENT_ORDER_DATA_VALUES,
 } from "../../../../view_model/Client";
 import { Field, Form, Formik } from "formik";
