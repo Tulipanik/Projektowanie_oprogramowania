@@ -11,7 +11,31 @@ export class PClientPlaceOrder extends ClientPresentationDispatcher {
     this.clientDispatch = clientDispatch;
   }
 
-  showClientPlaceOrderWindow() {
-    this.clientDispatch?.({ type: "CHANGE_SCREEN", screen: ClientScreenId.PLACE_ORDER }); 
+  showAddressFormWindow() {
+    this.clientDispatch?.({ 
+      type: "CHANGE_SCREEN", 
+      screen: ClientScreenId.ADDRESS_FORM 
+    }); 
+  }
+
+  showOrderPlacedWindow() {
+    this.clientDispatch?.({ 
+      type: "CHANGE_SCREEN", 
+      screen: ClientScreenId.PLACE_ORDER_SUCESS, 
+    }); 
+  }
+
+  showOrderNotPlacedWindow() {
+    this.clientDispatch?.({ 
+      type: "CHANGE_SCREEN", 
+      screen: ClientScreenId.PLACE_ORDER_FAIL, 
+    }); 
+  }
+
+  showOrderSummaryWindow() {
+    this.clientDispatch?.({ 
+      type: "CHANGE_SCREEN", 
+      screen: ClientScreenId.ORDER_SUMMARY, 
+    }); 
   }
 }

@@ -19,7 +19,7 @@ export function VClientCart(
 	const {
 		pressShowClientMainWindowBtn,
 		pressRemoveFromCartBtn,
-		pressOrderBtn,
+		pressNextBtn,
 		pressShowDishListBtn,
 		setCartDishDate
 	} = CClientCart(
@@ -47,7 +47,7 @@ export function VClientCart(
 					Show dish list
 				</button>
 			</div>
-			{ClientCartList(state?.cart, state?.error, pressRemoveFromCartBtn, pressOrderBtn, setCartDishDate)}
+			{ClientCartList(state?.cart, state?.error, pressRemoveFromCartBtn, pressNextBtn, setCartDishDate)}
 		</div>
 	);
 }

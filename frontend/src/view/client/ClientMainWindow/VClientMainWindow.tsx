@@ -15,19 +15,24 @@ import { VClientCart } from "../ClientCart/VClientCart";
 import { VClientPlaceOrder } from "../ClientPlaceOrder/VClientPlaceOrder";
 import { UCSClientPlaceOrder } from "../../../use_cases/UCSClientPlaceOrder";
 import { PClientPlaceOrder } from "../ClientPlaceOrder/PClientPlaceOrder";
+import { IOrderAPi, OrderProxy } from "../../../services/IOrder";
+import { showOrderNotPlacedWindow } from "../ClientPlaceOrder/ui/OrderNotPlacedWindow";
+import { showOrderPlacedWindow } from "../ClientPlaceOrder/ui/OrderPlacedWindow";
+import { showOrderSummaryWindow } from "../ClientPlaceOrder/ui/OrderSummaryWindow";
 
 const pClientDishes = new PClientDishes();
 const pClientCart = new PClientCart();
 const pClientPlaceOrder = new PClientPlaceOrder();
 const iDishes: IDishesApi = new DishesProxy();
 const iCart: ICartApi = new CartProxy();
+const iOrder: IOrderAPi = new OrderProxy();
 const ucsShowClientDishList = new UCSShowClientDishList(
 	pClientDishes,
 	iDishes,
 	iCart
 );
 const ucsShowClientCart = new UCSShowClientCart(pClientCart, iCart);
-const ucsClientPlaceOrder = new UCSClientPlaceOrder(pClientPlaceOrder);
+const ucsClientPlaceOrder = new UCSClientPlaceOrder(pClientPlaceOrder, iOrder);
 
 export function VClientMainWindow(
 	isActive: boolean,
@@ -70,10 +75,27 @@ export function VClientMainWindow(
 				{ cart: clientState.cart, error: clientState.error }
 			)}
 			{VClientPlaceOrder(
-				clientState.screen === ClientScreenId.PLACE_ORDER,
+				clientState.screen === ClientScreenId.ADDRESS_FORM,
 				ucsShowClientCart,
 				ucsClientPlaceOrder,
-				{ address: clientState.address}
+			)}
+			{showOrderPlacedWindow(
+				clientState.screen === ClientScreenId.PLACE_ORDER_SUCESS,
+			)}		
+			{showOrderNotPlacedWindow(
+				clientState.screen === ClientScreenId.PLACE_ORDER_FAIL,
+				ucsShowClientCart,
+				ucshowClientMainWindow,
+				ucsShowClientDishList,
+				ucsClientPlaceOrder,
+			)}
+			{showOrderSummaryWindow(
+				clientState.screen === ClientScreenId.ORDER_SUMMARY,
+				ucsClientPlaceOrder,
+				ucsShowClientCart,
+				ucshowClientMainWindow,
+				ucsShowClientDishList,
+				{ cart: clientState.cart, error: clientState.error }
 			)}
 		</div>
 	);

@@ -1,16 +1,19 @@
 import { FindDishDTO, OrderDishDTO } from "./Dish";
+import { orderDataDTO } from "./Order";
 
 export enum ClientScreenId {
   DISHES = "DISHES",
   CART = "CART",
   MAIN_WINDOW = "MAIN_WINDOW",
-  PLACE_ORDER = "PLACE_ORDER",
+  ADDRESS_FORM = "ADDRESS_FORM",
+  PLACE_ORDER_SUCESS = "PLACE_ORDER_SUCESS",
+  PLACE_ORDER_FAIL ='PLACE_ORDER_FAIL',
+  ORDER_SUMMARY = 'ORDER_SUMMARY'
 }
 
 export class ClientViewState {
   dishes: FindDishDTO[] = [];
   filters = new DishViewFilters();
-  address = new AddressFormFields();
   cart: OrderDishDTO[] = [];
   screen: ClientScreenId = ClientScreenId.MAIN_WINDOW;
   error: string = "";
@@ -26,22 +29,17 @@ export class DishViewFilters {
   }
 }
 
-export class AddressFormFields {
-  firstName= "";
-  lastName= "";
-  phone= "";
-  email= "";
-  postalCode= "";
-  city= "";
-  address= "";
-  courierNotes= "";
-
-  static isEmpty(filters: AddressFormFields): boolean {
-    return filters.firstName === "" && filters.lastName === "" && filters.phone === "" && filters.email === "" 
-    && filters.postalCode === ""
-    && filters.city === "" && filters.address === "" && filters.courierNotes === "";
-  }
-}
+export const INITIAL_CLIENT_ORDER_DATA_VALUES: orderDataDTO = {
+  city: '',
+  clientId: 1, //TODO: przypisywac wartosc zalogowanego klienta
+  comment: '',
+  email: '',
+  name: '',
+  phone: '',
+  street: '',
+  surname: '',
+  zipCode: '',
+};
 
 export interface UpdateClientViewAction {
   type: "UPDATE_DISHES" | "CHANGE_FILTERS" | "UPDATE_CART" | "CHANGE_SCREEN" | "UPDATE_CART_DISH_DATE" | "SET_ERROR_MESSAGE",

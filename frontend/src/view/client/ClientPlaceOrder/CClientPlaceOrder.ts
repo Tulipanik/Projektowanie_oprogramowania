@@ -1,15 +1,24 @@
 import { UCSClientPlaceOrder } from "../../../use_cases/UCSClientPlaceOrder";
 import { UCSShowClientCart } from "../../../use_cases/UCSShowClientCart";
-import { AddressData } from "../../../view_model/AddressData"
+import { orderDataDTO, orderDTO } from "../../../view_model/Order"
 
-export function CClientPlaceOrder(ucsClientPlaceOrder: UCSClientPlaceOrder, ucsShowClientCart: UCSShowClientCart) {
-  function handleSubmit() {
-    ucsClientPlaceOrder.submitOrder();
-  }
+export function CClientPlaceOrder(
+  ucsClientPlaceOrder: UCSClientPlaceOrder,
+  ucsShowClientCart: UCSShowClientCart
+) {
 
   function pressShowClientCartBtn() {
     ucsShowClientCart.showClientCart()
   }
 
-  return { handleSubmit, pressShowClientCartBtn };
+  function pressPlaceOrderBtn() {
+    console.log("Wcisnalem przycisk pressPlaceOrderBtn")
+    ucsClientPlaceOrder.placeOrder();
+  }
+
+  function pressOrderSummaryBtn() { //TODO: dodac clientData: clientDataDTO (???diagram???)
+    ucsClientPlaceOrder.showOrderSummary()
+  }
+
+  return { pressShowClientCartBtn, pressPlaceOrderBtn, pressOrderSummaryBtn };
 }

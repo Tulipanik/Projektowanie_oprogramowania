@@ -22,7 +22,7 @@ export function CClientCart(
 		ucsShowClientCart.updateCartDishDate(dish, date);
 	}
 
-	function pressOrderBtn(cart: OrderDishDTO[]) {
+	function pressNextBtn(cart: OrderDishDTO[]) {
 		// if (cart.find((item) => item.date === null)) {
 		// 	ucsShowClientCart.setErrorMassage(
 		// 		"All dishes must have delivery dates set!"
@@ -31,7 +31,7 @@ export function CClientCart(
 		// 	ucsShowClientCart.setErrorMassage("");
 		// 	return; //TODO obsługa zamówienia (uc50)
 		// }
-		ucsClientPlaceOrder.showClientPlaceOrder();
+		ucsClientPlaceOrder.showAddressForm();
 	}
 
 	function pressShowDishListBtn() {
@@ -41,7 +41,7 @@ export function CClientCart(
 	return {
 		pressShowClientMainWindowBtn,
 		pressRemoveFromCartBtn,
-		pressOrderBtn,
+		pressNextBtn: pressNextBtn,
 		pressShowDishListBtn,
 		setCartDishDate,
 	};
