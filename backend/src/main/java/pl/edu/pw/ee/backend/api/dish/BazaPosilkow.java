@@ -3,7 +3,7 @@ package pl.edu.pw.ee.backend.api.dish;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import pl.edu.pw.ee.backend.api.cart.data.FindDishDto;
+import pl.edu.pw.ee.backend.api.cart.data.FindDishDTO;
 import pl.edu.pw.ee.backend.api.dish.data.FiltrDTO;
 import pl.edu.pw.ee.backend.api.dish.interfaces.IDishMapper;
 import pl.edu.pw.ee.backend.api.dish.interfaces.IBazaPosilkow;
@@ -23,7 +23,7 @@ public class BazaPosilkow implements IBazaPosilkow {
     private final IDishMapper dishMapper;
 
     @Override
-    public List<FindDishDto> getByFiltr(int clientId, FiltrDTO filtrObject) {
+    public List<FindDishDTO> getByFiltr(int clientId, FiltrDTO filtrObject) {
         log.debug("Getting dishes for client {} with filters: {}", clientId, filtrObject);
 
         if (!clientRepository.existsById(clientId)) {

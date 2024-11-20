@@ -2,7 +2,7 @@ package pl.edu.pw.ee.backend.api.dish;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
-import pl.edu.pw.ee.backend.api.cart.data.FindDishDto;
+import pl.edu.pw.ee.backend.api.cart.data.FindDishDTO;
 import pl.edu.pw.ee.backend.api.dish.interfaces.IDishMapper;
 import pl.edu.pw.ee.backend.entities.dish.Dish;
 
@@ -11,8 +11,8 @@ import pl.edu.pw.ee.backend.entities.dish.Dish;
 public class DishMapperImpl implements IDishMapper {
 
     @Override
-    public FindDishDto toFindDishDto(Dish dish) {
-        return FindDishDto.builder()
+    public FindDishDTO toFindDishDto(Dish dish) {
+        return FindDishDTO.builder()
                 .calories(dish.getCalories())
                 .companyName(dish.getExternalCompany().getAddress())
                 .dishId(dish.getDishId())
