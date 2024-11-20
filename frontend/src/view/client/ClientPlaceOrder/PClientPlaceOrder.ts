@@ -1,6 +1,11 @@
 import { ClientPresentationDispatcher } from "../ClientPresentationDispatcher";
-import { ClientScreenId, DishViewFilters, UpdateClientViewAction } from "../../../view_model/Client";
+import {
+  ClientScreenId,
+  DishViewFilters,
+  UpdateClientViewAction,
+} from "../../../view_model/Client";
 import { Dispatch } from "react";
+import { orderDataDTO, orderDTO } from "../../../view_model/Order";
 
 export class PClientPlaceOrder extends ClientPresentationDispatcher {
   displayConfirmation(message: string) {
@@ -12,30 +17,34 @@ export class PClientPlaceOrder extends ClientPresentationDispatcher {
   }
 
   showAddressFormWindow() {
-    this.clientDispatch?.({ 
-      type: "CHANGE_SCREEN", 
-      screen: ClientScreenId.ADDRESS_FORM 
-    }); 
+    this.clientDispatch?.({
+      type: "CHANGE_SCREEN",
+      screen: ClientScreenId.ADDRESS_FORM,
+    });
   }
 
   showOrderPlacedWindow() {
-    this.clientDispatch?.({ 
-      type: "CHANGE_SCREEN", 
-      screen: ClientScreenId.PLACE_ORDER_SUCESS, 
-    }); 
+    this.clientDispatch?.({
+      type: "CHANGE_SCREEN",
+      screen: ClientScreenId.PLACE_ORDER_SUCESS,
+    });
   }
 
   showOrderNotPlacedWindow() {
-    this.clientDispatch?.({ 
-      type: "CHANGE_SCREEN", 
-      screen: ClientScreenId.PLACE_ORDER_FAIL, 
-    }); 
+    this.clientDispatch?.({
+      type: "CHANGE_SCREEN",
+      screen: ClientScreenId.PLACE_ORDER_FAIL,
+    });
   }
 
-  showOrderSummaryWindow() {
-    this.clientDispatch?.({ 
-      type: "CHANGE_SCREEN", 
-      screen: ClientScreenId.ORDER_SUMMARY, 
-    }); 
+  showOrderSummaryWindow(orderData: orderDTO) {
+    this.clientDispatch?.({
+      type: "UPDATE_ORDER",
+      order: orderData,
+    });
+    this.clientDispatch?.({
+      type: "CHANGE_SCREEN",
+      screen: ClientScreenId.ORDER_SUMMARY,
+    });
   }
 }

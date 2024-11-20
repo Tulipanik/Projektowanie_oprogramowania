@@ -1,6 +1,6 @@
-import { IOrderAPi } from "../services/IOrder"; 
-import { PClientPlaceOrder } from "../view/client/ClientPlaceOrder/PClientPlaceOrder"
-import { orderDataDTO, orderDTO } from "../view_model/Order"
+import { IOrderAPi } from "../services/IOrder";
+import { PClientPlaceOrder } from "../view/client/ClientPlaceOrder/PClientPlaceOrder";
+import { orderDataDTO, orderDTO } from "../view_model/Order";
 
 export class UCSClientPlaceOrder {
   constructor(
@@ -12,8 +12,8 @@ export class UCSClientPlaceOrder {
     this.pClientPlaceOrder.showAddressFormWindow();
   }
 
-  async placeOrder() { // TODO: funkcja przyjmuje obiekt orderData: orderDTO
-    return await this.oderApi.placeOrder().then((number) => {
+  async placeOrder(order: orderDTO) {
+    return await this.oderApi.placeOrder(order).then((number) => {
       if (number > 2) {
         this.pClientPlaceOrder.showOrderPlacedWindow();
       } else {
@@ -22,7 +22,7 @@ export class UCSClientPlaceOrder {
     });
   }
 
-  showOrderSummary() {
-    this.pClientPlaceOrder.showOrderSummaryWindow();
+  showOrderSummary(orderData: orderDTO) {
+    this.pClientPlaceOrder.showOrderSummaryWindow(orderData);
   }
 }

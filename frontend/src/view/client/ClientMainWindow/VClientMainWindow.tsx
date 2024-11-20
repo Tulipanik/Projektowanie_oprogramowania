@@ -27,76 +27,81 @@ const iDishes: IDishesApi = new DishesProxy();
 const iCart: ICartApi = new CartProxy();
 const iOrder: IOrderAPi = new OrderProxy();
 const ucsShowClientDishList = new UCSShowClientDishList(
-	pClientDishes,
-	iDishes,
-	iCart
+  pClientDishes,
+  iDishes,
+  iCart
 );
 const ucsShowClientCart = new UCSShowClientCart(pClientCart, iCart);
 const ucsClientPlaceOrder = new UCSClientPlaceOrder(pClientPlaceOrder, iOrder);
 
 export function VClientMainWindow(
-	isActive: boolean,
-	ucshowClientMainWindow: UCShowClientMainWindow,
-	pClientMainWindow: PClientMainWindow
+  isActive: boolean,
+  ucshowClientMainWindow: UCShowClientMainWindow,
+  pClientMainWindow: PClientMainWindow
 ) {
-	const [clientState, clientStateUpdate] = useReducer(
-		updateClientViewState,
-		new ClientViewState()
-	);
+  const [clientState, clientStateUpdate] = useReducer(
+    updateClientViewState,
+    new ClientViewState()
+  );
 
-	if (!isActive) return;
+  if (!isActive) return;
 
-	pClientDishes.injectClientDispatch(clientStateUpdate);
-	pClientCart.injectClientDispatch(clientStateUpdate);
-	pClientMainWindow.injectClientDispatch(clientStateUpdate);
-	pClientPlaceOrder.injectClientDispatch(clientStateUpdate);
+  pClientDishes.injectClientDispatch(clientStateUpdate);
+  pClientCart.injectClientDispatch(clientStateUpdate);
+  pClientMainWindow.injectClientDispatch(clientStateUpdate);
+  pClientPlaceOrder.injectClientDispatch(clientStateUpdate);
 
-	return (
-		<div>
-			{VClientMenu(
-				clientState.screen === ClientScreenId.MAIN_WINDOW,
-				ucshowClientMainWindow,
-				ucsShowClientDishList,
-				ucsShowClientCart
-			)}
-			{VClientDishes(
-				clientState.screen === ClientScreenId.DISHES,
-				ucsShowClientDishList,
-				ucshowClientMainWindow,
-				ucsShowClientCart,
-				{ dishes: clientState.dishes, filters: clientState.filters }
-			)}
-			{VClientCart(
-				clientState.screen === ClientScreenId.CART,
-				ucsShowClientCart,
-				ucshowClientMainWindow,
-				ucsShowClientDishList,
-				ucsClientPlaceOrder,
-				{ cart: clientState.cart, error: clientState.error }
-			)}
-			{VClientPlaceOrder(
-				clientState.screen === ClientScreenId.ADDRESS_FORM,
-				ucsShowClientCart,
-				ucsClientPlaceOrder,
-			)}
-			{showOrderPlacedWindow(
-				clientState.screen === ClientScreenId.PLACE_ORDER_SUCESS,
-			)}		
-			{showOrderNotPlacedWindow(
-				clientState.screen === ClientScreenId.PLACE_ORDER_FAIL,
-				ucsShowClientCart,
-				ucshowClientMainWindow,
-				ucsShowClientDishList,
-				ucsClientPlaceOrder,
-			)}
-			{showOrderSummaryWindow(
-				clientState.screen === ClientScreenId.ORDER_SUMMARY,
-				ucsClientPlaceOrder,
-				ucsShowClientCart,
-				ucshowClientMainWindow,
-				ucsShowClientDishList,
-				{ cart: clientState.cart, error: clientState.error }
-			)}
-		</div>
-	);
+  return (
+    <div>
+      {VClientMenu(
+        clientState.screen === ClientScreenId.MAIN_WINDOW,
+        ucshowClientMainWindow,
+        ucsShowClientDishList,
+        ucsShowClientCart
+      )}
+      {VClientDishes(
+        clientState.screen === ClientScreenId.DISHES,
+        ucsShowClientDishList,
+        ucshowClientMainWindow,
+        ucsShowClientCart,
+        { dishes: clientState.dishes, filters: clientState.filters }
+      )}
+      {VClientCart(
+        clientState.screen === ClientScreenId.CART,
+        ucsShowClientCart,
+        ucshowClientMainWindow,
+        ucsShowClientDishList,
+        ucsClientPlaceOrder,
+        { cart: clientState.cart, error: clientState.error }
+      )}
+      {VClientPlaceOrder(
+        clientState.screen === ClientScreenId.ADDRESS_FORM,
+        ucsShowClientCart,
+        ucsClientPlaceOrder,
+        { cart: clientState.cart, error: clientState.error }
+      )}
+      {showOrderPlacedWindow(
+        clientState.screen === ClientScreenId.PLACE_ORDER_SUCESS
+      )}
+      {showOrderNotPlacedWindow(
+        clientState.screen === ClientScreenId.PLACE_ORDER_FAIL,
+        ucsShowClientCart,
+        ucshowClientMainWindow,
+        ucsShowClientDishList,
+        ucsClientPlaceOrder
+      )}
+      {showOrderSummaryWindow(
+        clientState.screen === ClientScreenId.ORDER_SUMMARY,
+        ucsClientPlaceOrder,
+        ucsShowClientCart,
+        ucshowClientMainWindow,
+        ucsShowClientDishList,
+        {
+          cart: clientState.cart,
+          error: clientState.error,
+          order: clientState.order,
+        }
+      )}
+    </div>
+  );
 }

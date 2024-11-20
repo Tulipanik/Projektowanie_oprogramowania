@@ -1,32 +1,29 @@
-import { INITIAL_CLIENT_ORDER_DATA_VALUES } from "../../../../view_model/Client";
+import {
+  ClientViewState,
+  INITIAL_CLIENT_ORDER_DATA_VALUES,
+} from "../../../../view_model/Client";
 import { Field, Form, Formik } from "formik";
-import {orderDataDTO} from '../../../../view_model/Order'
+import { orderDataDTO } from "../../../../view_model/Order";
+import { OrderDishDTO } from "../../../../view_model/Dish";
 
-export function AddressForm(pressOrderSummaryBtn: () => void) {
-  const initialValues = {
-    city: '',
-    clientId: 1, //TODO: przypisywac wartosc zalogowanego klienta
-    comment: '',
-    email: '',
-    name: '',
-    phone: '',
-    street: '',
-    surname: '',
-    zipCode: '',
-  };
-
+export function AddressForm(
+  pressOrderSummaryBtn: (cart: OrderDishDTO[], orderData: orderDataDTO) => void,
+  cart: OrderDishDTO[]
+) {
   return (
     <Formik
       initialValues={INITIAL_CLIENT_ORDER_DATA_VALUES}
       onSubmit={(values) => {
-        pressOrderSummaryBtn();
+        pressOrderSummaryBtn(cart, values);
       }}
-      >
-      {({ resetForm }) => (
+    >
+      {() => (
         <Form className="p-4 m-4 rounded-md">
           <div className="flex space-x-4">
             <div className="flex-1">
-              <label htmlFor="name" className="block mb-1">Name</label>
+              <label htmlFor="name" className="block mb-1">
+                Name
+              </label>
               <Field
                 id="name"
                 name="name"
@@ -34,7 +31,9 @@ export function AddressForm(pressOrderSummaryBtn: () => void) {
               />
             </div>
             <div className="flex-1">
-              <label htmlFor="surname" className="block mb-1">Last name</label>
+              <label htmlFor="surname" className="block mb-1">
+                Last name
+              </label>
               <Field
                 id="surname"
                 name="surname"
@@ -45,7 +44,9 @@ export function AddressForm(pressOrderSummaryBtn: () => void) {
 
           <div className="flex space-x-4">
             <div className="flex-1">
-              <label htmlFor="phone" className="block mb-1">Phone number</label>
+              <label htmlFor="phone" className="block mb-1">
+                Phone number
+              </label>
               <Field
                 id="phone"
                 name="phone"
@@ -53,7 +54,9 @@ export function AddressForm(pressOrderSummaryBtn: () => void) {
               />
             </div>
             <div className="flex-1">
-              <label htmlFor="email" className="block mb-1">E-mail</label>
+              <label htmlFor="email" className="block mb-1">
+                E-mail
+              </label>
               <Field
                 id="email"
                 name="email"
@@ -65,7 +68,9 @@ export function AddressForm(pressOrderSummaryBtn: () => void) {
 
           <div className="flex space-x-4">
             <div className="flex-1">
-              <label htmlFor="zipCode" className="block mb-1">Zip code</label>
+              <label htmlFor="zipCode" className="block mb-1">
+                Zip code
+              </label>
               <Field
                 id="zipCode"
                 name="zipCode"
@@ -74,7 +79,9 @@ export function AddressForm(pressOrderSummaryBtn: () => void) {
               />
             </div>
             <div className="flex-1">
-              <label htmlFor="city" className="block mb-1">City</label>
+              <label htmlFor="city" className="block mb-1">
+                City
+              </label>
               <Field
                 id="city"
                 name="city"
@@ -84,7 +91,9 @@ export function AddressForm(pressOrderSummaryBtn: () => void) {
           </div>
 
           <div>
-            <label htmlFor="street" className="block mb-1">Street, Building/Apartment No.</label>
+            <label htmlFor="street" className="block mb-1">
+              Street, Building/Apartment No.
+            </label>
             <Field
               id="street"
               name="street"
@@ -93,7 +102,9 @@ export function AddressForm(pressOrderSummaryBtn: () => void) {
           </div>
 
           <div>
-            <label htmlFor="comment" className="block mb-1">Notes for the courier</label>
+            <label htmlFor="comment" className="block mb-1">
+              Notes for the courier
+            </label>
             <Field
               as="textarea"
               id="comment"
@@ -102,10 +113,13 @@ export function AddressForm(pressOrderSummaryBtn: () => void) {
             />
           </div>
           <div>
-          <button type="submit" className="w-full bg-violet-600 text-white mx-auto center py-2 rounded-md hover:bg-violet-700 flex items-center flex-row justify-center gap-2">
-            Go to summary
-          </button>
-        </div>
+            <button
+              type="submit"
+              className="w-full bg-violet-600 text-white mx-auto center py-2 rounded-md hover:bg-violet-700 flex items-center flex-row justify-center gap-2"
+            >
+              Go to summary
+            </button>
+          </div>
         </Form>
       )}
     </Formik>
