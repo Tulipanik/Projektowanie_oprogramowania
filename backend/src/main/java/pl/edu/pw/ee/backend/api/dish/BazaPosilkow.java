@@ -15,7 +15,9 @@ import pl.edu.pw.ee.backend.entities.dish.image.DishImage;
 import pl.edu.pw.ee.backend.entities.external.company.ExternalCompany;
 import pl.edu.pw.ee.backend.entities.external.company.ExternalCompanyRepository;
 import pl.edu.pw.ee.backend.entities.user.client.ClientRepository;
+import pl.edu.pw.ee.backend.utils.exceptions.company.ExternalCompanyNotFoundException;
 import pl.edu.pw.ee.backend.utils.exceptions.user.client.ClientNotFoundException;
+import pl.edu.pw.ee.backend.utils.images.ImageServiceImpl;
 
 import java.io.File;
 import java.io.IOException;
@@ -29,6 +31,7 @@ public class BazaPosilkow implements IBazaPosilkow {
     private final ClientRepository clientRepository;
     private final IDishMapper dishMapper;
     private final ExternalCompanyRepository externalCompanyRepository;
+    private final ImageServiceImpl imageService;
 
     @Override
     public List<FindDishDTO> getByFiltr(int clientId, FiltrDTO filtrObject) {
@@ -55,35 +58,18 @@ public class BazaPosilkow implements IBazaPosilkow {
     public boolean addNewDish(AddDishDTO dishDTO) {
         log.debug("Adding new dish: {}", dishDTO);
 
-        // Fetch ExternalCompany
         ExternalCompany externalCompany = externalCompanyRepository.findById(dishDTO.cateringCompanyId())
-                .orElseThrow(() -> new ClientNotFoundException(dishDTO.cateringCompanyId()));
+                .orElseThrow(() -> new ExternalCompanyNotFoundException(dishDTO.cateringCompanyId()));
 
-        // Save photo and get DishImage
-        DishImage image = savePhoto(dishDTO.photo());
+        DishImage image = imageService.saveImage(dishDTO.photo());
 
-        // Map AddDishDTO to Dish using DishMapper
         Dish newDish = dishMapper.toDish(dishDTO, externalCompany, image);
 
-        // Save the Dish
         dishRepository.save(newDish);
         log.debug("Dish successfully added with ID: {}", newDish.getDishId());
         return true;
     }
 
-    private DishImage savePhoto(MultipartFile photo) {
-        try {
-            String filePath = "/path/to/storage/" + photo.getOriginalFilename();
-            File file = new File(filePath);
-            photo.transferTo(file);
-
-            return DishImage.builder()
-                    .imageUrl(filePath)
-                    .build();
-        } catch (IOException e) {
-            throw new RuntimeException("Failed to save photo", e);
-        }
-    }
 
 
 
