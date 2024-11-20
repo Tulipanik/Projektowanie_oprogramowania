@@ -149,7 +149,10 @@ public class JwtServiceImpl implements IJwtService {
     private boolean isValidAuthHeader(HttpServletRequest request) {
         String authHeader = request.getHeader(Headers.AUTH_HEADER);
 
-        return authHeader != null && authHeader.startsWith(Headers.TOKEN_HEADER);
+        if (authHeader == null || !authHeader.startsWith(Headers.TOKEN_HEADER)) {
+            return false;
+        }
+        return true;
     }
 
     private boolean isTokenExpired(String token, User userDetails) {

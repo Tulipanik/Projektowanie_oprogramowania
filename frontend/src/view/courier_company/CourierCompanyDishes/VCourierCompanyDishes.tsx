@@ -1,4 +1,4 @@
-import { UCShowCourierCompanyDishesList } from "../../../use_cases/UCSShowCourierCompanyDishesList";
+import { UCCourierCompanyAddNewDish } from "../../../use_cases/UCSCourierCompanyAddNewDish";
 import { UCShowCourierCompanyMainWindow } from "../../../use_cases/UCSShowCourierCompanyMainWindow";
 import { CourierCompanyViewState } from "../../../view_model/CourierCompany";
 import { CCourierCompanyDishes } from "./CCourierCompanyDishes";
@@ -6,7 +6,7 @@ import { CCourierCompanyDishes } from "./CCourierCompanyDishes";
 export function VCourierCompanyDishes(
   isActive: boolean,
   ucshowCourierCompanyMainWindow: UCShowCourierCompanyMainWindow,
-  ucsShowCourierCompanyDishesList: UCShowCourierCompanyDishesList,
+  ucsCourierCompanyAddNewDish: UCCourierCompanyAddNewDish,
   state: Pick<CourierCompanyViewState, "offer">
 ) {
   if (!isActive) return;
@@ -15,7 +15,7 @@ export function VCourierCompanyDishes(
     pressShowCourierCompanyMainWindowBtn,
     pressShowCourierCompanyAddDishWindowBtn,
   } = CCourierCompanyDishes(
-    ucsShowCourierCompanyDishesList,
+    ucsCourierCompanyAddNewDish,
     ucshowCourierCompanyMainWindow
   );
 

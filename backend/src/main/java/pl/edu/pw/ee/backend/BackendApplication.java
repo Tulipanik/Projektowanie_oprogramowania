@@ -8,6 +8,7 @@ import pl.edu.pw.ee.backend.api.auth.account.IAccountCreationService;
 import pl.edu.pw.ee.backend.api.auth.data.AccountCreateDTO;
 import pl.edu.pw.ee.backend.api.auth.data.ExternalCompanyCreateDTO;
 import pl.edu.pw.ee.backend.entities.external.company.CompanyType;
+import pl.edu.pw.ee.backend.entities.external.company.ExternalCompany;
 
 @SpringBootApplication
 public class BackendApplication {
@@ -82,6 +83,8 @@ public class BackendApplication {
                     .build();
 
             accountCreationService.createExternalCompanyAccount(courierCompany);
+
+
         };
     }
 

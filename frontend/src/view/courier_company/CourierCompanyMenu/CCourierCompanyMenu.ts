@@ -1,16 +1,16 @@
-import { UCShowCourierCompanyDishesList } from "../../../use_cases/UCSShowCourierCompanyDishesList";
+import { UCCourierCompanyAddNewDish } from "../../../use_cases/UCSCourierCompanyAddNewDish";
 import { UCShowCourierCompanyMainWindow } from "../../../use_cases/UCSShowCourierCompanyMainWindow";
 
 export function CCourierCompanyMenu(
   ucshowCourierCompanyMainWindow: UCShowCourierCompanyMainWindow,
-  ucsShowCourierCompanyDishesList: UCShowCourierCompanyDishesList
+  ucsCourierCompanyAddNewDish: UCCourierCompanyAddNewDish
 ) {
   function pressBackToMainWindowBtn() {
     ucshowCourierCompanyMainWindow.backSelected();
   }
 
   function pressShowDishListBtn() {
-    ucsShowCourierCompanyDishesList.showCourierCompanyDishesList();
+    ucsCourierCompanyAddNewDish.showCourierCompanyDishesList();
   }
 
   return { pressBackToMainWindowBtn, pressShowDishListBtn };
