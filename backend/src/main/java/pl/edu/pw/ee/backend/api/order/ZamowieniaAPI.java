@@ -26,13 +26,13 @@ public class ZamowieniaAPI implements IZamowieniaAPI {
     private final ManagerZamowien managerZamowien;
 
     @Override
-    @PostMapping()
+    @PostMapping("/create")
     public OrderDTO createOrder(@RequestBody OrderDTO order) {
         return bazaZamowien.createOrder(order);
     }
 
     @Override
-    @PostMapping()
+    @PostMapping("")
     public int placeOrder(@RequestBody OrderDTO orderData) {
         return bazaZamowien.setOrderData(orderData);
     }
