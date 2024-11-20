@@ -1,9 +1,9 @@
-import { UCShowCourierCompanyDishesList } from "../../../use_cases/UCSShowCourierCompanyDishesList";
+import { UCCourierCompanyAddNewDish } from "../../../use_cases/UCSCourierCompanyAddNewDish";
 import { UCShowCourierCompanyMainWindow } from "../../../use_cases/UCSShowCourierCompanyMainWindow";
 import { AddDishDTO } from "../../../view_model/Dish";
 
 export function CCourierCompanyDishes(
-  ucsShowCourierCompanyDishesList: UCShowCourierCompanyDishesList,
+  ucsCourierCompanyAddNewDish: UCCourierCompanyAddNewDish,
   ucsShowCourierCompanyMainWindow: UCShowCourierCompanyMainWindow
 ) {
   function pressShowCourierCompanyMainWindowBtn() {
@@ -15,15 +15,15 @@ export function CCourierCompanyDishes(
       ...dish,
       cateringCompanyId: 1,
     };
-    ucsShowCourierCompanyDishesList.addDishToOffer(newDish);
+    ucsCourierCompanyAddNewDish.addDishToOffer(newDish);
   }
 
   function pressShowCourierCompanyAddDishWindowBtn() {
-    ucsShowCourierCompanyDishesList.showCourierCompanyAddDishWindow();
+    ucsCourierCompanyAddNewDish.showCourierCompanyAddDishWindow();
   }
 
   function pressShowDishListBtn() {
-    ucsShowCourierCompanyDishesList.showCourierCompanyDishesList();
+    ucsCourierCompanyAddNewDish.showCourierCompanyDishesList();
   }
 
   return {

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pl.edu.pw.ee.backend.api.order.data.OrderDTO;
 import pl.edu.pw.ee.backend.api.order.interfaces.IZamowieniaAPI;
-import pl.edu.pw.ee.backend.api.order.interfaces.OrderService;
+import pl.edu.pw.ee.backend.api.order.interfaces.IBazaZamowien;
 
 @RestController
 @RequestMapping(
@@ -17,12 +17,11 @@ import pl.edu.pw.ee.backend.api.order.interfaces.OrderService;
 )
 @RequiredArgsConstructor
 public class ZamowieniaAPI implements IZamowieniaAPI {
-    private final OrderService orderService;
-
+    private final IBazaZamowien bazaZamowien;
 
     @Override
     @PostMapping()
-    public OrderDTO createOrder(@RequestBody OrderDTO order) {
-        return orderService.createOrder(order);
+    public int placeOrder(@RequestBody OrderDTO orderData) {
+        return bazaZamowien.setOrderData(orderData);
     }
 }

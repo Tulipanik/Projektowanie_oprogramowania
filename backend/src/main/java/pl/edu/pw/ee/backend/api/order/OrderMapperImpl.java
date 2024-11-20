@@ -9,6 +9,7 @@ import pl.edu.pw.ee.backend.api.order.data.OrderDishDTO;
 import pl.edu.pw.ee.backend.api.order.interfaces.OrderMapper;
 import pl.edu.pw.ee.backend.entities.dish.Dish;
 import pl.edu.pw.ee.backend.entities.order.Order;
+import pl.edu.pw.ee.backend.entities.order.data.OrderData;
 
 import java.time.LocalDate;
 
@@ -18,7 +19,7 @@ public class OrderMapperImpl implements OrderMapper {
     @Override
     public final OrderDTO toOrderDTO(Order order) {
         return OrderDTO.builder()
-                .orderData(toOrderDataDTO(order))
+                .orderData(toOrderDataDTO(order.getOrderData()))
                 .meals(order.getDishes().stream()
                         .map(dish -> toOrderDishDTO(order.getOrderDate(), dish))
                         .toList())
@@ -26,22 +27,16 @@ public class OrderMapperImpl implements OrderMapper {
     }
 
     @Override
-    public final OrderDataDTO toOrderDataDTO(Order order) {
+    public final OrderDataDTO toOrderDataDTO(OrderData orderData) {
         return OrderDataDTO.builder()
-                .city(order.getOrderData().getCity())
-                .clientId(order.getOrderData().getClient().getClientId())
-                .email(order.getOrderData().getEmail())
-                .name(order.getOrderData().getName())
-                .orderDate(order.getOrderDate().toString())
-                .orderId(order.getOrderId())
-                .phoneNumber(order.getOrderData().getPhone())
-                .price(order.getDishes().stream()
-                        .map(Dish::getPrice)
-                        .reduce(0.0f, Float::sum))
-                .street(order.getOrderData().getStreet())
-                .surname(order.getOrderData().getSurname())
-                .zipCode(order.getOrderData().getZipCode())
-                .comment(order.getOrderData().getComment())
+                .city(orderData.getCity())
+                .clientId(orderData.getClient().getClientId())
+                .email(orderData.getEmail())
+                .name(orderData.getName())
+                .street(orderData.getStreet())
+                .surname(orderData.getSurname())
+                .zipCode(orderData.getZipCode())
+                .comment(orderData.getComment())
                 .build();
     }
 

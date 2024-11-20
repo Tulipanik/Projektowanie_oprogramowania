@@ -12,7 +12,7 @@ import java.time.LocalDate;
 public interface OrderMapper {
     OrderDTO toOrderDTO(Order order);
 
-    OrderDataDTO toOrderDataDTO(Order order);
+    OrderDataDTO toOrderDataDTO(OrderData orderData);
 
     OrderDishDTO toOrderDishDTO(LocalDate orderDate, Dish dish);
 
