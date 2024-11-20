@@ -2,7 +2,7 @@ package pl.edu.pw.ee.backend.api.order;
 
 
 import org.springframework.stereotype.Component;
-import pl.edu.pw.ee.backend.api.cart.data.FindDishDto;
+import pl.edu.pw.ee.backend.api.cart.data.FindDishDTO;
 import pl.edu.pw.ee.backend.api.order.data.OrderDTO;
 import pl.edu.pw.ee.backend.api.order.data.OrderDataDTO;
 import pl.edu.pw.ee.backend.api.order.data.OrderDishDTO;
@@ -49,8 +49,8 @@ public class OrderMapperImpl implements OrderMapper {
     }
 
     @Override
-    public final FindDishDto toFindDishDTO(Dish dish) {
-        return FindDishDto.builder()
+    public final FindDishDTO toFindDishDTO(Dish dish) {
+        return FindDishDTO.builder()
                 .calories(dish.getCalories())
                 .companyName(dish.getExternalCompany().getAddress())
                 .dishId(dish.getDishId())
