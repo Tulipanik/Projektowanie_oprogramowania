@@ -9,4 +9,5 @@ public interface IZamowieniaAPI {
     List<OrderDTO> getOrdersForClient(int clientId);
     OrderDTO getOrderData(int orderId);
     int placeOrder(OrderDTO orderData);
+    boolean setOrderStatus(int orderId, String status);
 }
