@@ -6,6 +6,7 @@ import pl.edu.pw.ee.backend.api.order.data.OrderDataDTO;
 import pl.edu.pw.ee.backend.api.order.data.OrderDishDTO;
 import pl.edu.pw.ee.backend.entities.dish.Dish;
 import pl.edu.pw.ee.backend.entities.order.Order;
+import pl.edu.pw.ee.backend.entities.order.data.OrderData;
 
 import java.time.LocalDate;
 
