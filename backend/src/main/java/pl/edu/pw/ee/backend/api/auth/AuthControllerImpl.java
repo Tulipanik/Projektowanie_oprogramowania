@@ -1,6 +1,7 @@
 package pl.edu.pw.ee.backend.api.auth;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.core.annotation.Order;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,6 +12,7 @@ import pl.edu.pw.ee.backend.api.auth.data.TokenDTO;
 import pl.edu.pw.ee.backend.api.auth.interfaces.IAuthController;
 import pl.edu.pw.ee.backend.api.auth.interfaces.IAuthService;
 
+@Order(1)
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(
@@ -19,12 +21,12 @@ import pl.edu.pw.ee.backend.api.auth.interfaces.IAuthService;
 )
 public class AuthControllerImpl implements IAuthController {
 
-    private final IAuthService authService;
+    private final IAuthController authManager;
 
     @Override
     @PostMapping("/login")
     public final TokenDTO login(@RequestBody LoginDTO loginDTO) {
-        return authService.login(loginDTO);
+        return authManager.login(loginDTO);
     }
 
 }
