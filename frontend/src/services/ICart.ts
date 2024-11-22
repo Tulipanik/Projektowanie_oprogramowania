@@ -13,9 +13,9 @@ export interface ICartApi {
 }
 
 export class CartProxy implements ICartApi {
-	tempCart: OrderDishDTO[] = []; //TODO wywalić i brać z backendu
+	tempCart: OrderDishDTO[] = []; 
 
-	addDishToCart(cartId: number, dishId: number): Promise<OrderDishDTO[]> {
+	async addDishToCart(cartId: number, dishId: number): Promise<OrderDishDTO[]> {
 		let dishToAdd = MOCK_FIND_DISH_DTO.filter(
 			(dish) => dish.dishId === dishId
 		)[0];
@@ -25,9 +25,26 @@ export class CartProxy implements ICartApi {
 				date: null,
 			});
 		}
-		return new Promise((resolve, reject) => {
-			resolve(this.tempCart);
-		});
+		let url = `http://localhost:8080/api/v1/cart/1/dishes/${dishId}`
+        try{
+            let response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                'accept': '*/*'}
+            });
+            if(response.status===200)
+							return new Promise((resolve, reject) => {
+								resolve(this.tempCart);
+							});
+					
+							return new Promise((resolve, reject) => {
+								resolve(this.tempCart);
+							});					
+        } catch(error) {
+					return new Promise((resolve, reject) => {
+						resolve(this.tempCart);
+					});			
+        }
 	}
 
 	removeDishFromCart(cartId: number, dishId: number): Promise<OrderDishDTO[]> {

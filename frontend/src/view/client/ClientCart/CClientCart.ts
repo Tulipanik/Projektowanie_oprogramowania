@@ -27,7 +27,7 @@ export function CClientCart(
 			);
 		} else {
 			ucsShowClientCart.setErrorMassage("");
-			return; //TODO obsługa zamówienia (uc50)
+			return;
 		}
 	}
 
