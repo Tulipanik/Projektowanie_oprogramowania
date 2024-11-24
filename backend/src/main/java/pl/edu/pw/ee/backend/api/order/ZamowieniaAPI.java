@@ -25,12 +25,6 @@ public class ZamowieniaAPI implements IZamowieniaAPI {
 
     @Override
     @PostMapping()
-    public OrderDTO createOrder(@RequestBody OrderDTO order) {
-        return bazaZamowien.createOrder(order);
-    }
-
-    @Override
-    @PostMapping()
     public int placeOrder(@RequestBody OrderDTO orderData) {
         return bazaZamowien.setOrderData(orderData);
     }
