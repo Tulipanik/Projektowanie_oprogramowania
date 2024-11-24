@@ -66,38 +66,6 @@ public class BazaZamowien implements IBazaZamowien {
         return savedOrder.getOrderId();
     }
 
-    @Override
-    public OrderDTO createOrder(OrderDTO order) {
-        log.debug("Creating order for request: {}", order);
-
-        OrderDataDTO orderData = order.orderData();
-        List<OrderDishDTO> meals = order.meals();
-
-        log.debug("Retrieving client with id: {}", orderData.clientId());
-
-        Client client = clientRepository.findById(orderData.clientId())
-                .orElseThrow(() -> new ClientNotFoundException(orderData.clientId()));
-
-        OrderData orderDataToSave = buildOrderDataToSave(orderData, client);
-
-        log.debug("Retrieving {} dishes", meals.size());
-
-        List<Dish> dishes = meals.stream()
-                .map(meal -> dishRepository.findById(meal.dish().dishId())
-                        .orElseThrow(() -> new DishNotFoundException(meal.dish().dishId())))
-                .toList();
-
-        Order orderToSave = buildOrderToSave(orderDataToSave, dishes);
-
-        log.debug("Saving order: {}", orderToSave);
-
-        Order savedOrder = orderRepository.save(orderToSave);
-
-        log.debug("Returning response for saved order: {}", savedOrder);
-
-        return orderMapper.toOrderDTO(savedOrder);
-    }
-
     private OrderData buildOrderDataToSave(OrderDataDTO orderData, Client client) {
         return OrderData.builder()
                 .email(orderData.email())
