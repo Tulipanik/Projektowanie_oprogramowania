@@ -96,7 +96,7 @@ public class BazaZamowien implements IBazaZamowien {
             throw new ClientNotFoundException(clientId);
         }
 
-        List<Order> orders = orderRepository.getOrdersForClient(clientId);
+        List<Order> orders = orderRepository.findOrdersByClientId(clientId);
 
         log.debug("Found {} orders for client", orders.size());
 
