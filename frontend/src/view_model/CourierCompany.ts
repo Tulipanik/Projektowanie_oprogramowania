@@ -15,7 +15,6 @@ export const INITIAL_COURIER_COMPANY_ADD_DISH_VALUES: AddDishDTO = {
   kitchenType: "",
   mealType: mealType.BREAKFAST,
   name: "",
-  photo: "",
   price: 0,
 };
 

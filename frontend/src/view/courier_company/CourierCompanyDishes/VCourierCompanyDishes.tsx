@@ -42,24 +42,6 @@ export function VCourierCompanyDishes(
           Courier Company Dishes
         </h1>
       </div>
-      <div>
-        <table className="w-screen">
-          <thead>
-            <tr>
-              <th className="p-4">Dish Name</th>
-              <th className="p-4">Price</th>
-            </tr>
-          </thead>
-          <tbody>
-            {state.offer.map((dish) => (
-              <tr key={dish.id}>
-                <td className="p-4">{dish.name}</td>
-                <td className="p-4">{dish.price}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
     </div>
   );
 }
