@@ -6,7 +6,7 @@ import pl.edu.pw.ee.backend.api.cart.data.FindDishDTO;
 import pl.edu.pw.ee.backend.api.order.data.OrderDTO;
 import pl.edu.pw.ee.backend.api.order.data.OrderDataDTO;
 import pl.edu.pw.ee.backend.api.order.data.OrderDishDTO;
-import pl.edu.pw.ee.backend.api.order.interfaces.OrderMapper;
+import pl.edu.pw.ee.backend.api.order.interfaces.IOrderMapper;
 import pl.edu.pw.ee.backend.entities.dish.Dish;
 import pl.edu.pw.ee.backend.entities.order.Order;
 import pl.edu.pw.ee.backend.entities.order.data.OrderData;
@@ -14,7 +14,7 @@ import pl.edu.pw.ee.backend.entities.order.data.OrderData;
 import java.time.LocalDate;
 
 @Component
-public class OrderMapperImpl implements OrderMapper {
+public class OrderMapperImpl implements IOrderMapper {
 
     @Override
     public final OrderDTO toOrderDTO(Order order) {

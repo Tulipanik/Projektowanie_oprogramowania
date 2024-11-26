@@ -10,7 +10,7 @@ import pl.edu.pw.ee.backend.entities.order.data.OrderData;
 
 import java.time.LocalDate;
 
-public interface OrderMapper {
+public interface IOrderMapper {
     OrderDTO toOrderDTO(Order order);
 
     OrderDataDTO toOrderDataDTO(OrderData orderData);

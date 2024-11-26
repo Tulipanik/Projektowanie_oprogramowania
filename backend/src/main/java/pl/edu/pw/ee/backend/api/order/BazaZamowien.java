@@ -10,6 +10,7 @@ import pl.edu.pw.ee.backend.api.order.data.OrderDataDTO;
 import pl.edu.pw.ee.backend.api.order.data.OrderDishDTO;
 import pl.edu.pw.ee.backend.api.order.interfaces.IBazaZamowien;
 import pl.edu.pw.ee.backend.api.order.interfaces.IOrderService;
+import pl.edu.pw.ee.backend.api.order.interfaces.IOrderMapper;
 import pl.edu.pw.ee.backend.api.user.client.interfaces.IClientService;
 import pl.edu.pw.ee.backend.entities.dish.Dish;
 import pl.edu.pw.ee.backend.entities.order.Order;
@@ -24,7 +25,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @Slf4j
 public class BazaZamowien implements IBazaZamowien {
-    private final OrderMapperImpl orderMapper;
+    private final IOrderMapper orderMapper;
     private final IOrderService orderService;
     private final IDishService dishService;
     private final IClientService clientService;
