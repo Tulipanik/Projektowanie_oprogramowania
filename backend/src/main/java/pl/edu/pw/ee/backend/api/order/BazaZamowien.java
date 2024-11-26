@@ -45,9 +45,7 @@ public class BazaZamowien implements IBazaZamowien {
 
         log.info("Retrieving {} dishes", meals.size());
 
-        List<Dish> dishes = meals.stream()
-                .map(meal -> dishService.findDishById(meal.dish().dishId()))
-                .toList();
+        List<Dish> dishes = dishService.findAllDishesForOrderDishDTOList(meals);
 
         Order orderToSave = buildOrderToSave(orderDataToSave, dishes);
 
