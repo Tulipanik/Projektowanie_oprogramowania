@@ -9,18 +9,17 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import pl.edu.pw.ee.backend.config.constants.Headers;
-import pl.edu.pw.ee.backend.config.constants.Matchers;
 import pl.edu.pw.ee.backend.config.jwt.constants.JwtClaims;
 import pl.edu.pw.ee.backend.config.jwt.constants.TokenType;
 import pl.edu.pw.ee.backend.config.jwt.interfaces.IJwtKeyService;
 import pl.edu.pw.ee.backend.config.jwt.interfaces.IJwtService;
+import pl.edu.pw.ee.backend.entities.user.IUserService;
 import pl.edu.pw.ee.backend.entities.user.User;
 import pl.edu.pw.ee.backend.entities.user.UserRepository;
 import pl.edu.pw.ee.backend.utils.exceptions.auth.InvalidTokenException;
 import pl.edu.pw.ee.backend.utils.exceptions.auth.UserDoesNotExistException;
 
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.function.Function;
@@ -35,13 +34,13 @@ public class JwtServiceImpl implements IJwtService {
     private final long expirationTime;
     private final long refreshTime;
     private final IJwtKeyService jwtKeyService;
-    private final UserRepository userRepository;
+    private final IUserService userService;
 
-    public JwtServiceImpl(IJwtKeyService jwtKeyService, UserRepository userRepository,
+    public JwtServiceImpl(IJwtKeyService jwtKeyService, IUserService userService,
                           @Value(REFRESH_PROPERTY) long refreshTime,
                           @Value(EXPIRATION_PROPERTY) long expirationTime) {
         this.jwtKeyService = jwtKeyService;
-        this.userRepository = userRepository;
+        this.userService = userService;
         this.refreshTime = refreshTime;
         this.expirationTime = expirationTime;
     }
@@ -50,7 +49,7 @@ public class JwtServiceImpl implements IJwtService {
     public final User revokeUserTokens(User user) {
         user.incrementJwtVersion();
 
-        User updatedUser = userRepository.save(user);
+        User updatedUser = userService.save(user);
 
         log.info("User with revoked tokens : {}", updatedUser);
 
@@ -70,8 +69,7 @@ public class JwtServiceImpl implements IJwtService {
         String username = getClaimFromToken(jwtToken, Claims::getSubject)
                 .orElseThrow(() -> new InvalidTokenException("Token does not have subject in payload!"));
 
-        User user = userRepository.findByUsername(username)
-                .orElseThrow(() -> new UserDoesNotExistException(username));
+        User user = userService.findByUsername(username);
 
         return isTokenExpired(jwtToken, user);
     }

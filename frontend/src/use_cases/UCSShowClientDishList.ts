@@ -25,7 +25,7 @@ export class UCSShowClientDishList {
 
 	async addDishToCart(dishId: number) {
 		return await this.cartApi.addDishToCart(1, dishId).then((dishes) => {
-			this.pClientDishes.addDishToCart(dishes); //TODO dorobić wyskakujący form z podaniem daty (uc47)
+			this.pClientDishes.addDishToCart(dishes);
 		});
 	}
 

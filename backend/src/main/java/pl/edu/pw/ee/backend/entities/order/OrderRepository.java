@@ -8,6 +8,8 @@ import java.util.List;
 
 @Repository
 public interface OrderRepository extends JpaRepository<Order, Integer> {
+
     @Query("SELECT o FROM Order o WHERE o.orderData.client.clientId = :clientId")
-    List<Order> getOrdersForClient(@Param("clientId") int clientId);
+    List<Order> findOrdersByClientId(@Param("clientId") int clientId);
+
 }
