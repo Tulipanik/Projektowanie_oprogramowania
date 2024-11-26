@@ -3,12 +3,7 @@ package pl.edu.pw.ee.backend.api.order;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pl.edu.pw.ee.backend.api.order.data.OrderDTO;
 import pl.edu.pw.ee.backend.api.order.interfaces.IZamowieniaAPI;
 
@@ -28,6 +23,12 @@ public class ZamowieniaApi implements IZamowieniaAPI {
     @PostMapping()
     public int placeOrder(@RequestBody OrderDTO orderData) {
         return zamowieniaAPI.placeOrder(orderData);
+    }
+
+    @Override
+    @PostMapping("/pay")
+    public boolean payForOrder(int orderId) {
+        return zamowieniaAPI.payForOrder(orderId);
     }
 
     @Override

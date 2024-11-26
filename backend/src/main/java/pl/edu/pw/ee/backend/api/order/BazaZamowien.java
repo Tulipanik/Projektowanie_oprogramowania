@@ -5,10 +5,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.edu.pw.ee.backend.api.dish.interfaces.IDishService;
-import pl.edu.pw.ee.backend.api.order.data.*;
-import pl.edu.pw.ee.backend.api.order.interfaces.IOrderService;
-import pl.edu.pw.ee.backend.api.order.interfaces.OrderMapper;
+import pl.edu.pw.ee.backend.api.order.data.OrderDTO;
+import pl.edu.pw.ee.backend.api.order.data.OrderDataDTO;
+import pl.edu.pw.ee.backend.api.order.data.OrderDishDTO;
 import pl.edu.pw.ee.backend.api.order.interfaces.IBazaZamowien;
+import pl.edu.pw.ee.backend.api.order.interfaces.IOrderService;
 import pl.edu.pw.ee.backend.api.user.client.interfaces.IClientService;
 import pl.edu.pw.ee.backend.entities.dish.Dish;
 import pl.edu.pw.ee.backend.entities.order.Order;
@@ -23,11 +24,10 @@ import java.util.List;
 @RequiredArgsConstructor
 @Slf4j
 public class BazaZamowien implements IBazaZamowien {
+    private final OrderMapperImpl orderMapper;
     private final IOrderService orderService;
     private final IDishService dishService;
     private final IClientService clientService;
-
-    private final OrderMapper orderMapper;
 
     @Override
     @Transactional
