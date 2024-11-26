@@ -12,7 +12,7 @@ import java.util.List;
 @Order(2)
 @Component
 @RequiredArgsConstructor
-public class ZamowieniaAPI implements IZamowieniaAPI {
+public class ManagerZamowien implements IZamowieniaAPI {
     private final IBazaZamowien bazaZamowien;
 
     @Override

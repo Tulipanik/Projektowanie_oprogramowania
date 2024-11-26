@@ -32,7 +32,7 @@ public class OrderService implements IOrderService {
             throw new ClientNotFoundException(clientId);
         }
 
-        return orderRepository.getOrdersForClient(clientId);
+        return orderRepository.findOrdersByClientId(clientId);
     }
 
     @Override
