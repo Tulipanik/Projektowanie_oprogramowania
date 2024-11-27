@@ -19,4 +19,9 @@ public class ClientService implements IClientService {
         return clientRepository.findById(id)
                 .orElseThrow(() -> new ClientNotFoundException(id));
     }
+
+    @Override
+    public boolean existsById(int id){
+        return clientRepository.existsById(id);
+    }
 }
