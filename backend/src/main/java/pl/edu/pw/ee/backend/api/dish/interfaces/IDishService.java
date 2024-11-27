@@ -1,10 +1,8 @@
 package pl.edu.pw.ee.backend.api.dish.interfaces;
 
-import pl.edu.pw.ee.backend.api.cart.data.AddDishDTO;
-import pl.edu.pw.ee.backend.api.cart.data.FilterDTO;
-import pl.edu.pw.ee.backend.api.cart.data.FindDishDTO;
 import pl.edu.pw.ee.backend.api.order.data.OrderDishDTO;
 import pl.edu.pw.ee.backend.entities.dish.Dish;
+import pl.edu.pw.ee.backend.entities.dish.MealType;
 
 import java.util.List;
 
@@ -14,7 +12,7 @@ public interface IDishService {
 
     List<Dish> findAllDishesForOrderDishDTOList(List<OrderDishDTO> orderDishDTOList);
 
-    List<FindDishDTO> getByFiltr(int clientId, FilterDTO filterObject);
+    List<Dish> getByFiltr(int clientId, List<MealType> mealTypes, List<String> kitchenTypes, List<String> companyNames, String mealSorting, String kitchenSorting, String companySorting);
 
-    boolean addNewDish(AddDishDTO dishDTO);
+    boolean addNewDish(Dish dish);
 }
