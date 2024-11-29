@@ -2,7 +2,11 @@ package pl.edu.pw.ee.backend.api.dish;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import pl.edu.pw.ee.backend.api.cart.data.AddDishDTO;
 import pl.edu.pw.ee.backend.api.cart.data.FilterDTO;
 import pl.edu.pw.ee.backend.api.cart.data.FindDishDTO;
@@ -21,7 +25,7 @@ public class PosilkiAPI implements IPosilkiAPI {
     private final IBazaPosilkow dishService;
 
     @Override
-    @GetMapping(value = "/client/{clientId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/client/{clientId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<FindDishDTO> getDishList(
             @PathVariable int clientId,
             @RequestBody(required = false) FilterDTO filterObject
