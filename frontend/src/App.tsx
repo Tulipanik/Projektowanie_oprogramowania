@@ -53,7 +53,7 @@ export default function App() {
   pCourierCompanyMainWindow.injectGlobalUpdateView(globalUpdateView);
   pAuthorization.injectGlobalUpdateView(globalUpdateView);
 
-  AuthorizationConst.inject(new AuthServiceMock());
+  AuthorizationConst.inject(new AuthService());
 
   return (
     <div className="App">
