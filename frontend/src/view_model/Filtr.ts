@@ -4,11 +4,13 @@ export interface filtrDTO {
   companyName?: compoanyFiltrDTO;
   kitchenType?: kitchenFiltrDTO;
   mealType?: mealFiltrDTO;
+  sortingKey?: SortingKey;
+  sorting?: sortingType;
 }
 
 export enum sortingType {
-  DESCEND = "DESCEND",
-  ASCEND = "ASCEND",
+  DESCENDING = "DESCENDING",
+  ASCENDING = "ASCENDING",
 }
 
 export enum SortingKey {
@@ -18,16 +20,13 @@ export enum SortingKey {
 }
 
 export interface compoanyFiltrDTO {
-  sorting: sortingType;
   values: string[];
 }
 
 export interface kitchenFiltrDTO {
-  sorting: sortingType;
   values: string[];
 }
 
 export interface mealFiltrDTO {
-  sorting: sortingType;
   values: mealType[];
 }

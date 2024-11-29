@@ -46,7 +46,7 @@ export function ClientDishesForm(
               <option value="">All</option>
               {
                 selectOptions.mealTypes.map((mealType, index) => (
-                  <option key={index} value={mealType}>{mealType}</option>
+                  <option key={index} value={mealType}>{upperSnakeCaseToCapitalized(mealType)}</option>
                 ))
               }
             </Field>
@@ -55,6 +55,7 @@ export function ClientDishesForm(
           <div className="flex flex-col md:flex-row items-center md:space-x-4 space-y-4 md:space-y-0 w-full">
             <label htmlFor="sortingKey" className="md:w-1/4 text-right">Sorting key</label>
             <Field as="select" id="sortingKey" name="sortingKey" placeholder="Sorting key" className="w-full md:w-3/4 p-2 border rounded-md">
+              <option value="">None</option>
               {
                 selectOptions.sortingKeys.map((sortingKey, index) => (
                   <option key={index} value={sortingKey}>{upperSnakeCaseToCapitalized(sortingKey)}</option>
@@ -93,6 +94,6 @@ export function ClientDishesForm(
   )
 }
 
-const upperSnakeCaseToCapitalized = (str: string) => {
+export const upperSnakeCaseToCapitalized = (str: string) => {
   return str.split('_').map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join(' ');
 }

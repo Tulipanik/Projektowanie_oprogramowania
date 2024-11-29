@@ -7,7 +7,7 @@ export interface IDishesApi {
   addNewDish(dish: AddDishDTO): Promise<boolean>;
   getDishList(
     clientId: number,
-    filtrObject: filtrDTO[]
+    filtrObject: filtrDTO | null
   ): Promise<FindDishDTO[]>;
 }
 
@@ -33,23 +33,31 @@ export class DishesProxy implements IDishesApi {
 
   async getDishList(
     clientId: number,
-    filtrObject: filtrDTO[]
+    filtrObject: filtrDTO | null
   ): Promise<FindDishDTO[]> {
 
     const url = `http://localhost:8080/api/v1/cart/client/1`;
 
-    const response = await fetch(url, {
+    const requestOptions: RequestInit = {
       method: "POST",
       headers: {
         accept: "*/*",
         'Content-Type': 'application/json',
         "Authorization": `Bearer ${AuthorizationConst.token}`,
-      },
-    });
-    console.log(response.status)
+      }
+    };
+    if (filtrObject) {
+      requestOptions.body = JSON.stringify(filtrObject);
+    }
+    let response = await fetch(url, requestOptions);
+    if (response.status === 200) {
+      return response.json();
+    } else {
+      return [];
+    }
 
-    return new Promise((resolve, reject) => {
-      resolve(MOCK_FIND_DISH_DTO);
-    });
+    // return new Promise((resolve, reject) => {
+    //   resolve(MOCK_FIND_DISH_DTO);
+    // });
   }
 }

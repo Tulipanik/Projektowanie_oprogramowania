@@ -12,7 +12,7 @@ export class DishListSelectOptions {
   companies: string[] = [];
   kitchenTypes: string[] = [];
   mealTypes: mealType[] = [mealType.BREAKFAST, mealType.DINNER, mealType.SECOND_BREAKFAST, mealType.SUPPER, mealType.TEA, mealType.DESSERT];
-  sortingTypes: sortingType[] = [sortingType.ASCEND, sortingType.DESCEND];
+  sortingTypes: sortingType[] = [sortingType.ASCENDING, sortingType.DESCENDING];
   sortingKeys: SortingKey[] = [SortingKey.COMPANY_NAME, SortingKey.KITCHEN_TYPE, SortingKey.MEAL_TYPE];
 
 
@@ -36,12 +36,12 @@ export class ClientViewState {
 export class DishViewFilters {
   companyName = "";
   kitchenType = "";
-  mealType = "";
-  sortingKey: SortingKey = SortingKey.KITCHEN_TYPE;
-  sortingType: sortingType = sortingType.ASCEND;
+  mealType: mealType | string = "";
+  sortingKey: SortingKey | string = "";
+  sortingType: sortingType = sortingType.ASCENDING;
 
   static isEmpty(filters: DishViewFilters): boolean {
-    return filters.companyName === "" && filters.kitchenType === "" && filters.mealType === "" && filters.sortingKey === SortingKey.KITCHEN_TYPE && filters.sortingType === sortingType.ASCEND;
+    return filters.companyName === "" && filters.kitchenType === "" && filters.mealType === "" && filters.sortingKey === "" && filters.sortingType === sortingType.ASCENDING;
   }
 }
 
