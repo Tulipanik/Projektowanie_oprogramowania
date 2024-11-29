@@ -1,6 +1,7 @@
 import { MOCK_FIND_DISH_DTO } from "../mock/findDishDto.mock";
 import { AddDishDTO, FindDishDTO } from "../view_model/Dish";
 import { filtrDTO } from "../view_model/Filtr";
+import { AuthorizationConst } from "./AuthorizationConst";
 
 export interface IDishesApi {
   addNewDish(dish: AddDishDTO): Promise<boolean>;
@@ -30,10 +31,23 @@ export class DishesProxy implements IDishesApi {
     }
   }
 
-  getDishList(
+  async getDishList(
     clientId: number,
     filtrObject: filtrDTO[]
   ): Promise<FindDishDTO[]> {
+
+    const url = `http://localhost:8080/api/v1/cart/client/1`;
+
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        accept: "*/*",
+        'Content-Type': 'application/json',
+        "Authorization": `Bearer ${AuthorizationConst.token}`,
+      },
+    });
+    console.log(response.status)
+
     return new Promise((resolve, reject) => {
       resolve(MOCK_FIND_DISH_DTO);
     });

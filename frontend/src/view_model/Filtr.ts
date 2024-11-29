@@ -6,9 +6,15 @@ export interface filtrDTO {
   mealType?: mealFiltrDTO;
 }
 
-enum sortingType {
-  DESCEND = 1,
-  ASCEND = 0,
+export enum sortingType {
+  DESCEND = "DESCEND",
+  ASCEND = "ASCEND",
+}
+
+export enum SortingKey {
+  COMPANY_NAME = "COMPANY_NAME",
+  KITCHEN_TYPE = "KITCHEN_TYPE",
+  MEAL_TYPE = "MEAL_TYPE",
 }
 
 export interface compoanyFiltrDTO {

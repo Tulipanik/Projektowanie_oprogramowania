@@ -53,7 +53,7 @@ export function VClientMainWindow(
 				ucsShowClientDishList,
 				ucshowClientMainWindow,
 				ucsShowClientCart,
-				{ dishes: clientState.dishes, filters: clientState.filters }
+				{ dishes: clientState.dishes, filters: clientState.filters, selectOptions: clientState.selectOptions }
 			)}
 			{VClientCart(
 				clientState.screen === ClientScreenId.CART,
