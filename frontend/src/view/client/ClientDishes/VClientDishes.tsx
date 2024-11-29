@@ -11,7 +11,7 @@ export function VClientDishes(
 	ucsShowClientDishList: UCSShowClientDishList,
 	ucsShowClientWindow: UCShowClientMainWindow,
 	ucsShowClientCart: UCSShowClientCart,
-	state: Pick<ClientViewState, "dishes" | "filters">,
+	state: Pick<ClientViewState, "dishes" | "filters" | "selectOptions">,
 ) {
 	if (!isActive) return;
 
@@ -43,6 +43,7 @@ export function VClientDishes(
 			</div>
 			{ClientDishesForm(
 				state?.filters,
+				state?.selectOptions,
 				pressUpdateFiltersBtn,
 				pressClearFiltersBtn
 			)}

@@ -1,9 +1,27 @@
-import { FindDishDTO, OrderDishDTO } from "./Dish";
+import { FindDishDTO, mealType, OrderDishDTO } from "./Dish";
+import { SortingKey, sortingType } from "./Filtr";
 
 export enum ClientScreenId {
   DISHES = "DISHES",
   CART = "CART",
   MAIN_WINDOW = "MAIN_WINDOW",
+}
+
+
+export class DishListSelectOptions {
+  companies: string[] = [];
+  kitchenTypes: string[] = [];
+  mealTypes: mealType[] = [mealType.BREAKFAST, mealType.DINNER, mealType.SECOND_BREAKFAST, mealType.SUPPER, mealType.TEA, mealType.DESSERT];
+  sortingTypes: sortingType[] = [sortingType.ASCENDING, sortingType.DESCENDING];
+  sortingKeys: SortingKey[] = [SortingKey.COMPANY_NAME, SortingKey.KITCHEN_TYPE, SortingKey.MEAL_TYPE];
+
+
+  updateOptionsFromDishList(dishes: FindDishDTO[]) {
+    const companies = new Set(dishes.map(dish => dish.companyName));
+    const kitchenTypes = new Set(dishes.map(dish => dish.kitchenType));
+    this.companies = Array.from(companies);
+    this.kitchenTypes = Array.from(kitchenTypes);
+  }
 }
 
 export class ClientViewState {
@@ -12,20 +30,24 @@ export class ClientViewState {
   cart: OrderDishDTO[] = [];
   screen: ClientScreenId = ClientScreenId.MAIN_WINDOW;
   error: string = "";
+  selectOptions = new DishListSelectOptions();
 }
 
 export class DishViewFilters {
   companyName = "";
   kitchenType = "";
-  mealType = "";
+  mealType: mealType | string = "";
+  sortingKey: SortingKey | string = "";
+  sortingType: sortingType = sortingType.ASCENDING;
 
   static isEmpty(filters: DishViewFilters): boolean {
-    return filters.companyName === "" && filters.kitchenType === "" && filters.mealType === "";
+    return filters.companyName === "" && filters.kitchenType === "" && filters.mealType === "" && filters.sortingKey === "" && filters.sortingType === sortingType.ASCENDING;
   }
 }
 
+
 export interface UpdateClientViewAction {
-  type: "UPDATE_DISHES" | "CHANGE_FILTERS" | "UPDATE_CART" | "CHANGE_SCREEN" | "UPDATE_CART_DISH_DATE" |"SET_ERROR_MESSAGE",
+  type: "UPDATE_DISHES" | "CHANGE_FILTERS" | "UPDATE_CART" | "CHANGE_SCREEN" | "UPDATE_CART_DISH_DATE" | "SET_ERROR_MESSAGE",
   filters?: DishViewFilters;
   dishes?: FindDishDTO[];
   screen?: ClientScreenId;

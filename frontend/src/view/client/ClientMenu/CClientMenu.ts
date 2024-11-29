@@ -5,7 +5,7 @@ import { UCShowClientMainWindow } from "../../../use_cases/UCSShowClientWindow";
 
 export function CClientMenu(ucshowClientMainWindow: UCShowClientMainWindow, ucsShowClientDishList: UCSShowClientDishList, ucsShowClientCart: UCSShowClientCart) {
   function pressShowDishListBtn() {
-    ucsShowClientDishList.showClientDishes();
+    ucsShowClientDishList.handleShowClientDishesBtnClick();
   }
 
   function pressShowCartBtn() {

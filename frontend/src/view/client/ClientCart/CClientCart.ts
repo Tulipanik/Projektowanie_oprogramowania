@@ -32,7 +32,7 @@ export function CClientCart(
 	}
 
 	function pressShowDishListBtn() {
-		ucsShowClientDishList.showClientDishes();
+		ucsShowClientDishList.handleShowClientDishesBtnClick();
 	}
 
 	return {
