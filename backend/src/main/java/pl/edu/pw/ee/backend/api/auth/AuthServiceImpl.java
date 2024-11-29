@@ -12,10 +12,9 @@ import pl.edu.pw.ee.backend.api.auth.interfaces.IAuthService;
 import pl.edu.pw.ee.backend.config.constants.TokenRevokeStatus;
 import pl.edu.pw.ee.backend.config.jwt.interfaces.IJwtService;
 import pl.edu.pw.ee.backend.entities.user.User;
-import pl.edu.pw.ee.backend.entities.user.UserRepository;
+import pl.edu.pw.ee.backend.entities.user.IUserService;
 import pl.edu.pw.ee.backend.utils.exceptions.auth.InvalidTokenException;
 import pl.edu.pw.ee.backend.utils.exceptions.auth.TokenDoesNotExistException;
-import pl.edu.pw.ee.backend.utils.exceptions.auth.UserDoesNotExistException;
 
 import java.util.Optional;
 
@@ -26,7 +25,7 @@ public class AuthServiceImpl implements IAuthService {
 
     private static final String USER_NOT_EXIST_MESSAGE = "Such user does not exist!";
 
-    private final UserRepository userRepository;
+    private final IUserService userService;
     private final AuthenticationManager authenticationManager;
     private final IJwtService jwtService;
 
@@ -36,9 +35,7 @@ public class AuthServiceImpl implements IAuthService {
 
         String username = loginRequest.username();
 
-        User user = userRepository.findByUsername(username).orElseThrow(
-                () -> new UserDoesNotExistException(username)
-        );
+        User user = userService.findByUsername(username);
 
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
                 loginRequest.username(), loginRequest.password())
@@ -74,9 +71,7 @@ public class AuthServiceImpl implements IAuthService {
 
         log.info("User of username : {}", username);
 
-        User user = userRepository.findByUsername(username).orElseThrow(
-                () -> new UserDoesNotExistException(username)
-        );
+        User user = userService.findByUsername(username);
 
         if (jwtService.isTokenNotValid(refreshToken)) {
             throw new InvalidTokenException("Token is not valid!");

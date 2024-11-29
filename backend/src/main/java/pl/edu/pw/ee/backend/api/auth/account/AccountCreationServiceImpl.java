@@ -2,7 +2,6 @@ package pl.edu.pw.ee.backend.api.auth.account;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.edu.pw.ee.backend.api.auth.data.AccountCreateDTO;
@@ -10,7 +9,7 @@ import pl.edu.pw.ee.backend.api.auth.data.ExternalCompanyCreateDTO;
 import pl.edu.pw.ee.backend.entities.external.company.ExternalCompany;
 import pl.edu.pw.ee.backend.entities.external.company.ExternalCompanyRepository;
 import pl.edu.pw.ee.backend.entities.user.Role;
-import pl.edu.pw.ee.backend.entities.user.User;
+import pl.edu.pw.ee.backend.entities.user.IUserService;
 import pl.edu.pw.ee.backend.entities.user.client.Client;
 import pl.edu.pw.ee.backend.entities.user.client.ClientRepository;
 import pl.edu.pw.ee.backend.entities.user.courier.Courier;
@@ -30,7 +29,7 @@ public class AccountCreationServiceImpl implements IAccountCreationService {
     private final ExternalCompanyRepository externalCompanyRepository;
     private final ManagerRepository managerRepository;
     private final StorekeeperRepository storekeeperRepository;
-    private final PasswordEncoder passwordEncoder;
+    private final IUserService userService;
 
     @Override
     @Transactional
@@ -39,7 +38,7 @@ public class AccountCreationServiceImpl implements IAccountCreationService {
 
         Client client = Client
                 .builder()
-                .user(buildUserFromRequest(request, Role.CLIENT))
+                .user(userService.save(request, Role.CLIENT))
                 .build();
 
         client = clientRepository.save(client);
@@ -56,7 +55,7 @@ public class AccountCreationServiceImpl implements IAccountCreationService {
 
         Courier courier = Courier
                 .builder()
-                .user(buildUserFromRequest(request, Role.COURIER))
+                .user(userService.save(request, Role.COURIER))
                 .build();
 
         courier = courierRepository.save(courier);
@@ -77,7 +76,7 @@ public class AccountCreationServiceImpl implements IAccountCreationService {
                 .NIP(request.NIP())
                 .companyType(request.companyType())
                 .phoneNumber(request.phoneNumber())
-                .user(buildUserFromRequest(request, Role.EXTERNAL_COMPANY))
+                .user(userService.save(request, Role.EXTERNAL_COMPANY))
                 .build();
 
         externalCompany = externalCompanyRepository.save(externalCompany);
@@ -94,7 +93,7 @@ public class AccountCreationServiceImpl implements IAccountCreationService {
 
         Manager manager = Manager
                 .builder()
-                .user(buildUserFromRequest(request, Role.MANAGER))
+                .user(userService.save(request, Role.MANAGER))
                 .build();
 
         manager = managerRepository.save(manager);
@@ -111,7 +110,7 @@ public class AccountCreationServiceImpl implements IAccountCreationService {
 
         Storekeeper storekeeper = Storekeeper
                 .builder()
-                .user(buildUserFromRequest(request, Role.STOREKEEPER))
+                .user(userService.save(request, Role.STOREKEEPER))
                 .build();
 
         storekeeper = storekeeperRepository.save(storekeeper);
@@ -119,25 +118,6 @@ public class AccountCreationServiceImpl implements IAccountCreationService {
         log.info("Storekeeper account created : {}", storekeeper);
 
         return storekeeper;
-    }
-
-    private User buildUserFromRequest(ExternalCompanyCreateDTO request, Role role) {
-        return buildUserFromRequest(request.name(), request.username(), request.password(), role);
-    }
-
-    private User buildUserFromRequest(AccountCreateDTO request, Role role) {
-        return buildUserFromRequest(request.name(), request.username(), request.password(), role);
-    }
-
-    private User buildUserFromRequest(String name, String username, String password, Role role) {
-        return User
-                .builder()
-                .name(name)
-                .jwtVersion(0L)
-                .username(username)
-                .password(passwordEncoder.encode(password))
-                .role(role)
-                .build();
     }
 
 }
