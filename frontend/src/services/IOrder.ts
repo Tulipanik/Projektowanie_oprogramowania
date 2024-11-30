@@ -14,9 +14,20 @@ export class OrderProxy implements IOrderAPi {
     });
   }
 
-  payForOrder(orderId: number): Promise<boolean> {
-    return new Promise((resolve, reject) => {
-      resolve(false);
-    });
+  async payForOrder(orderId: number): Promise<boolean> {
+    const url = `http://localhost:8080/api/v1/orders/pay?orderId=${orderId}`;
+    try {
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'accept': '*/*'
+        }
+      });
+      return response.json();
+    } catch(error) {
+      return new Promise((resolve, reject) => {
+        resolve(false);
+      });
+    }
   }
 }
