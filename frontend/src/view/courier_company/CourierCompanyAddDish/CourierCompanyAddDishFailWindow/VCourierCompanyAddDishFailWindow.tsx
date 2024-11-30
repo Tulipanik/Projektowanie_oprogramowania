@@ -1,18 +1,14 @@
 import { UCCourierCompanyAddNewDish } from "../../../../use_cases/UCSCourierCompanyAddNewDish";
-import { UCShowCourierCompanyMainWindow } from "../../../../use_cases/UCSShowCourierCompanyMainWindow";
-import { CCourierCompanyDishes } from "../../CourierCompanyDishes/CCourierCompanyDishes";
+import { CCourierCompanyAddDishFailWindow } from "./CCourierCompanyAddDishFailWindow";
 
 export function VCourierCompanyAddDishFailWindow(
   isActive: boolean,
-  ucsCourierCompanyAddNewDish: UCCourierCompanyAddNewDish,
-  ucshowCourierCompanyMainWindow: UCShowCourierCompanyMainWindow
+  ucsCourierCompanyAddNewDish: UCCourierCompanyAddNewDish
 ) {
   if (!isActive) return;
 
-  const { pressShowCourierCompanyAddDishWindowBtn } = CCourierCompanyDishes(
-    ucsCourierCompanyAddNewDish,
-    ucshowCourierCompanyMainWindow
-  );
+  const { pressShowCourierCompanyAddDishWindowBtn } =
+    CCourierCompanyAddDishFailWindow(ucsCourierCompanyAddNewDish);
 
   return (
     <div className="flex flex-col w-screen h-screen items-center justify-center">

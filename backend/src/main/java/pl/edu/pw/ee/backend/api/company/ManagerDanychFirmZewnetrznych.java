@@ -1,29 +1,20 @@
 package pl.edu.pw.ee.backend.api.company;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Service;
-import pl.edu.pw.ee.backend.api.company.data.CompanyDataDTO;
-import pl.edu.pw.ee.backend.api.company.exception.AddNewCompanyException;
+import org.springframework.core.annotation.Order;
+import org.springframework.stereotype.Component;
+import pl.edu.pw.ee.backend.api.auth.data.ExternalCompanyCreateDTO;
 import pl.edu.pw.ee.backend.api.company.interfaces.IBazaDanychFirmyZewnetrznej;
 import pl.edu.pw.ee.backend.api.company.interfaces.IFirmaZewnetrznaAPI;
 
-@Slf4j
-@Service
+@Order(2)
+@Component
 @RequiredArgsConstructor
 public class ManagerDanychFirmZewnetrznych implements IFirmaZewnetrznaAPI {
-
     private final IBazaDanychFirmyZewnetrznej bazaDanychFirmyZewnetrznej;
 
     @Override
-    public boolean addNewExternalCompany(CompanyDataDTO companyDataDTO) {
-        try {
-            final int id = bazaDanychFirmyZewnetrznej.addTransportCompanyData(companyDataDTO);
-            log.info("New transport company with id " + id + " was added.");
-            return true;
-        } catch (AddNewCompanyException e) {
-            log.error("An error occurred while adding new transport company. Details: " + e.getMessage());
-            return false;
-        }
+    public int addNewExternalCompany(ExternalCompanyCreateDTO companyData) {
+        return bazaDanychFirmyZewnetrznej.addCateringCompanyData(companyData);
     }
 }

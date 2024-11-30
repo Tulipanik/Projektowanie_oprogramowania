@@ -5,17 +5,17 @@ import { LoginData } from "../view_model/Authorization";
 
 export class UCAuthorizeUser {
 
-  constructor(private pAuthMenu: PAuthMenu, private pMainMenu:PMainMenu) {
+  constructor(private pAuthMenu: PAuthMenu, private pMainMenu: PMainMenu) {
   }
 
-  async tryAuthorizeUser(loginData:LoginData){
+  async tryAuthorizeUser(loginData: LoginData) {
     if (await AuthorizationConst.login(loginData))
       this.pMainMenu.showMainMenu()
-    else 
+    else
       this.pAuthMenu.authFailed();
   }
 
-  unauthorizeUSer(){
+  unauthorizeUSer() {
     AuthorizationConst.logout();
     this.pAuthMenu.deAuth();
   }

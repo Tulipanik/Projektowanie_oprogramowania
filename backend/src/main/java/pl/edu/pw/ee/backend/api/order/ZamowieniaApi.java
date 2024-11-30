@@ -42,4 +42,10 @@ public class ZamowieniaApi implements IZamowieniaAPI {
     public OrderDTO getOrderData(@PathVariable int orderId) {
         return zamowieniaAPI.getOrderData(orderId);
     }
+
+    @Override
+    @PostMapping("/{orderId}/status")
+    public boolean setOrderStatus(@PathVariable int orderId, @RequestBody String status) {
+        return zamowieniaAPI.setOrderStatus(orderId, status);
+    }
 }

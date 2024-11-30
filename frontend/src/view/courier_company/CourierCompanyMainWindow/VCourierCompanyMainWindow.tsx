@@ -53,18 +53,15 @@ export function VCourierCompanyMainWindow(
       )}
       {VCourierCompanyAddDish(
         courierCompanyState.screen === CourierCompanyScreenId.ADD_DISH,
-        ucshowCourierCompanyMainWindow,
         ucsCourierCompanyAddNewDish
       )}
       {VCourierCompanyAddDishSuccessWindow(
         courierCompanyState.screen === CourierCompanyScreenId.ADD_DISH_SUCCESS,
-        ucsCourierCompanyAddNewDish,
-        ucshowCourierCompanyMainWindow
+        ucsCourierCompanyAddNewDish
       )}
       {VCourierCompanyAddDishFailWindow(
         courierCompanyState.screen === CourierCompanyScreenId.ADD_DISH_FAIL,
-        ucsCourierCompanyAddNewDish,
-        ucshowCourierCompanyMainWindow
+        ucsCourierCompanyAddNewDish
       )}
     </div>
   );

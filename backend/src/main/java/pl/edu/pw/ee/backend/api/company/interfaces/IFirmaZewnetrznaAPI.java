@@ -1,8 +1,7 @@
 package pl.edu.pw.ee.backend.api.company.interfaces;
-
-import pl.edu.pw.ee.backend.api.company.data.CompanyDataDTO;
+import pl.edu.pw.ee.backend.api.auth.data.ExternalCompanyCreateDTO;
 
 public interface IFirmaZewnetrznaAPI {
 
-    boolean addNewExternalCompany(CompanyDataDTO companyDataDTO);
+    int addNewExternalCompany(ExternalCompanyCreateDTO companyData);
 }

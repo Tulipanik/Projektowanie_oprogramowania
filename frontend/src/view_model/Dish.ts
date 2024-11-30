@@ -16,12 +16,12 @@ export interface OrderDishDTO {
 }
 
 export enum mealType {
-  BREAKFAST = "Breakfast",
-  SUPPER = "Supper",
-  DINNER = "Dinner",
-  SECOND_BREAKFAST = "Second Breakfast",
-  TEA = "Tea",
-  DESSERT = "Dessert",
+  BREAKFAST = "BREAKFAST",
+  SUPPER = "SUPPER",
+  DINNER = "DINNER",
+  SECOND_BREAKFAST = "SECOND_BREAKFAST",
+  TEA = "TEA",
+  DESSERT = "DESSERT",
 }
 
 export interface AddDishDTO {
@@ -31,6 +31,6 @@ export interface AddDishDTO {
   kitchenType: string;
   mealType: mealType;
   name: string;
-  photo: string; // TODO: change to BinaryData
+  photo?: File;
   price: number;
 }

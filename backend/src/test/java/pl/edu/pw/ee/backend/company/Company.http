@@ -1,0 +1,13 @@
+POST http://localhost:8080/api/v1/company/addCompany
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzUxMiJ9.eyJ1c2VySWQiOjEsInZlciI6NCwicm9sZSI6IkNPVVJJRVIiLCJzdWIiOiJqb2huLmRvZUBnbWFpbC5jb20iLCJpc3MiOiJodHRwOi8vY2F0ZXJpbmctYmFja2VuZDo4MDgwIiwiaWF0IjoxNzMyMjk1OTE3LCJleHAiOjE3MzIzODIzMTd9.jEBuxYqISZKTOiddhOcXQvooelXhk-WbaiFANxZbkRuFsdErOTgWB3NoYUxMY_kSfgNGedNsIDV625H_2PctSvmdItlpRPqfWd0evakaasrI0P_guwa9Ys8tN5sH_ziB87MLaZENnFSFgWDcupZADBhwbqSFI4_tdNOEXItmO1uAMh8qjnB3hBp_OfdH5HBNX1xDHXyEFKxoZu0K94uxxBXfEtBQePugQ0kai46tDvuPTpe2MXHY1Ze77rJCnnQDx0pGo4fKIytCY26hTyaK_bgvE6BkD_OpCZgnDWkuYgjofylbPWD4dggbpP80k_O6OTw350a0NsXarXyeasCsfKWkGymyB51qxOazHxmH8DYuTZ9bvrfj-hAXxrVzjgQhI-CN_wIRkuovMCQVoEwEsCwmujoVXWci64_Djht0rTK6Fs7xWhfXzIJaVZtonQeZvZJ3-eZHd3jdRxV0Q1vzCcgHVCe7ns7__R7fKPoRBJuw6cr7KPvVRuYgbhEsuVr19-xIj_QBhQ_8kMW9PUsMob9NTu2D0tQJ-Mhv8unTnIi-GhwVfmzz--5v3BTLXKiFZcxlE2uPKnz4VJ3cNJGlXa-qjP7bylP4lCXtzkAEK1OOIRtvSykTDzWsiSgln24jl18IdVrTmr0xo2rNDx60T7cu2kc2EtJPWL6TpbFX9SU
+Content-Type: application/json
+
+{
+  "name": "FajnaFirma",
+  "password": "123",
+  "username": "manager.fajny@example.com",
+  "NIP": "1234567891",
+  "companyType": "CATERING",
+  "phoneNumber": "794456123",
+  "address": "ul. Marszalkowska 76, 00-000 Warszawa"
+}

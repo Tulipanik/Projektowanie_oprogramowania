@@ -83,6 +83,25 @@ public class BazaZamowien implements IBazaZamowien {
         return orderMapper.toOrderDTO(order);
     }
 
+    @Override
+    public boolean changeStatus(int orderId, String status) {
+        log.debug("Changing status for order id: {} to: {}", orderId, status);
+
+        Order order = orderService.findOrderById(orderId);
+
+        log.debug("Found order: {}", order);
+
+        OrderStatus orderStatus = OrderStatus.valueOf(status);
+
+        order.setOrderStatus(orderStatus);
+
+        orderService.saveOrder(order);
+
+        log.debug("Changed status for order id: {} to: {}", orderId, status);
+
+        return true;
+    }
+
 
     private OrderData buildOrderDataToSave(OrderDataDTO orderData, Client client) {
         return OrderData.builder()

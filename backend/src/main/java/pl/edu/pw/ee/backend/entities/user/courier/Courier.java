@@ -35,7 +35,7 @@ public class Courier {
     private User user;
 
     @OneToMany
-    @JoinColumn(name = "order_id")
+    @JoinColumn(name = "courier_id")
     private List<Order> deliverOrders;
 
 }

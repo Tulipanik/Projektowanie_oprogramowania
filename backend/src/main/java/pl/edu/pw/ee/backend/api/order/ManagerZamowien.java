@@ -40,4 +40,9 @@ public class ManagerZamowien implements IZamowieniaAPI {
 
         return platnosc.settleOrder(orderId, clientId, price);
     }
+
+    @Override
+    public boolean setOrderStatus(int orderId, String status) {
+        return bazaZamowien.changeStatus(orderId, status);
+    }
 }

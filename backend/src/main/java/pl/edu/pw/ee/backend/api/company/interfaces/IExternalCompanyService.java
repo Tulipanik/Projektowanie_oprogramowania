@@ -4,5 +4,6 @@ import pl.edu.pw.ee.backend.entities.external.company.ExternalCompany;
 
 public interface IExternalCompanyService {
 
-    int addExternalCompany(ExternalCompany externalCompany);
+    ExternalCompany save(ExternalCompany externalCompany);
+
 }

@@ -4,7 +4,7 @@ export function ClientCartList(
 	cart: OrderDishDTO[],
 	error: string,
 	pressRemoveFromCartBtn: (dishId: number) => void,
-	pressOrderBtn: (cart: OrderDishDTO[]) => void,
+	pressNextBtn: (cart: OrderDishDTO[]) => void,
 	setCartDishDate: (dish: FindDishDTO, date: Date) => void,
 	totalCartPrice = cart.reduce((sum, item) => sum + item.dish.price, 0),
 	totalCalories = cart.reduce((sum, item) => sum + item.dish.calories, 0)
@@ -76,10 +76,10 @@ export function ClientCartList(
 						))}
 					</div>
 					<button
-						onClick={() => pressOrderBtn(cart)}
+						onClick={() => pressNextBtn(cart)}
 						disabled={error !== ""}
 						className="disabled:opacity-75 w-11/12 bg-violet-600 text-white mx-auto center py-2 rounded-md hover:bg-violet-700 disabled:hover:bg-violet-600 flex items-center flex-row justify-center gap-2">
-						Proceed to checkout
+						Next
 					</button>
 					{error !== "" && (
 						<p className="text-lg font-bold text-red-600 mb-2 text-center">

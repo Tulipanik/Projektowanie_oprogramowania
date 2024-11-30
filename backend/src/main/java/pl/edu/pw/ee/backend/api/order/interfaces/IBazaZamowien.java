@@ -7,4 +7,6 @@ public interface IBazaZamowien {
     List<OrderDTO> getOrdersForClient(int clientId);
     OrderDTO getOrderData(int orderId);
     int setOrderData(OrderDTO order);
+    boolean changeStatus(int orderId, String status);
+
 }
