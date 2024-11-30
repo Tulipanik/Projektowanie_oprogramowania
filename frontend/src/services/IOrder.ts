@@ -1,4 +1,5 @@
 import { orderDTO } from "../view_model/Order";
+import { AuthorizationConst } from "./AuthorizationConst";
 
 export interface IOrderAPi {
   placeOrder(order: orderDTO): Promise<number>;
@@ -16,18 +17,19 @@ export class OrderProxy implements IOrderAPi {
 
   async payForOrder(orderId: number): Promise<boolean> {
     const url = `http://localhost:8080/api/v1/orders/pay?orderId=${orderId}`;
-    try {
-      const response = await fetch(url, {
-        method: 'POST',
-        headers: {
-          'accept': '*/*'
-        }
-      });
+
+    const requestOptions: RequestInit = {
+      method: "POST",
+      headers: {
+        accept: "*/*",
+        "Authorization": `Bearer ${AuthorizationConst.token}`,
+      }
+    };
+    let response = await fetch(url, requestOptions);
+    if (response.status === 200) {
       return response.json();
-    } catch(error) {
-      return new Promise((resolve, reject) => {
-        resolve(false);
-      });
+    } else {
+      return false;
     }
   }
 }
