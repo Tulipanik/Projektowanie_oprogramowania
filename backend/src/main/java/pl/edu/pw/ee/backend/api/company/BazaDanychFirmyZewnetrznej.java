@@ -33,6 +33,20 @@ public class BazaDanychFirmyZewnetrznej implements IBazaDanychFirmyZewnetrznej {
         return externalCompany.getCompanyId();
     }
 
+    @Override
+    @Transactional
+    public int addTransportCompanyData(ExternalCompanyCreateDTO request) {
+        log.info("Creating transport company account : {}", request);
+
+        ExternalCompany externalCompany = buildExternalCompanyFromRequest(request);
+
+        externalCompany = externalService.save(externalCompany);
+
+        log.info("Transport company account created : {}", externalCompany);
+
+        return externalCompany.getCompanyId();
+    }
+
     private User buildUserFromRequest(ExternalCompanyCreateDTO request, Role role) {
         return buildUserFromRequest(request.name(), request.username(), request.password(), role);
     }
