@@ -1,11 +1,11 @@
 import {
-	ClientViewState,
-	UpdateClientViewAction,
+  ClientViewState,
+  UpdateClientViewAction,
 } from "../../../view_model/Client";
 
 export function updateClientViewState(
-	state: ClientViewState,
-	action: UpdateClientViewAction
+  state: ClientViewState,
+  action: UpdateClientViewAction
 ) {
 	let newState = { ...state };
 	switch (action.type) {
@@ -40,6 +40,9 @@ export function updateClientViewState(
 		case "SET_ERROR_MESSAGE":
 			newState.error = action.message!;
 			break;
+    case "UPDATE_ORDER":
+      newState.order = action.order!;
+      break;
 	}
 	return newState;
 }

@@ -55,6 +55,7 @@ export default function App() {
 
   AuthorizationConst.inject(new AuthService());
 
+
   return (
     <div className="App">
       {VAuthMenu(state.screen === ScreenId.AUTH,usAuthorization)}
