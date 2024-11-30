@@ -1,4 +1,5 @@
 import { FindDishDTO } from "../../../../view_model/Dish";
+import { upperSnakeCaseToCapitalized } from "./ClientDishesForm";
 
 
 export function ClientDishesList(
@@ -16,7 +17,7 @@ export function ClientDishesList(
               <h3 className="text-lg font-semibold mb-2 text-center md:text-left">{dish.name}</h3>
               <p className="text-gray-600 mb-1 text-left">Company: {dish.companyName}</p>
               <p className="text-gray-600 mb-1 text-left">Kitchen Type: {dish.kitchenType}</p>
-              <p className="text-gray-600 mb-1 text-left">Meal Type: {dish.mealType}</p>
+              <p className="text-gray-600 mb-1 text-left">Meal Type: {upperSnakeCaseToCapitalized(dish.mealType)}</p>
               <p className="text-gray-600 mb-1 text-left">Price: ${dish.price.toFixed(2)}</p>
               <p className="text-gray-600 mb-1 text-left">Calories: {dish.calories}</p>
               <p className="text-gray-600 mb-4 text-left">Ingredients: {dish.ingredients.join(", ")}</p>

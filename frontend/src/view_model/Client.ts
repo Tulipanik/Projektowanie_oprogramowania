@@ -1,4 +1,5 @@
-import { FindDishDTO, OrderDishDTO } from "./Dish";
+import { FindDishDTO, mealType, OrderDishDTO } from "./Dish";
+import { SortingKey, sortingType } from "./Filtr";
 import { orderDataDTO, orderDTO, orderStatus } from "./Order";
 
 export enum ClientScreenId {
@@ -11,6 +12,23 @@ export enum ClientScreenId {
   ORDER_SUMMARY = "ORDER_SUMMARY",
   PAY_ORDER_SUCCESS = "PAY_ORDER_SUCCESS",
   PAY_ORDER_FAIL = "PAY_ORDER_FAIL"
+}
+
+
+export class DishListSelectOptions {
+  companies: string[] = [];
+  kitchenTypes: string[] = [];
+  mealTypes: mealType[] = [mealType.BREAKFAST, mealType.DINNER, mealType.SECOND_BREAKFAST, mealType.SUPPER, mealType.TEA, mealType.DESSERT];
+  sortingTypes: sortingType[] = [sortingType.ASCENDING, sortingType.DESCENDING];
+  sortingKeys: SortingKey[] = [SortingKey.COMPANY_NAME, SortingKey.KITCHEN_TYPE, SortingKey.MEAL_TYPE];
+
+
+  updateOptionsFromDishList(dishes: FindDishDTO[]) {
+    const companies = new Set(dishes.map(dish => dish.companyName));
+    const kitchenTypes = new Set(dishes.map(dish => dish.kitchenType));
+    this.companies = Array.from(companies);
+    this.kitchenTypes = Array.from(kitchenTypes);
+  }
 }
 
 export class ClientViewState {
@@ -27,19 +45,18 @@ export class ClientViewState {
     price: 0,
     status: orderStatus.PLACED,
   };
+  selectOptions = new DishListSelectOptions();
 }
 
 export class DishViewFilters {
   companyName = "";
   kitchenType = "";
-  mealType = "";
+  mealType: mealType | string = "";
+  sortingKey: SortingKey | string = "";
+  sortingType: sortingType = sortingType.ASCENDING;
 
   static isEmpty(filters: DishViewFilters): boolean {
-    return (
-      filters.companyName === "" &&
-      filters.kitchenType === "" &&
-      filters.mealType === ""
-    );
+    return filters.companyName === "" && filters.kitchenType === "" && filters.mealType === "" && filters.sortingKey === "" && filters.sortingType === sortingType.ASCENDING;
   }
 }
 

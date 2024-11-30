@@ -7,7 +7,7 @@ import { DishViewFilters } from '../../../view_model/Client';
 export function CClientDishes(ucsShowClientDishList: UCSShowClientDishList, ucsShowClientWindow: UCShowClientMainWindow, ucsShowClientCart: UCSShowClientCart) {
 
   function pressUpdateFiltersBtn(filters: DishViewFilters) {
-    ucsShowClientDishList.updateFilters(filters)
+    ucsShowClientDishList.handleUpdateFiltersBtnClick(filters)
   }
 
   function pressShowClientMainWindowBtn() {
@@ -15,9 +15,9 @@ export function CClientDishes(ucsShowClientDishList: UCSShowClientDishList, ucsS
   }
 
   function pressClearFiltersBtn() {
-    ucsShowClientDishList.updateFilters(new DishViewFilters());
+    ucsShowClientDishList.handleUpdateFiltersBtnClick(new DishViewFilters());
   }
-  
+
   function pressAddToCartBtn(dishId: number) {
     ucsShowClientDishList.addDishToCart(dishId);
   }

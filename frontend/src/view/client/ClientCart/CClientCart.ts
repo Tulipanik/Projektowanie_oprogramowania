@@ -22,14 +22,14 @@ export function CClientCart(
     ucsShowClientCart.updateCartDishDate(dish, date);
   }
 
-  function pressShowDishListBtn() {
-    ucsShowClientDishList.showClientDishes();
-  }
+	function pressShowDishListBtn() {
+		ucsShowClientDishList.handleShowClientDishesBtnClick();
+	}
 
-  return {
-    pressShowClientMainWindowBtn,
-    pressRemoveFromCartBtn,
-    pressShowDishListBtn,
-    setCartDishDate,
-  };
+	return {
+		pressShowClientMainWindowBtn,
+		pressRemoveFromCartBtn,
+		pressShowDishListBtn,
+		setCartDishDate,
+	};
 }
