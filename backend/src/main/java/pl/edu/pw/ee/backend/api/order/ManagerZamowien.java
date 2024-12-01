@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 import pl.edu.pw.ee.backend.api.order.data.OrderDTO;
 import pl.edu.pw.ee.backend.api.order.interfaces.IBazaZamowien;
 import pl.edu.pw.ee.backend.api.order.interfaces.IZamowieniaAPI;
-import pl.edu.pw.ee.backend.application.Payment.interfaces.IPlatnosc;
+import pl.edu.pw.ee.backend.application.payment.interfaces.IPlatnosc;
 
 import java.util.List;
 
@@ -15,7 +15,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ManagerZamowien implements IZamowieniaAPI {
     private final IBazaZamowien bazaZamowien;
-    private final IPlatnosc platnosc;
+    private final IPlatnosc managerPlatnosci;
 
     @Override
     public OrderDTO getOrderData(int orderId) {
@@ -38,7 +38,7 @@ public class ManagerZamowien implements IZamowieniaAPI {
         final int clientId = orderDTO.orderData().clientId();
         final float price = orderDTO.price();
 
-        return platnosc.settleOrder(orderId, clientId, price);
+        return managerPlatnosci.settleOrder(orderId, clientId, price);
     }
 
     @Override

@@ -1,4 +1,4 @@
-package pl.edu.pw.ee.backend.application.Payment.interfaces;
+package pl.edu.pw.ee.backend.application.payment.interfaces;
 
 public interface IPlatnosc {
 

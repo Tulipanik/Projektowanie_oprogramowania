@@ -1,8 +1,8 @@
-package pl.edu.pw.ee.backend.application.Payment;
+package pl.edu.pw.ee.backend.application.payment;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
-import pl.edu.pw.ee.backend.application.Payment.interfaces.ISkarbonka;
+import pl.edu.pw.ee.backend.application.payment.interfaces.ISkarbonka;
 
 @Slf4j
 @Component

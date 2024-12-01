@@ -7,7 +7,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import pl.edu.pw.ee.backend.api.auth.data.ExternalCompanyCreateDTO;
 import pl.edu.pw.ee.backend.api.company.interfaces.IBazaDanychFirmyZewnetrznej;
-import pl.edu.pw.ee.backend.api.company.interfaces.IExternalCompanyService;
+import pl.edu.pw.ee.backend.api.user.external.company.interfaces.IExternalCompanyService;
 import pl.edu.pw.ee.backend.entities.external.company.ExternalCompany;
 import pl.edu.pw.ee.backend.entities.user.Role;
 import pl.edu.pw.ee.backend.entities.user.User;
