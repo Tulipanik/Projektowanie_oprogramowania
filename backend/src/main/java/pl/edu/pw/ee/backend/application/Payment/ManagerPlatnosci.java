@@ -2,11 +2,12 @@ package pl.edu.pw.ee.backend.application.Payment;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import pl.edu.pw.ee.backend.application.Payment.interfaces.IManagerPlatnosci;
 import pl.edu.pw.ee.backend.application.Payment.interfaces.ISkarbonka;
 
 @Service
 @RequiredArgsConstructor
-public class ManagerPlatnosci {
+public class ManagerPlatnosci implements IManagerPlatnosci {
 
     private static final boolean PAYED_WITH_PIGGY = true;
     private static final boolean CANNOT_PAY_WITH_PIGGY = false;

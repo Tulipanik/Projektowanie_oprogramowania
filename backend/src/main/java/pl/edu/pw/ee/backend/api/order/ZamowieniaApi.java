@@ -17,35 +17,35 @@ import java.util.List;
 )
 @RequiredArgsConstructor
 public class ZamowieniaApi implements IZamowieniaAPI {
-    private final IZamowieniaAPI zamowieniaAPI;
+    private final IZamowieniaAPI managerZamowien;
 
     @Override
     @PostMapping()
     public int placeOrder(@RequestBody OrderDTO orderData) {
-        return zamowieniaAPI.placeOrder(orderData);
+        return managerZamowien.placeOrder(orderData);
     }
 
     @Override
     @PostMapping("/pay")
     public boolean payForOrder(int orderId) {
-        return zamowieniaAPI.payForOrder(orderId);
+        return managerZamowien.payForOrder(orderId);
     }
 
     @Override
     @GetMapping("/client/{clientId}")
     public List<OrderDTO> getOrdersForClient(@PathVariable int clientId) {
-        return zamowieniaAPI.getOrdersForClient(clientId);
+        return managerZamowien.getOrdersForClient(clientId);
     }
 
     @Override
     @GetMapping("/{orderId}")
     public OrderDTO getOrderData(@PathVariable int orderId) {
-        return zamowieniaAPI.getOrderData(orderId);
+        return managerZamowien.getOrderData(orderId);
     }
 
     @Override
     @PostMapping("/{orderId}/status")
     public boolean setOrderStatus(@PathVariable int orderId, @RequestBody String status) {
-        return zamowieniaAPI.setOrderStatus(orderId, status);
+        return managerZamowien.setOrderStatus(orderId, status);
     }
 }
