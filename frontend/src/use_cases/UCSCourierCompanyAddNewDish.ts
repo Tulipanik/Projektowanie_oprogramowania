@@ -8,7 +8,7 @@ export class UCCourierCompanyAddNewDish {
   constructor(
     private pCourierCompanyDishes: PCourierCompanyDishes,
     private dishesApi: IDishesApi
-  ) {}
+  ) { }
 
   showCourierCompanyAddDishWindow() {
     this.pCourierCompanyDishes.showAddDishWindow();
@@ -16,7 +16,7 @@ export class UCCourierCompanyAddNewDish {
 
   async showCourierCompanyDishesList() {
     return await this.dishesApi
-      .getDishList(MOCK_CLIENT_ID, [])
+      .getDishList(MOCK_CLIENT_ID, null)
       .then((offer) => {
         this.pCourierCompanyDishes.showDishList(offer);
       });

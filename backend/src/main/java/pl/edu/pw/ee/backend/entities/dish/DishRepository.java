@@ -8,23 +8,36 @@ import java.util.List;
 
 @Repository
 public interface DishRepository extends JpaRepository<Dish, Integer> {
-    @Query("SELECT DISTINCT d FROM Dish d WHERE " +
-            "(:mealTypes IS NULL OR d.mealType IN :mealTypes) AND " +
-            "(:kitchenTypes IS NULL OR d.kitchenType IN :kitchenTypes) AND " +
-            "(:companyNames IS NULL OR d.externalCompany.address IN :companyNames) " +
-            "ORDER BY " +
-            "CASE WHEN :mealSorting = 'ASCENDING' THEN d.mealType END ASC, " +
-            "CASE WHEN :mealSorting = 'DESCENDING' THEN d.mealType END DESC, " +
-            "CASE WHEN :kitchenSorting = 'ASCENDING' THEN d.kitchenType END ASC, " +
-            "CASE WHEN :kitchenSorting = 'DESCENDING' THEN d.kitchenType END DESC, " +
-            "CASE WHEN :companySorting = 'ASCENDING' THEN d.externalCompany.address END ASC, " +
-            "CASE WHEN :companySorting = 'DESCENDING' THEN d.externalCompany.address END DESC")
+    @Query("""
+        SELECT d FROM Dish d
+        WHERE (:mealTypes IS NULL OR d.mealType IN :mealTypes)
+        AND (:kitchenTypes IS NULL OR d.kitchenType IN :kitchenTypes)
+        AND (:companyNames IS NULL OR d.externalCompany.address IN :companyNames)
+        ORDER BY 
+        CASE 
+            WHEN :sortingKey = 'COMPANY_NAME' AND :sorting = 'ASCENDING' THEN d.externalCompany.address
+        END ASC,
+        CASE 
+            WHEN :sortingKey = 'COMPANY_NAME' AND :sorting = 'DESCENDING' THEN d.externalCompany.address
+        END DESC,
+        CASE 
+            WHEN :sortingKey = 'KITCHEN_TYPE' AND :sorting = 'ASCENDING' THEN d.kitchenType
+        END ASC,
+        CASE 
+            WHEN :sortingKey = 'KITCHEN_TYPE' AND :sorting = 'DESCENDING' THEN d.kitchenType
+        END DESC,
+        CASE 
+            WHEN :sortingKey = 'MEAL_TYPE' AND :sorting = 'ASCENDING' THEN d.mealType
+        END ASC,
+        CASE 
+            WHEN :sortingKey = 'MEAL_TYPE' AND :sorting = 'DESCENDING' THEN d.mealType
+        END DESC
+        """)
     List<Dish> findDishesWithFilters(
             @Param("mealTypes") List<MealType> mealTypes,
             @Param("kitchenTypes") List<String> kitchenTypes,
             @Param("companyNames") List<String> companyNames,
-            @Param("mealSorting") String mealSorting,
-            @Param("kitchenSorting") String kitchenSorting,
-            @Param("companySorting") String companySorting
+            @Param("sortingKey") String sortingKey,
+            @Param("sorting") String sorting
     );
 }

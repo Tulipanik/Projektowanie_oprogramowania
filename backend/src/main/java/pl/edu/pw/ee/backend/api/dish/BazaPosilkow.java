@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import pl.edu.pw.ee.backend.api.cart.data.AddDishDTO;
 import pl.edu.pw.ee.backend.api.cart.data.FilterDTO;
 import pl.edu.pw.ee.backend.api.cart.data.FindDishDTO;
+import pl.edu.pw.ee.backend.api.cart.data.SortingKey;
 import pl.edu.pw.ee.backend.api.dish.interfaces.IBazaPosilkow;
 import pl.edu.pw.ee.backend.api.dish.interfaces.IDishMapper;
 import pl.edu.pw.ee.backend.api.dish.interfaces.IDishService;
@@ -38,21 +39,21 @@ public class BazaPosilkow implements IBazaPosilkow {
             throw new ClientNotFoundException(clientId);
         }
 
-        List<MealType> mealTypes = filterObject.mealFilter() != null ?
-                filterObject.mealFilter().values() : null;
-        List<String> kitchenTypes = filterObject.kitchenFilter() != null ?
-                filterObject.kitchenFilter().values() : null;
-        List<String> companyNames = filterObject.companyFilter() != null ?
-                filterObject.companyFilter().values() : null;
+        List<MealType> mealTypes = filterObject.mealType() != null ?
+                filterObject.mealType().values() : null;
+        List<String> kitchenTypes = filterObject.kitchenType() != null ?
+                filterObject.kitchenType().values() : null;
+        List<String> companyNames = filterObject.companyName() != null ?
+                filterObject.companyName().values() : null;
 
-        String mealSorting = filterObject.mealFilter() != null ?
-                filterObject.mealFilter().sorting().name() : null;
-        String kitchenSorting = filterObject.kitchenFilter() != null ?
-                filterObject.kitchenFilter().sorting().name() : null;
-        String companySorting = filterObject.companyFilter() != null ?
-                filterObject.companyFilter().sorting().name() : null;
-
-        List<Dish> dishes = dishService.getByFiltr(clientId, mealTypes, kitchenTypes, companyNames, companySorting, mealSorting, kitchenSorting);
+        List<Dish> dishes = dishService.getByFiltr(
+                clientId,
+                mealTypes,
+                kitchenTypes,
+                companyNames,
+                filterObject.sortingKey(),
+                filterObject.sorting()
+        );
 
         return dishes.stream()
                 .map(dishMapper::toFindDishDto)

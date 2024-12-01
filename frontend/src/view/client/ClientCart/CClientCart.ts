@@ -22,24 +22,14 @@ export function CClientCart(
     ucsShowClientCart.updateCartDishDate(dish, date);
   }
 
-  function pressShowDishListBtn() {
-    ucsShowClientDishList.showClientDishes();
-  }
-	function pressOrderBtn(cart: OrderDishDTO[]) {
-		if (cart.find((item) => item.date === null)) {
-			ucsShowClientCart.setErrorMassage(
-				"All dishes must have delivery dates set!"
-			);
-		} else {
-			ucsShowClientCart.setErrorMassage("");
-			return;
-		}
+	function pressShowDishListBtn() {
+		ucsShowClientDishList.handleShowClientDishesBtnClick();
 	}
 
-  return {
-    pressShowClientMainWindowBtn,
-    pressRemoveFromCartBtn,
-    pressShowDishListBtn,
-    setCartDishDate,
-  };
+	return {
+		pressShowClientMainWindowBtn,
+		pressRemoveFromCartBtn,
+		pressShowDishListBtn,
+		setCartDishDate,
+	};
 }

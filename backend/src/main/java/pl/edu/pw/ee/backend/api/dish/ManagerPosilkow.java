@@ -16,7 +16,8 @@ public class ManagerPosilkow implements IPosilkiAPI {
 
     @Override
     public List<FindDishDTO> getDishList(int clientId, FilterDTO filterObject) {
-        return bazaPosilkow.getByFiltr(clientId, filterObject);
+        return bazaPosilkow.getByFiltr(clientId, filterObject != null ? filterObject :
+                FilterDTO.builder().build());
     }
 
     @Override

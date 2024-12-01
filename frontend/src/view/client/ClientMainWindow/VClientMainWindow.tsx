@@ -19,10 +19,16 @@ import { IOrderAPi, OrderProxy } from "../../../services/IOrder";
 import { VOrderNotPlacedWindow } from "../ClientPlaceOrder/OrderNotPlacedWindow/VOrderNotPlacedWindow";
 import { VOrderPlacedWindow } from "../ClientPlaceOrder/OrderPlacedWindow/VOrderPlacedWindow";
 import { VOrderSummaryWindow } from "../ClientPlaceOrder/OrderSummaryWindow/VOrderSummaryWindow";
+import { PClientPayForOrder } from "../ClientPayForOrder/PClientPayForOrder";
+import { UCSClientPayForOrder } from "../../../use_cases/UCSClientPayForOrder";
+import { VClientPayForOrder } from "../ClientPayForOrder/VClientPayForOrder";
+import { VOrderPaidWindow } from "../ClientPayForOrder/OrderPaidWindow/VOrderPaidWindow";
+import { VOrderNotPaidWindow } from "../ClientPayForOrder/OrderNotPaidWindow/VOrderNotPaidWindow";
 
 const pClientDishes = new PClientDishes();
 const pClientCart = new PClientCart();
 const pClientPlaceOrder = new PClientPlaceOrder();
+const pClientPayForOrder = new PClientPayForOrder();
 const iDishes: IDishesApi = new DishesProxy();
 const iCart: ICartApi = new CartProxy();
 const iOrder: IOrderAPi = new OrderProxy();
@@ -33,6 +39,7 @@ const ucsShowClientDishList = new UCSShowClientDishList(
 );
 const ucsShowClientCart = new UCSShowClientCart(pClientCart, iCart);
 const ucsClientPlaceOrder = new UCSClientPlaceOrder(pClientPlaceOrder, iOrder);
+const ucsClientPayForOrder = new UCSClientPayForOrder(pClientPayForOrder, iOrder);
 
 export function VClientMainWindow(
   isActive: boolean,
@@ -50,6 +57,7 @@ export function VClientMainWindow(
   pClientCart.injectClientDispatch(clientStateUpdate);
   pClientMainWindow.injectClientDispatch(clientStateUpdate);
   pClientPlaceOrder.injectClientDispatch(clientStateUpdate);
+  pClientPayForOrder.injectClientDispatch(clientStateUpdate);
 
   return (
     <div>
@@ -64,7 +72,7 @@ export function VClientMainWindow(
         ucsShowClientDishList,
         ucshowClientMainWindow,
         ucsShowClientCart,
-        { dishes: clientState.dishes, filters: clientState.filters }
+        { dishes: clientState.dishes, filters: clientState.filters, selectOptions: clientState.selectOptions }
       )}
       {VClientCart(
         clientState.screen === ClientScreenId.CART,
@@ -80,9 +88,9 @@ export function VClientMainWindow(
         ucsClientPlaceOrder,
         { cart: clientState.cart, error: clientState.error }
       )}
-      {VOrderPlacedWindow(
+      {/* {VOrderPlacedWindow(
         clientState.screen === ClientScreenId.PLACE_ORDER_SUCESS
-      )}
+      )} */}
       {VOrderNotPlacedWindow(
         clientState.screen === ClientScreenId.PLACE_ORDER_FAIL,
         ucsShowClientCart,
@@ -99,6 +107,22 @@ export function VClientMainWindow(
           error: clientState.error,
           order: clientState.order,
         }
+      )}
+      {VClientPayForOrder(
+				clientState.screen === ClientScreenId.PLACE_ORDER_SUCESS,
+				ucsClientPayForOrder,
+				ucshowClientMainWindow,
+				{ order: clientState.order }
+      )}
+      {VOrderPaidWindow(
+				clientState.screen === ClientScreenId.PAY_ORDER_SUCCESS,
+				ucshowClientMainWindow,
+				ucsClientPayForOrder
+      )}
+      {VOrderNotPaidWindow(clientState.screen === ClientScreenId.PAY_ORDER_FAIL,
+				ucshowClientMainWindow,
+				ucsClientPayForOrder,
+				{ order: clientState.order }
       )}
     </div>
   );
