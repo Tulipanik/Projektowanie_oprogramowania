@@ -10,7 +10,6 @@ import pl.edu.pw.ee.backend.api.order.data.OrderDishDTO;
 import pl.edu.pw.ee.backend.entities.dish.Dish;
 import pl.edu.pw.ee.backend.entities.dish.DishRepository;
 import pl.edu.pw.ee.backend.entities.dish.MealType;
-import pl.edu.pw.ee.backend.entities.external.company.ExternalCompanyRepository;
 import pl.edu.pw.ee.backend.utils.exceptions.dish.DishNotFoundException;
 
 import java.util.List;
@@ -20,7 +19,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class DishService implements IDishService {
     private final DishRepository dishRepository;
-    private final ExternalCompanyRepository externalCompanyRepository;
 
     @Override
     public Dish findDishById(int dishId) {
