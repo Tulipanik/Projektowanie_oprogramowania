@@ -31,6 +31,6 @@ export interface AddDishDTO {
   kitchenType: string;
   mealType: mealType;
   name: string;
-  photo: string; // TODO: change to BinaryData
+  photo?: File;
   price: number;
 }

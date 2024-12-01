@@ -11,10 +11,23 @@ export interface IDishesApi {
 }
 
 export class DishesProxy implements IDishesApi {
-  addNewDish(dish: AddDishDTO): Promise<boolean> {
-    return new Promise((resolve, reject) => {
-      resolve(true);
-    });
+  async addNewDish(dish: AddDishDTO): Promise<boolean> {
+    const url = "http://localhost:8080/api/v1/cart/add";
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          accept: "*/*",
+        },
+        body: JSON.stringify(dish),
+      });
+
+      return response.json();
+    } catch (error) {
+      return new Promise((resolve, reject) => {
+        resolve(false);
+      });
+    }
   }
 
   getDishList(

@@ -41,7 +41,11 @@ export function CourierCompanyAddDishForm(
       initialValues={INITIAL_COURIER_COMPANY_ADD_DISH_VALUES}
       validate={validate}
       onSubmit={(values) => {
-        pressAddNewDishBtn(values);
+        const newValues: AddDishDTO = {
+          ...values,
+          ingredients: String(values.ingredients).split(", "),
+        };
+        pressAddNewDishBtn(newValues);
       }}
     >
       {({ errors, touched }) => (
@@ -82,7 +86,7 @@ export function CourierCompanyAddDishForm(
                 <div className="text-red-500 text-sm">{errors.calories}</div>
               )}
             </div>
-            <Field name="mealType" as="select" className="p-2 mx-2">
+            <Field name="mealType" component="select" className="p-2 mx-2">
               {Object.values(mealType).map((type) => (
                 <option key={type} value={type}>
                   {type}
@@ -107,24 +111,33 @@ export function CourierCompanyAddDishForm(
               )}
             </div>
             <div className="flex gap-4 justify-center items-center px-4">
+              <label htmlFor="photo" className="text-left">
+                Photo
+              </label>
+              <Field
+                name="photo"
+                type="file"
+                accept="image/*"
+                className="p-2 border rounded-md w-full"
+              />
+              {errors.photo && touched.photo && (
+                <div className="text-red-500 text-sm">{"Incorrect file"}</div>
+              )}
+            </div>
+            <div className="flex gap-4 justify-center items-center px-4">
               <label htmlFor="ingredients" className="text-left">
                 Ingredients
               </label>
               <Field
+                placeholder="Ingredients should be separated by a comma. For example: 'rice,
+                chicken, salt'"
                 name="ingredients"
                 className="p-2 border rounded-md w-full"
+                component="textarea"
+                rows={3}
               />
               {errors.ingredients && touched.ingredients && (
                 <div className="text-red-500 text-sm">{errors.ingredients}</div>
-              )}
-            </div>
-            <div className="flex gap-4 justify-center items-center px-4">
-              <label htmlFor="photo" className="text-left">
-                Photo
-              </label>
-              <Field name="photo" className="p-2 border rounded-md w-full" />
-              {errors.photo && touched.photo && (
-                <div className="text-red-500 text-sm">{errors.photo}</div>
               )}
             </div>
             <button type="submit" className="p-2 bg-sky-300 hover:bg-sky-500">

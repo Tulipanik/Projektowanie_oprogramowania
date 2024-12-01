@@ -25,6 +25,16 @@ export function CClientCart(
   function pressShowDishListBtn() {
     ucsShowClientDishList.showClientDishes();
   }
+	function pressOrderBtn(cart: OrderDishDTO[]) {
+		if (cart.find((item) => item.date === null)) {
+			ucsShowClientCart.setErrorMassage(
+				"All dishes must have delivery dates set!"
+			);
+		} else {
+			ucsShowClientCart.setErrorMassage("");
+			return;
+		}
+	}
 
   return {
     pressShowClientMainWindowBtn,
