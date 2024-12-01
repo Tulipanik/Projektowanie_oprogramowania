@@ -5,6 +5,7 @@ import java.util.List;
 
 public interface IBazaZamowien {
     List<OrderDTO> getOrdersForClient(int clientId);
+    List<OrderDTO> getOrdersForCourier(int courierId);
     OrderDTO getOrderData(int orderId);
     int setOrderData(OrderDTO order);
 }

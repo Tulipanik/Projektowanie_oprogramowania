@@ -28,14 +28,14 @@ public class Courier {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long courierId;
+    private int courierId;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private User user;
 
     @OneToMany
-    @JoinColumn(name = "order_id")
+    @JoinColumn(name = "courier_id")
     private List<Order> deliverOrders;
 
 }

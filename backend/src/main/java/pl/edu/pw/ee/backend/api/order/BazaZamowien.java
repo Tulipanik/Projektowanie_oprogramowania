@@ -73,6 +73,20 @@ public class BazaZamowien implements IBazaZamowien {
     }
 
     @Override
+    @Transactional
+    public List<OrderDTO> getOrdersForCourier(int courierId) {
+        log.debug("Retrieving orders for courier id: {}", courierId);
+
+        List<Order> orders = orderService.getOrdersForCourier(courierId);
+
+        log.debug("Found {} orders for courier", orders.size());
+
+        return  orders.stream()
+                .map(orderMapper::toOrderDTO)
+                .toList();
+    }
+
+    @Override
     public OrderDTO getOrderData(int orderId) {
         log.debug("Retrieving order data for order id: {}", orderId);
 

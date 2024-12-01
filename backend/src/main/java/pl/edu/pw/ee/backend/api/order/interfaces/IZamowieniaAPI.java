@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface IZamowieniaAPI {
     List<OrderDTO> getOrdersForClient(int clientId);
+    List<OrderDTO> getOrdersForCourier(int courierId);
     OrderDTO getOrderData(int orderId);
     int placeOrder(OrderDTO orderData);
     boolean payForOrder(int orderId);

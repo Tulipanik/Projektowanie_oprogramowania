@@ -28,6 +28,11 @@ public class ManagerZamowien implements IZamowieniaAPI {
     }
 
     @Override
+    public List<OrderDTO> getOrdersForCourier(int courierId) {
+        return bazaZamowien.getOrdersForCourier(courierId);
+    }
+
+    @Override
     public int placeOrder(OrderDTO orderData) {
         return bazaZamowien.setOrderData(orderData);
     }

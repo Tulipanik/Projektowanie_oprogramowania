@@ -38,6 +38,12 @@ public class ZamowieniaApi implements IZamowieniaAPI {
     }
 
     @Override
+    @GetMapping("/courier/{courierId}")
+    public List<OrderDTO> getOrdersForCourier(@PathVariable int courierId) {
+        return zamowieniaAPI.getOrdersForCourier(courierId);
+    }
+
+    @Override
     @GetMapping("/{orderId}")
     public OrderDTO getOrderData(@PathVariable int orderId) {
         return zamowieniaAPI.getOrderData(orderId);
