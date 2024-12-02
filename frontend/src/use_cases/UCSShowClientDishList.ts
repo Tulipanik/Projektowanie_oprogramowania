@@ -10,7 +10,7 @@ export class UCSShowClientDishList {
 		private pClientDishes: PClientDishes,
 		private dishesApi: IDishesApi,
 		private cartApi: ICartApi
-	) { }
+	) {}
 
 	async handleShowClientDishesBtnClick(): Promise<void> {
 		return await this.dishesApi.getDishList(1, null).then((dishes) => {
@@ -20,15 +20,14 @@ export class UCSShowClientDishList {
 
 	async handleUpdateFiltersBtnClick(filters: DishViewFilters): Promise<void> {
 		this.pClientDishes.updateFilters(filters);
-		return await this.dishesApi.getDishList(1, DishViewFilters.isEmpty(filters) ? null : this.getFilterDto(filters)).then((dishes) => {
-			this.pClientDishes.showDishList(dishes);
-		});
-	}
-
-	async addDishToCart(dishId: number) {
-		return await this.cartApi.addDishToCart(1, dishId).then((dishes) => {
-			this.pClientDishes.addDishToCart(dishes);
-		});
+		return await this.dishesApi
+			.getDishList(
+				1,
+				DishViewFilters.isEmpty(filters) ? null : this.getFilterDto(filters)
+			)
+			.then((dishes) => {
+				this.pClientDishes.showDishList(dishes);
+			});
 	}
 
 	showClientMainWindow() {

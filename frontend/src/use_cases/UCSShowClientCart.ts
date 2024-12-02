@@ -17,6 +17,12 @@ export class UCSShowClientCart {
 		});
 	}
 
+	async addDishToCart(dishId: number) {
+		return await this.cartApi.addDishToCart(1, dishId).then((dishes) => {
+			this.pClientCart.addDishToCart(dishes);
+		});
+	}
+
 	setErrorMassage(message: string) {
 		this.pClientCart.setErrorMessage(message);
 	}

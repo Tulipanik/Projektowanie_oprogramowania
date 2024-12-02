@@ -18,6 +18,10 @@ export class PClientCart extends ClientPresentationDispatcher {
 		});
 	}
 
+	addDishToCart(dishList: OrderDishDTO[]) {
+		this.clientDispatch?.({ type: "UPDATE_CART", cart: dishList });
+	}
+
 	setErrorMessage(errorMessage: string) {
 		this.clientDispatch?.({ type: "SET_ERROR_MESSAGE", message: errorMessage });
 	}
