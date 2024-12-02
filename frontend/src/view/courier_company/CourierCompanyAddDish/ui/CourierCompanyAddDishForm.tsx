@@ -48,7 +48,7 @@ export function CourierCompanyAddDishForm(
         pressAddNewDishBtn(newValues);
       }}
     >
-      {({ errors, touched }) => (
+      {({ errors, touched, setFieldValue }) => (
         <div className="w-1/2 bg-sky-200 p-6 rounded-md shadow-md m-auto mt-5">
           <Form className="flex flex-col gap-4">
             <div className="flex gap-4 justify-center items-center px-4">
@@ -114,11 +114,18 @@ export function CourierCompanyAddDishForm(
               <label htmlFor="photo" className="text-left">
                 Photo
               </label>
-              <Field
+              <input
+                id="photo"
                 name="photo"
                 type="file"
                 accept="image/*"
                 className="p-2 border rounded-md w-full"
+                onChange={(event) => {
+                  const file = event.currentTarget.files
+                    ? event.currentTarget.files[0]
+                    : null;
+                  setFieldValue("photo", file); // Set the file object to Formik's state
+                }}
               />
               {errors.photo && touched.photo && (
                 <div className="text-red-500 text-sm">{"Incorrect file"}</div>

@@ -6,7 +6,7 @@ services:
         image: postgres:alpine
         hostname: postgres
         ports:
-            - "5000:5432"
+            - "5050:5432"
         healthcheck:
             test: pg_isready -U postgres
             interval: 10s
