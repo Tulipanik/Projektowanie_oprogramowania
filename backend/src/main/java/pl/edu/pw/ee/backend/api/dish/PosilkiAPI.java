@@ -1,7 +1,6 @@
 package pl.edu.pw.ee.backend.api.dish;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,15 +15,14 @@ import java.util.List;
 
 @RestController
 @RequestMapping(
-        value = "/api/v1/cart",
-        produces = MediaType.APPLICATION_JSON_VALUE
+        value = "/api/v1/dish"
 )
 @RequiredArgsConstructor
 public class PosilkiAPI implements IPosilkiAPI {
     private final IPosilkiAPI managerPosilkow;
 
     @Override
-    @PostMapping(value = "/client/{clientId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/client/{clientId}")
     public List<FindDishDTO> getDishList(
             @PathVariable int clientId,
             @RequestBody(required = false) FilterDTO filterObject
@@ -33,10 +31,7 @@ public class PosilkiAPI implements IPosilkiAPI {
     }
 
     @Override
-    @PostMapping(
-            value = "/add",
-            consumes = MediaType.MULTIPART_FORM_DATA_VALUE
-    )
+    @PostMapping(value = "/add")
     public boolean addNewDish(@RequestBody AddDishDTO addDishDTO) {
         return managerPosilkow.addNewDish(addDishDTO);
     }
