@@ -36,7 +36,23 @@ Dodaj authToken z logowania do nagłówka `Authorisation: Bearer <token>`
 }
 ```
 
+Nadal? A dodałeś `Content-Type: application/json`?
+
+Okej nadal tu jesteś, a próbowałeś wyczyścić dockera do 0?
+
+```sh
+docker compose down --rmi all --remove-orphans
+```
+
 ## Nadal dostaje 403 w swaggerze
 
 Ta wiem używaj postmana bo swagger nie dodaj nagłówka `Authorisation: Bearer <token>`.
+
+## Nadal nie działa
+
+To wyślij logi
+
+```sh
+docker logs catering-backend
+```
 
