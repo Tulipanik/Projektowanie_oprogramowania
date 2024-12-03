@@ -35,7 +35,7 @@ public class ManagerZamowien implements IZamowieniaAPI {
     @Override
     public boolean payForOrder(int orderId) {
         final OrderDTO orderDTO = bazaZamowien.getOrderData(orderId);
-        final int clientId = orderDTO.orderData().clientId();
+        final int clientId = orderDTO.clientData().clientId();
         final float price = orderDTO.price();
 
         return managerPlatnosci.settleOrder(orderId, clientId, price);

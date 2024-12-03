@@ -35,7 +35,7 @@ public class BazaZamowien implements IBazaZamowien {
     public int setOrderData(OrderDTO orderData) {
         log.info("Creating order for request: {}", orderData);
 
-        OrderDataDTO orderDataDto = orderData.orderData();
+        OrderDataDTO orderDataDto = orderData.clientData();
         List<OrderDishDTO> meals = orderData.meals();
 
         log.info("Retrieving client with id: {}", orderDataDto.clientId());

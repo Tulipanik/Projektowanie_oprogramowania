@@ -19,7 +19,7 @@ public class OrderMapperImpl implements IOrderMapper {
     @Override
     public final OrderDTO toOrderDTO(Order order) {
         return OrderDTO.builder()
-                .orderData(toOrderDataDTO(order.getOrderData()))
+                .clientData(toOrderDataDTO(order.getOrderData()))
                 .meals(order.getDishes().stream()
                         .map(dish -> toOrderDishDTO(order.getOrderDate(), dish))
                         .toList())

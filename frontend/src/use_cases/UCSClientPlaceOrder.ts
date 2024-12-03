@@ -13,13 +13,16 @@ export class UCSClientPlaceOrder {
   }
 
   async placeOrder(order: orderDTO) {
-    return await this.oderApi.placeOrder(order).then((number) => {
-      if (number > 2) {
+
+    const randomNumber = Math.floor(Math.random() * 10) + 1;
+  
+    if (randomNumber === 1) {
+      this.pClientPlaceOrder.showOrderNotPlacedWindow();
+    } else {
+      return await this.oderApi.placeOrder(order).then(() => {
         this.pClientPlaceOrder.showOrderPlacedWindow();
-      } else {
-        this.pClientPlaceOrder.showOrderNotPlacedWindow();
-      }
-    });
+      });
+    }
   }
 
   showOrderSummary(orderData: orderDTO) {

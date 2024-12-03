@@ -16,7 +16,7 @@ export interface orderDTO {
   clientData: orderDataDTO;
   meals: OrderDishDTO[];
   orderDate: Date;
-  orderId: number;
+  orderId?: number;
   price: number;
   status: orderStatus;
 }
