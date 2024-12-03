@@ -1,4 +1,3 @@
-import { MOCK_FIND_DISH_DTO } from "../mock/findDishDto.mock";
 import { AddDishDTO, FindDishDTO } from "../view_model/Dish";
 import { filtrDTO } from "../view_model/Filtr";
 import { AuthorizationConst } from "./AuthorizationConst";

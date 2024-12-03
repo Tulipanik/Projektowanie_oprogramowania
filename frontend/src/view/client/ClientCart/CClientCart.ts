@@ -11,7 +11,7 @@ export function CClientCart(
   ucsClientPlaceOrder: UCSClientPlaceOrder
 ) {
   function pressShowClientMainWindowBtn() {
-    ucsShowClientWindow.showClientMainWindow();
+    ucsShowClientWindow.handleShowClientMainWindowBtnClick();
   }
 
   function pressRemoveFromCartBtn(dishId: number) {
@@ -22,14 +22,14 @@ export function CClientCart(
     ucsShowClientCart.updateCartDishDate(dish, date);
   }
 
-	function pressShowDishListBtn() {
-		ucsShowClientDishList.handleShowClientDishesBtnClick();
-	}
+  function pressShowDishListBtn() {
+    ucsShowClientDishList.handleShowClientDishesBtnClick();
+  }
 
-	return {
-		pressShowClientMainWindowBtn,
-		pressRemoveFromCartBtn,
-		pressShowDishListBtn,
-		setCartDishDate,
-	};
+  return {
+    pressShowClientMainWindowBtn,
+    pressRemoveFromCartBtn,
+    pressShowDishListBtn,
+    setCartDishDate,
+  };
 }
