@@ -7,12 +7,39 @@ export interface IOrderAPi {
 }
 
 export class OrderProxy implements IOrderAPi {
-  placeOrder(order: orderDTO): Promise<number> {
-    return new Promise((resolve, reject) => {
-      const randomOrderId = Math.floor(Math.random() * 10) + 1;
-      console.log(randomOrderId);
-      resolve(randomOrderId); // TODO: zwracaj id zamowienia
-    });
+
+  async placeOrder(order: orderDTO): Promise<number> {
+    const url = `http://localhost:8080/api/v1/orders`;
+
+    const requestOptions: RequestInit = {
+      method: "POST",
+      headers: {
+        accept: "*/*",
+        'Content-Type': 'application/json',
+        "Authorization": `Bearer ${AuthorizationConst.token}`,
+      },
+      body: JSON.stringify(order)
+    };
+
+    try {
+      const response = await fetch(url, requestOptions);
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data: number = await response.json();
+
+      order.orderId = data
+
+      return data;
+    }
+    catch (error) {
+      console.error("Error placing order:", error);
+      throw error;
+    }
+
+
   }
 
   async payForOrder(orderId: number): Promise<boolean> {
