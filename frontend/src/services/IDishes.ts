@@ -15,10 +15,8 @@ export class DishesProxy implements IDishesApi {
   async addNewDish(dish: AddDishDTO): Promise<boolean> {
     const url = "http://localhost:8080/api/v1/dish/add";
 
-    // Create a FormData object
     const formData = new FormData();
 
-    // Add each field of the `dish` object to the FormData object
     for (const [key, value] of Object.entries(dish)) {
       formData.append(key, value);
     }
@@ -44,7 +42,7 @@ export class DishesProxy implements IDishesApi {
     clientId: number,
     filtrObject: filtrDTO | null
   ): Promise<FindDishDTO[]> {
-    const url = `http://localhost:8080/api/v1/cart/client/1`;
+    const url = `http://localhost:8080/api/v1/dish/client/1`;
 
     const requestOptions: RequestInit = {
       method: "POST",
