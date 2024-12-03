@@ -31,7 +31,12 @@ export class DishesProxy implements IDishesApi {
         body: formData,
       });
 
-      return response.json();
+      if (response.ok) {
+        return response.json();
+      }
+      else {
+        return false;
+      }
     } catch (error) {
       console.error(error);
       return false;
