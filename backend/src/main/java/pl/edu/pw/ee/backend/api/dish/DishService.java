@@ -35,6 +35,7 @@ public class DishService implements IDishService {
                 .toList();
     }
 
+    @Override
     public List<Dish> getByFiltr(int clientId, List<MealType> mealTypes, List<String> kitchenTypes,
                                  List<String> companyNames, SortingKey sortingKey, SortDirection sorting) {
         log.info("Filtering with parameters: mealTypes={}, kitchenTypes={}, companyNames={}, sortingKey={}, sorting={}",
@@ -55,6 +56,7 @@ public class DishService implements IDishService {
         return results;
     }
 
+    @Override
     public boolean addNewDish(Dish dish) {
         dishRepository.save(dish);
         return true;

@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.edu.pw.ee.backend.api.auth.data.AccountCreateDTO;
 import pl.edu.pw.ee.backend.api.auth.data.ExternalCompanyCreateDTO;
+import pl.edu.pw.ee.backend.api.cart.interfaces.ICartService;
+import pl.edu.pw.ee.backend.entities.cart.Cart;
 import pl.edu.pw.ee.backend.entities.external.company.ExternalCompany;
 import pl.edu.pw.ee.backend.entities.external.company.ExternalCompanyRepository;
 import pl.edu.pw.ee.backend.entities.user.Role;
@@ -30,6 +32,7 @@ public class AccountCreationServiceImpl implements IAccountCreationService {
     private final ManagerRepository managerRepository;
     private final StorekeeperRepository storekeeperRepository;
     private final IUserService userService;
+    private final ICartService cartService;
 
     @Override
     @Transactional
@@ -39,6 +42,7 @@ public class AccountCreationServiceImpl implements IAccountCreationService {
         Client client = Client
                 .builder()
                 .user(userService.save(request, Role.CLIENT))
+                .cart(cartService.save(Cart.builder().build()))
                 .build();
 
         client = clientRepository.save(client);

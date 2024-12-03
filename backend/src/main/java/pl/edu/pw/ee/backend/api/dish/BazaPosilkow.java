@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import pl.edu.pw.ee.backend.api.cart.data.AddDishDTO;
 import pl.edu.pw.ee.backend.api.cart.data.FilterDTO;
 import pl.edu.pw.ee.backend.api.cart.data.FindDishDTO;
-import pl.edu.pw.ee.backend.api.cart.data.SortingKey;
 import pl.edu.pw.ee.backend.api.dish.interfaces.IBazaPosilkow;
 import pl.edu.pw.ee.backend.api.dish.interfaces.IDishMapper;
 import pl.edu.pw.ee.backend.api.dish.interfaces.IDishService;
@@ -17,7 +16,7 @@ import pl.edu.pw.ee.backend.entities.dish.MealType;
 import pl.edu.pw.ee.backend.entities.dish.image.DishImage;
 import pl.edu.pw.ee.backend.entities.external.company.ExternalCompany;
 import pl.edu.pw.ee.backend.utils.exceptions.user.client.ClientNotFoundException;
-import pl.edu.pw.ee.backend.utils.images.ImageServiceImpl;
+import pl.edu.pw.ee.backend.utils.images.interfaces.IImageService;
 
 import java.util.List;
 
@@ -29,7 +28,7 @@ public class BazaPosilkow implements IBazaPosilkow {
     private final IClientService clientService;
     private final IExternalCompanyService externalCompanyService;
     private final IDishMapper dishMapper;
-    private final ImageServiceImpl imageService;
+    private final IImageService imageService;
 
     @Override
     public List<FindDishDTO> getByFiltr(int clientId, FilterDTO filterObject) {
