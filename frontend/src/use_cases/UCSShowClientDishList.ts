@@ -30,10 +30,6 @@ export class UCSShowClientDishList {
 			});
 	}
 
-	showClientMainWindow() {
-		this.pClientDishes.showClientMainWindow();
-	}
-
 	private getFilterDto(filters: DishViewFilters): filtrDTO {
 		const filterDto: filtrDTO = {};
 

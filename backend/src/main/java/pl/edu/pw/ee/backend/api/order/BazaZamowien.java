@@ -35,7 +35,7 @@ public class BazaZamowien implements IBazaZamowien {
     public int setOrderData(OrderDTO orderData) {
         log.info("Creating order for request: {}", orderData);
 
-        OrderDataDTO orderDataDto = orderData.orderData();
+        OrderDataDTO orderDataDto = orderData.clientData();
         List<OrderDishDTO> meals = orderData.meals();
 
         log.info("Retrieving client with id: {}", orderDataDto.clientId());
@@ -106,6 +106,7 @@ public class BazaZamowien implements IBazaZamowien {
     private OrderData buildOrderDataToSave(OrderDataDTO orderData, Client client) {
         return OrderData.builder()
                 .email(orderData.email())
+                .name(orderData.name())
                 .city(orderData.city())
                 .comment(orderData.comment())
                 .street(orderData.street())

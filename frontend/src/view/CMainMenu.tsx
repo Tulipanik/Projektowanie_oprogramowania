@@ -7,7 +7,7 @@ export function CMainMenu(
   usShowCourierCompanyMainWindow?: UCShowCourierCompanyMainWindow
 ) {
   function showClientMainWindow() {
-    ucsShowClientMainWindow?.showClientMainWindow();
+    ucsShowClientMainWindow?.handleShowClientMainWindowBtnClick();
   }
 
   function showCourierCompanyMainWindow() {
@@ -17,7 +17,7 @@ export function CMainMenu(
   return { showClientMainWindow, showCourierCompanyMainWindow };
 }
 
-export function CMainMenuLogout(ucsAuthorizeUser:UCAuthorizeUser) {
+export function CMainMenuLogout(ucsAuthorizeUser: UCAuthorizeUser) {
   function showLogoutWindow() {
     ucsAuthorizeUser.unauthorizeUSer();
   }

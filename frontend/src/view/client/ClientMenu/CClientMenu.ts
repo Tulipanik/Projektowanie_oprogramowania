@@ -13,7 +13,7 @@ export function CClientMenu(ucshowClientMainWindow: UCShowClientMainWindow, ucsS
   }
 
   function pressBackToMainWindowBtn() {
-    ucshowClientMainWindow.backSelected();
+    ucshowClientMainWindow.handleBackSelectedBtnClick();
   };
 
   return { pressShowDishListBtn, pressShowCartBtn, pressBackToMainWindowBtn };

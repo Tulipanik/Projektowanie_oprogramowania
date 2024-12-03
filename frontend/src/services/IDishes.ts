@@ -1,4 +1,3 @@
-import { MOCK_FIND_DISH_DTO } from "../mock/findDishDto.mock";
 import { AddDishDTO, FindDishDTO } from "../view_model/Dish";
 import { filtrDTO } from "../view_model/Filtr";
 import { AuthorizationConst } from "./AuthorizationConst";
@@ -13,21 +12,33 @@ export interface IDishesApi {
 
 export class DishesProxy implements IDishesApi {
   async addNewDish(dish: AddDishDTO): Promise<boolean> {
-    const url = "http://localhost:8080/api/v1/cart/add";
+    const url = "http://localhost:8080/api/v1/dish/add";
+
+    const formData = new FormData();
+
+    for (const [key, value] of Object.entries(dish)) {
+      formData.append(key, value);
+    }
+
     try {
-      const response = await fetch(url, {
+      let response = await fetch(url, {
         method: "POST",
         headers: {
           accept: "*/*",
+          Authorization: `Bearer ${AuthorizationConst.token}`,
         },
-        body: JSON.stringify(dish),
+        body: formData,
       });
 
-      return response.json();
+      if (response.ok) {
+        return response.json();
+      }
+      else {
+        return false;
+      }
     } catch (error) {
-      return new Promise((resolve, reject) => {
-        resolve(false);
-      });
+      console.error(error);
+      return false;
     }
   }
 
@@ -35,16 +46,15 @@ export class DishesProxy implements IDishesApi {
     clientId: number,
     filtrObject: filtrDTO | null
   ): Promise<FindDishDTO[]> {
-
-    const url = `http://localhost:8080/api/v1/cart/client/1`;
+    const url = `http://localhost:8080/api/v1/dish/client/1`;
 
     const requestOptions: RequestInit = {
       method: "POST",
       headers: {
         accept: "*/*",
-        'Content-Type': 'application/json',
-        "Authorization": `Bearer ${AuthorizationConst.token}`,
-      }
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${AuthorizationConst.token}`,
+      },
     };
     if (filtrObject) {
       requestOptions.body = JSON.stringify(filtrObject);

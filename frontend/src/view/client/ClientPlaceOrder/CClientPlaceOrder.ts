@@ -30,7 +30,6 @@ export function CClientPlaceOrder(
       clientData: orderData,
       meals: cart,
       orderDate: new Date(),
-      orderId: 1, // TODO: dowiedziec sie po co to
       price: cart.reduce((sum, item) => sum + item.dish.price, 0),
       status: orderStatus.PLACED,
     };
