@@ -11,7 +11,7 @@ export function CClientDishes(ucsShowClientDishList: UCSShowClientDishList, ucsS
   }
 
   function pressShowClientMainWindowBtn() {
-    ucsShowClientWindow.showClientMainWindow();
+    ucsShowClientWindow.handleShowClientMainWindowBtnClick();
   }
 
   function pressClearFiltersBtn() {

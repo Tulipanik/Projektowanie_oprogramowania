@@ -6,11 +6,11 @@ export class UCShowClientMainWindow {
   constructor(private pMainMenu: PMainMenu, private pClientMainWindow: PClientMainWindow) {
   }
 
-  showClientMainWindow() {
+  handleShowClientMainWindowBtnClick() {
     this.pClientMainWindow.showClientMainWindow();
   }
 
-  backSelected() {
+  handleBackSelectedBtnClick() {
     this.pMainMenu.showMainMenu()
   }
 

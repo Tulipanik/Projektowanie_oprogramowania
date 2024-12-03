@@ -16,7 +16,7 @@ export function CClientPayForOrder(
 	}
 
 	function pressShowClientMainWindowBtn() {
-		ucsShowClientWindow.showClientMainWindow();
+		ucsShowClientWindow.handleShowClientMainWindowBtnClick();
 	}
 
 	return {
