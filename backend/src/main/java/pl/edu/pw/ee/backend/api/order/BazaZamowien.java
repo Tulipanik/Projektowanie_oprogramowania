@@ -106,6 +106,7 @@ public class BazaZamowien implements IBazaZamowien {
     private OrderData buildOrderDataToSave(OrderDataDTO orderData, Client client) {
         return OrderData.builder()
                 .email(orderData.email())
+                .name(orderData.name())
                 .city(orderData.city())
                 .comment(orderData.comment())
                 .street(orderData.street())
