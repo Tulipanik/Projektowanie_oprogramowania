@@ -22,9 +22,9 @@ export function ClientCartList(
 						<span className="text-violet-600">{totalCalories} kcal</span>
 					</p>
 					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 p-2 md:p-4">
-						{cart.map((item) => (
+						{cart.map((item, id) => (
 							<div
-								key={item.dish.dishId}
+								key={id}
 								className="border border-gray-300 p-4 rounded-md shadow-md flex flex-col md:flex-row">
 								<img
 									src={item.dish.photoLink}
@@ -55,7 +55,9 @@ export function ClientCartList(
 											<input
 												type="date"
 												className="border-2"
-												value={item.date ? item.date.toISOString().split("T")[0] : ""}
+												value={
+													item.date ? item.date.toISOString().split("T")[0] : ""
+												}
 												onInput={(event) =>
 													setCartDishDate(
 														item.dish,
@@ -66,7 +68,7 @@ export function ClientCartList(
 										</p>
 									</div>
 									<button
-										onClick={() => pressRemoveFromCartBtn(item.dish.dishId)}
+										onClick={() => pressRemoveFromCartBtn(id)}
 										className="w-full bg-violet-600 text-white py-2 rounded-md hover:bg-violet-700 flex items-center flex-row justify-center gap-2">
 										<span className="material-icons">delete</span>
 										Remove from Cart
