@@ -33,7 +33,7 @@ public class BazaPosilkow implements IBazaPosilkow {
 
     @Override
     public List<FindDishDTO> getByFiltr(int clientId, FilterDTO filterObject) {
-        log.debug("Getting dishes for client {} with filters: {}", clientId, filterObject);
+        log.info("Getting dishes for client {} with filters: {}", clientId, filterObject);
 
         if (!clientService.existsById(clientId)) {
             throw new ClientNotFoundException(clientId);
@@ -62,7 +62,7 @@ public class BazaPosilkow implements IBazaPosilkow {
 
     @Override
     public boolean addNewDish(AddDishDTO dishDTO) {
-        log.debug("Adding new dish: {}", dishDTO);
+        log.info("Adding new dish: {}", dishDTO);
         ExternalCompany externalCompany = externalCompanyService.findById(dishDTO.cateringCompanyId());
         DishImage image = imageService.saveImage(dishDTO.photo());
         Dish newDish = dishMapper.toDish(dishDTO, externalCompany, image);

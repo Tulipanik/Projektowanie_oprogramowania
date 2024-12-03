@@ -37,7 +37,7 @@ public class DishService implements IDishService {
 
     public List<Dish> getByFiltr(int clientId, List<MealType> mealTypes, List<String> kitchenTypes,
                                  List<String> companyNames, SortingKey sortingKey, SortDirection sorting) {
-        log.debug("Filtering with parameters: mealTypes={}, kitchenTypes={}, companyNames={}, sortingKey={}, sorting={}",
+        log.info("Filtering with parameters: mealTypes={}, kitchenTypes={}, companyNames={}, sortingKey={}, sorting={}",
                 mealTypes, kitchenTypes, companyNames, sortingKey, sorting);
 
         List<Dish> results = dishRepository.findDishesWithFilters(
@@ -48,8 +48,8 @@ public class DishService implements IDishService {
                 sorting != null ? sorting.name() : null
         );
 
-        log.debug("Found {} results", results.size());
-        results.forEach(dish -> log.debug("Dish: id={}, name={}, type={}",
+        log.info("Found {} results", results.size());
+        results.forEach(dish -> log.info("Dish: id={}, name={}, type={}",
                 dish.getDishId(), dish.getName(), dish.getMealType()));
 
         return results;
