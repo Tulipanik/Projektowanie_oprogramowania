@@ -29,7 +29,6 @@ public class OrderData {
     private String comment;
 
     @Email
-    @Column(unique = true)
     private String email;
 
     private String name;
