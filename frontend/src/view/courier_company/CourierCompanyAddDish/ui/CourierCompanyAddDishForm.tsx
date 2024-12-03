@@ -5,7 +5,6 @@ import { Field, Form, Formik } from "formik";
 export function CourierCompanyAddDishForm(
   pressAddNewDishBtn: (dish: AddDishDTO) => void
 ) {
-  // Custom validation function
   const validate = (values: AddDishDTO) => {
     let errors: Partial<Record<keyof AddDishDTO, string>> = {};
     if (!values.name) {
@@ -124,7 +123,7 @@ export function CourierCompanyAddDishForm(
                   const file = event.currentTarget.files
                     ? event.currentTarget.files[0]
                     : null;
-                  setFieldValue("photo", file); // Set the file object to Formik's state
+                  setFieldValue("photo", file);
                 }}
               />
               {errors.photo && touched.photo && (
