@@ -8,7 +8,7 @@ export function CClientPlaceOrder(
   ucsShowClientCart: UCSShowClientCart
 ) {
   function pressShowClientCartBtn() {
-    ucsShowClientCart.showClientCart();
+    ucsShowClientCart.handleShowClientCartBtnClick();
   }
 
   function pressPlaceOrderBtn(order: orderDTO) {
@@ -17,7 +17,7 @@ export function CClientPlaceOrder(
 
   function pressNextBtn(cart: OrderDishDTO[]) {
     if (cart.find((item) => item.date === null)) {
-      ucsShowClientCart.setErrorMassage(
+      ucsShowClientCart.handleSetErrorMassage(
         "All dishes must have delivery dates set!"
       );
     } else {

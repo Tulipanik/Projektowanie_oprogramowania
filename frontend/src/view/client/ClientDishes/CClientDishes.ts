@@ -18,11 +18,11 @@ export function CClientDishes(ucsShowClientDishList: UCSShowClientDishList, ucsS
 	}
 
 	function pressAddToCartBtn(dishId: number) {
-		ucsShowClientCart.addDishToCart(dishId);
+		ucsShowClientCart.handleAddDishToCartBtnClick(dishId);
 	}
 
 	function pressShowClientCartBtn() {
-		ucsShowClientCart.showClientCart();
+		ucsShowClientCart.handleShowClientCartBtnClick();
 	}
 
 	return {

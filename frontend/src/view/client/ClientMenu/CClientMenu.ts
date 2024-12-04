@@ -9,7 +9,7 @@ export function CClientMenu(ucshowClientMainWindow: UCShowClientMainWindow, ucsS
   }
 
   function pressShowCartBtn() {
-    ucsShowClientCart.showClientCart();
+    ucsShowClientCart.handleShowClientCartBtnClick();
   }
 
   function pressBackToMainWindowBtn() {
