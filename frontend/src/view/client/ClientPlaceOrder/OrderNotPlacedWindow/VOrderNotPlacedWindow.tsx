@@ -1,26 +1,17 @@
-import { UCSClientPlaceOrder } from "../../../../use_cases/UCSClientPlaceOrder";
-import { UCSShowClientCart } from "../../../../use_cases/UCSShowClientCart";
 import { UCSShowClientDishList } from "../../../../use_cases/UCSShowClientDishList";
-import { UCShowClientMainWindow } from "../../../../use_cases/UCSShowClientWindow";
-import { CClientCart } from "../../ClientCart/CClientCart";
+import { COrdeNotPlacedWindow } from "./COrderNotPlacedWindow"; 
 
 export function VOrderNotPlacedWindow(
 	isActive: boolean,
-	ucsShowClientCart: UCSShowClientCart,
-	ucsShowClientWindow: UCShowClientMainWindow,
-	ucsShowClientDishList: UCSShowClientDishList,
-	ucsClientPlaceOrder: UCSClientPlaceOrder
+	ucsShowClientDishList: UCSShowClientDishList
 
 ) {
 	if (!isActive) return;
 
 	const {
 		pressShowDishListBtn,
-	} = CClientCart(
-		ucsShowClientCart,
-		ucsShowClientWindow,
-		ucsShowClientDishList,
-		ucsClientPlaceOrder
+	} = COrdeNotPlacedWindow(
+		ucsShowClientDishList
 	);
 
 	return (
