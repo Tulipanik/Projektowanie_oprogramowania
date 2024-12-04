@@ -15,11 +15,11 @@ export function CClientCart(
   }
 
   function pressRemoveFromCartBtn(dishId: number) {
-    ucsShowClientCart.removeDishFromCart(dishId);
+    ucsShowClientCart.handleRemoveDishFromCartBtnClick(dishId);
   }
 
   function setCartDishDate(dish: FindDishDTO, date: Date) {
-    ucsShowClientCart.updateCartDishDate(dish, date);
+    ucsShowClientCart.handleUpdateCartDishDateInput(dish, date);
   }
 
   function pressShowDishListBtn() {
