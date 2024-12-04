@@ -26,4 +26,9 @@ public class ManagerKoszyka implements IKoszykAPI {
         return bazaKoszyka.getCart(cartId);
     }
 
+    @Override
+    public void removeDishFromCart(int cartId, int dishId) {
+        bazaKoszyka.removeDishFromCart(cartId, dishId);
+    }
+
 }

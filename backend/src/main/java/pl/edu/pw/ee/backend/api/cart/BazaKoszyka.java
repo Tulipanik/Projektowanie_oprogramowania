@@ -17,7 +17,7 @@ import java.util.List;
 @Slf4j
 public class BazaKoszyka implements IBazaKoszyka {
     private final ICartService cartService;
-    private final IDishService dishRepository;
+    private final IDishService dishService;
 
     @Override
     public List<FindDishDTO> getCart(int cartId) {
@@ -50,13 +50,26 @@ public class BazaKoszyka implements IBazaKoszyka {
 
         Cart cart = cartService.findById(cartId);
 
-        Dish dish = dishRepository.findDishById(dishId);
+        Dish dish = dishService.findDishById(dishId);
 
         cart.getDishes().add(dish);
 
         cartService.save(cart);
 
         log.debug("Dish with ID {} added to cart with ID {}", dishId, cartId);
+    }
+
+    @Override
+    public void removeDishFromCart(int cartId, int dishId) {
+        log.debug("Removing dish with ID {} from cart with ID {}", dishId, cartId);
+
+        Cart cart = cartService.findById(cartId);
+
+        Dish dish = dishService.findDishById(dishId);
+
+        cartService.removeDishFromCart(cart, dish);
+
+        log.debug("Dish with ID {} removed from cart with ID {}", dishId, cartId);
     }
 
 }

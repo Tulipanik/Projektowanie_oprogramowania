@@ -9,4 +9,7 @@ public interface IKoszykAPI {
     void addDishToCart(int cartId, int dishId);
 
     List<FindDishDTO> getCart(int cartId);
+
+    void removeDishFromCart(int cartId, int dishId);
+
 }
