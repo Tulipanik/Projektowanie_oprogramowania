@@ -2,19 +2,22 @@ import "../styles.css";
 import { UCShowClientMainWindow } from "../use_cases/UCSShowClientWindow";
 import { UCAuthorizeUser } from "../use_cases/UCSAuthorization";
 import { UCShowCourierCompanyMainWindow } from "../use_cases/UCSShowCourierCompanyMainWindow";
-import { CMainMenu,CMainMenuLogout } from "./CMainMenu";
+import { CMainMenu, CMainMenuLogout } from "./CMainMenu";
+import { UCSShowCourierMainWindow } from "../use_cases/UCSShowCourierMainWindow";
 
 export default function VMainMenu(
   isActive: boolean,
   ucsShowClientMainWindow: UCShowClientMainWindow,
   usShowCourierCompanyMainWindow: UCShowCourierCompanyMainWindow,
-  ucsAuthorizeUser:UCAuthorizeUser
+  ucsShowCourierMainWindow: UCSShowCourierMainWindow,
+  ucsAuthorizeUser: UCAuthorizeUser,
 ) {
   if (!isActive) return;
 
-  const { showClientMainWindow, showCourierCompanyMainWindow } = CMainMenu(
+  const { showClientMainWindow, showCourierCompanyMainWindow, showCourierMainWindow } = CMainMenu(
     ucsShowClientMainWindow,
-    usShowCourierCompanyMainWindow
+    usShowCourierCompanyMainWindow,
+    ucsShowCourierMainWindow,
   );
   const { showLogoutWindow } = CMainMenuLogout(ucsAuthorizeUser);
 
@@ -36,6 +39,14 @@ export default function VMainMenu(
         <span className="material-icons">business_center</span>
         Show courier company window
       </button>
+      <button
+        onClick={showCourierMainWindow}
+        className="px-6 py-3 bg-orange-400 text-white rounded-md hover:bg-orange-500 flex flex-row items-center gap-2 justify-center"
+      >
+        <span className="material-icons">local_shipping</span>
+        Show courier window
+      </button>
+
       <button
         onClick={showLogoutWindow}
         className="m-1 px-6 py-3 bg-red-500 text-white rounded-md hover:bg-red-600 flex flex-row items-center gap-2 justify-center"

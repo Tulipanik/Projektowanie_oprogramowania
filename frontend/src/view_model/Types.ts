@@ -5,6 +5,7 @@ export enum ScreenId {
   CLIENT_DISHES,
   CLIENT_CART,
   COURIER_COMPANY_MAIN_WINDOW,
+  COURIER_MAIN_WINDOW,
 }
 
 export type AppState = {
