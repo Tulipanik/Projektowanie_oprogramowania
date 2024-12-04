@@ -20,18 +20,4 @@ export class PCourierCompanyDishes extends CourierCompanyPresentationDispatcher 
       screen: CourierCompanyScreenId.ADD_DISH,
     });
   }
-
-  showDishAddedWindow() {
-    this.courierCompanyDispatch?.({
-      type: "CHANGE_SCREEN",
-      screen: CourierCompanyScreenId.ADD_DISH_SUCCESS,
-    });
-  }
-
-  showDishNotAddedWindow() {
-    this.courierCompanyDispatch?.({
-      type: "CHANGE_SCREEN",
-      screen: CourierCompanyScreenId.ADD_DISH_FAIL,
-    });
-  }
 }

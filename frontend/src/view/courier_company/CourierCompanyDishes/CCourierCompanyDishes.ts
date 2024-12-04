@@ -10,26 +10,13 @@ export function CCourierCompanyDishes(
     ucsShowCourierCompanyMainWindow.showCourierCompanyMainWindow();
   }
 
-  function pressAddNewDishBtn(dish: AddDishDTO) {
-    const newDish: AddDishDTO = {
-      ...dish,
-      cateringCompanyId: 1,
-    };
-    ucsCourierCompanyAddNewDish.addDishToOffer(newDish);
-  }
-
   function pressShowCourierCompanyAddDishWindowBtn() {
     ucsCourierCompanyAddNewDish.showCourierCompanyAddDishWindow();
   }
 
-  function pressShowDishListBtn() {
-    ucsCourierCompanyAddNewDish.showCourierCompanyDishesList();
-  }
 
   return {
     pressShowCourierCompanyMainWindowBtn,
-    pressAddNewDishBtn,
     pressShowCourierCompanyAddDishWindowBtn,
-    pressShowDishListBtn,
   };
 }

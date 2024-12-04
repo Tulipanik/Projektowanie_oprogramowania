@@ -1,4 +1,5 @@
 import { IDishesApi } from "../services/IDishes";
+import { PCourierCompanyAddDish } from "../view/courier_company/CourierCompanyAddDish/PCourierCompanyAddDish";
 import { PCourierCompanyDishes } from "../view/courier_company/CourierCompanyDishes/PCourierCompanyDishes";
 import { AddDishDTO } from "../view_model/Dish";
 
@@ -7,8 +8,9 @@ const MOCK_CLIENT_ID = 1;
 export class UCCourierCompanyAddNewDish {
   constructor(
     private pCourierCompanyDishes: PCourierCompanyDishes,
+    private pCourierCompanyAddDish: PCourierCompanyAddDish,
     private dishesApi: IDishesApi
-  ) { }
+  ) {}
 
   showCourierCompanyAddDishWindow() {
     this.pCourierCompanyDishes.showAddDishWindow();
@@ -25,9 +27,9 @@ export class UCCourierCompanyAddNewDish {
   async addDishToOffer(newDish: AddDishDTO) {
     return await this.dishesApi.addNewDish(newDish).then((boolean) => {
       if (boolean) {
-        this.pCourierCompanyDishes.showDishAddedWindow();
+        this.pCourierCompanyAddDish.showDishAddedWindow();
       } else {
-        this.pCourierCompanyDishes.showDishNotAddedWindow();
+        this.pCourierCompanyAddDish.showDishNotAddedWindow();
       }
     });
   }
