@@ -1,13 +1,13 @@
-import { UCCourierCompanyAddNewDish } from "../../../use_cases/UCSCourierCompanyAddNewDish";
-import { CCourierCompanyAddDish } from "./CCourierCompanyAddDish";
-import { CourierCompanyAddDishForm } from "./ui/CourierCompanyAddDishForm";
+import { UCCateringCompanyAddNewDish } from "../../../use_cases/UCSCourierCateringAddNewDish";
+import { CCateringCompanyAddDish } from "./CCateringCompanyAddDish";
+import { CateringCompanyAddDishForm } from "./ui/CateringCompanyAddDishForm";
 
-export function VCourierCompanyAddDish(
+export function VCateringCompanyAddDish(
   isActive: boolean,
-  ucsCourierCompanyAddNewDish: UCCourierCompanyAddNewDish
+  ucsCateringCompanyAddNewDish: UCCateringCompanyAddNewDish
 ) {
-  const { pressAddNewDishBtn, pressShowDishListBtn } = CCourierCompanyAddDish(
-    ucsCourierCompanyAddNewDish
+  const { pressAddNewDishBtn, pressShowDishListBtn } = CCateringCompanyAddDish(
+    ucsCateringCompanyAddNewDish
   );
 
   if (!isActive) return;
@@ -28,7 +28,7 @@ export function VCourierCompanyAddDish(
           Add New Dish to Offer
         </h1>
       </div>
-      {CourierCompanyAddDishForm(pressAddNewDishBtn)}
+      {CateringCompanyAddDishForm(pressAddNewDishBtn)}
     </div>
   );
 }

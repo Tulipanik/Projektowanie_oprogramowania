@@ -1,8 +1,8 @@
-import { INITIAL_COURIER_COMPANY_ADD_DISH_VALUES } from "../../../../view_model/CourierCompany";
+import { INITIAL_COURIER_COMPANY_ADD_DISH_VALUES } from "../../../../view_model/CateringCompany";
 import { AddDishDTO, mealType } from "../../../../view_model/Dish";
 import { Field, Form, Formik } from "formik";
 
-export function CourierCompanyAddDishForm(
+export function CateringCompanyAddDishForm(
   pressAddNewDishBtn: (dish: AddDishDTO) => void
 ) {
   const validate = (values: AddDishDTO) => {

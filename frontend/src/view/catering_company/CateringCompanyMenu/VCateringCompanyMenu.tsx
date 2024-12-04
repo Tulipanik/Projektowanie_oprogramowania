@@ -1,23 +1,23 @@
-import { UCCourierCompanyAddNewDish } from "../../../use_cases/UCSCourierCompanyAddNewDish";
-import { UCShowCourierCompanyMainWindow } from "../../../use_cases/UCSShowCourierCompanyMainWindow";
-import { CCourierCompanyMenu } from "./CCourierCompanyMenu";
+import { UCCateringCompanyAddNewDish } from "../../../use_cases/UCSCourierCateringAddNewDish";
+import { UCShowCateringCompanyMainWindow } from "../../../use_cases/UCSShowCateringCompanyMainWindow";
+import { CCateringCompanyMenu } from "./CCateringCompanyMenu";
 
-export function VCourierCompanyMenu(
+export function VCateringCompanyMenu(
   isActive: boolean,
-  ucshowCourierCompanyMainWindow: UCShowCourierCompanyMainWindow,
-  ucsCourierCompanyAddNewDish: UCCourierCompanyAddNewDish
+  ucshowCateringCompanyMainWindow: UCShowCateringCompanyMainWindow,
+  ucsCateringCompanyAddNewDish: UCCateringCompanyAddNewDish
 ) {
   if (!isActive) return;
 
   const { pressBackToMainWindowBtn, pressShowDishListBtn } =
-    CCourierCompanyMenu(
-      ucshowCourierCompanyMainWindow,
-      ucsCourierCompanyAddNewDish
+    CCateringCompanyMenu(
+      ucshowCateringCompanyMainWindow,
+      ucsCateringCompanyAddNewDish
     );
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
-      <h1 className="text-3xl font-bold mb-6">Courier Company Main Window</h1>
+      <h1 className="text-3xl font-bold mb-6">Catering Company Main Window</h1>
       <div className="flex flex-row justify-between gap-2">
         <button
           onClick={pressBackToMainWindowBtn}

@@ -1,11 +1,11 @@
 import {
-  CourierCompanyViewState,
-  UpdateCourierCompanyViewAction,
-} from "../../../view_model/CourierCompany";
+  CateringCompanyViewState,
+  UpdateCateringCompanyViewAction,
+} from "../../../view_model/CateringCompany";
 
-export function updateCourierCompanyViewState(
-  state: CourierCompanyViewState,
-  action: UpdateCourierCompanyViewAction
+export function updateCateringCompanyViewState(
+  state: CateringCompanyViewState,
+  action: UpdateCateringCompanyViewAction
 ) {
   let newState = { ...state };
   switch (action.type) {
