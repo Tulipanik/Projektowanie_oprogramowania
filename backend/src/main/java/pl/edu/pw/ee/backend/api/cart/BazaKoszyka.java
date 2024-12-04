@@ -3,14 +3,14 @@ package pl.edu.pw.ee.backend.api.cart;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import pl.edu.pw.ee.backend.api.cart.data.FindDishDTO;
 import pl.edu.pw.ee.backend.api.cart.interfaces.IBazaKoszyka;
 import pl.edu.pw.ee.backend.api.cart.interfaces.ICartService;
 import pl.edu.pw.ee.backend.api.dish.interfaces.IDishService;
 import pl.edu.pw.ee.backend.entities.cart.Cart;
 import pl.edu.pw.ee.backend.entities.dish.Dish;
-import pl.edu.pw.ee.backend.utils.exceptions.cart.CartNotFoundException;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -20,8 +20,28 @@ public class BazaKoszyka implements IBazaKoszyka {
     private final IDishService dishRepository;
 
     @Override
-    public FindDishDTO getCart(int cartId) {
-        return null;
+    public List<FindDishDTO> getCart(int cartId) {
+        log.debug("Looking for cart with id: {}", cartId);
+        final Cart cart = cartService.findById(cartId);
+        final List<Dish> cartsDishes = cart.getDishes();
+
+        return mapToFindDishDTO(cartsDishes);
+    }
+
+    private List<FindDishDTO> mapToFindDishDTO(List<Dish> cartsDishes) {
+        return cartsDishes.stream()
+                .map(dish -> FindDishDTO.builder()
+                        .dishId(dish.getDishId())
+                        .name(dish.getName())
+                        .calories(dish.getCalories())
+                        .mealType(dish.getMealType())
+                        .kitchenType(dish.getKitchenType())
+                        .price(dish.getPrice())
+                        .ingredients(dish.getIngredients())
+                        .photoLink(dish.getImage().getImageUrl())
+                        .companyName(dish.getExternalCompany().getName())
+                        .build())
+                .toList();
     }
 
     @Override
