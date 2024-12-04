@@ -14,11 +14,14 @@ import { VCourierCompanyDishes } from "../CourierCompanyDishes/VCourierCompanyDi
 import { VCourierCompanyAddDish } from "../CourierCompanyAddDish/VCourierCompanyAddDish";
 import { VCourierCompanyAddDishSuccessWindow } from "../CourierCompanyAddDish/CourierCompanyAddDishSuccessWindow/VCourierCompanyAddDishSuccessWindow";
 import { VCourierCompanyAddDishFailWindow } from "../CourierCompanyAddDish/CourierCompanyAddDishFailWindow/VCourierCompanyAddDishFailWindow";
+import { PCourierCompanyAddDish } from "../CourierCompanyAddDish/PCourierCompanyAddDish";
 
 const pCourierCompanyDishes = new PCourierCompanyDishes();
+const pCourierCompanyAddDish = new PCourierCompanyAddDish();
 const iDishes: IDishesApi = new DishesProxy();
 const ucsCourierCompanyAddNewDish = new UCCourierCompanyAddNewDish(
   pCourierCompanyDishes,
+  pCourierCompanyAddDish,
   iDishes
 );
 
@@ -35,6 +38,9 @@ export function VCourierCompanyMainWindow(
   if (!isActive) return;
 
   pCourierCompanyDishes.injectCourierCompanyDispatch(courierCompanyStateUpdate);
+  pCourierCompanyAddDish.injectCourierCompanyDispatch(
+    courierCompanyStateUpdate
+  );
   pCourierCompanyMainWindow.injectCourierCompanyDispatch(
     courierCompanyStateUpdate
   );
