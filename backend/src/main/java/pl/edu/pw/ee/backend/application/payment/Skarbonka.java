@@ -7,6 +7,7 @@ import pl.edu.pw.ee.backend.application.payment.interfaces.ISkarbonka;
 @Slf4j
 @Component
 public class Skarbonka implements ISkarbonka {
+
     @Override
     public float getPiggyBankStatus(int clientId) {
         log.warn("GetPiggyBankStatus is not implemented, returning 0 as bank status.");
