@@ -1,6 +1,6 @@
 import { AddDishDTO, mealType } from "./Dish";
 
-export enum CourierCompanyScreenId {
+export enum CateringCompanyScreenId {
   MAIN_WINDOW = "MAIN_WINDOW",
   OFFER = "OFFER",
   ADD_DISH = "ADD_DISH",
@@ -18,13 +18,13 @@ export const INITIAL_COURIER_COMPANY_ADD_DISH_VALUES: AddDishDTO = {
   price: 0,
 };
 
-export class CourierCompanyViewState {
-  screen: CourierCompanyScreenId = CourierCompanyScreenId.MAIN_WINDOW;
+export class CateringCompanyViewState {
+  screen: CateringCompanyScreenId = CateringCompanyScreenId.MAIN_WINDOW;
   offer: any[] = [];
 }
 
-export interface UpdateCourierCompanyViewAction {
+export interface UpdateCateringCompanyViewAction {
   type: "CHANGE_SCREEN" | "UPDATE_OFFER";
-  screen?: CourierCompanyScreenId;
+  screen?: CateringCompanyScreenId;
   offer?: any[];
 }

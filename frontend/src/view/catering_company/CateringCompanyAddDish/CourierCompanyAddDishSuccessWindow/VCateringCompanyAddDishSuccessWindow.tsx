@@ -1,14 +1,14 @@
-import { UCCourierCompanyAddNewDish } from "../../../../use_cases/UCSCourierCompanyAddNewDish";
-import { CCourierCompanyAddDishSuccessWindow } from "./CCourierComapnyAddDishSuccessWindow";
+import { UCCateringCompanyAddNewDish } from "../../../../use_cases/UCSCourierCateringAddNewDish";
+import { CCateringCompanyAddDishSuccessWindow } from "./CCateringComapnyAddDishSuccessWindow";
 
-export function VCourierCompanyAddDishSuccessWindow(
+export function VCateringCompanyAddDishSuccessWindow(
   isActive: boolean,
-  ucsCourierCompanyAddNewDish: UCCourierCompanyAddNewDish
+  ucsCateringCompanyAddNewDish: UCCateringCompanyAddNewDish
 ) {
   if (!isActive) return;
 
-  const { pressShowDishListBtn } = CCourierCompanyAddDishSuccessWindow(
-    ucsCourierCompanyAddNewDish
+  const { pressShowDishListBtn } = CCateringCompanyAddDishSuccessWindow(
+    ucsCateringCompanyAddNewDish
   );
 
   return (

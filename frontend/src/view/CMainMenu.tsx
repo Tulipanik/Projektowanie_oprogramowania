@@ -1,20 +1,20 @@
 import { UCShowClientMainWindow } from "../use_cases/UCSShowClientWindow";
 import { UCAuthorizeUser } from "../use_cases/UCSAuthorization";
-import { UCShowCourierCompanyMainWindow } from "../use_cases/UCSShowCourierCompanyMainWindow";
+import { UCShowCateringCompanyMainWindow } from "../use_cases/UCSShowCateringCompanyMainWindow";
 
 export function CMainMenu(
   ucsShowClientMainWindow?: UCShowClientMainWindow,
-  usShowCourierCompanyMainWindow?: UCShowCourierCompanyMainWindow
+  usShowCateringCompanyMainWindow?: UCShowCateringCompanyMainWindow
 ) {
   function showClientMainWindow() {
     ucsShowClientMainWindow?.handleShowClientMainWindowBtnClick();
   }
 
-  function showCourierCompanyMainWindow() {
-    usShowCourierCompanyMainWindow?.showCourierCompanyMainWindow();
+  function showCateringCompanyMainWindow() {
+    usShowCateringCompanyMainWindow?.showCateringCompanyMainWindow();
   }
 
-  return { showClientMainWindow, showCourierCompanyMainWindow };
+  return { showClientMainWindow, showCateringCompanyMainWindow };
 }
 
 export function CMainMenuLogout(ucsAuthorizeUser: UCAuthorizeUser) {

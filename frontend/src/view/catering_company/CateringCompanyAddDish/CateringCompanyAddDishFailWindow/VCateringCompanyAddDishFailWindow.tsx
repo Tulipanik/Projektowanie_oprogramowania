@@ -1,14 +1,14 @@
-import { UCCourierCompanyAddNewDish } from "../../../../use_cases/UCSCourierCompanyAddNewDish";
-import { CCourierCompanyAddDishFailWindow } from "./CCourierCompanyAddDishFailWindow";
+import { UCCateringCompanyAddNewDish } from "../../../../use_cases/UCSCourierCateringAddNewDish";
+import { CCateringCompanyAddDishFailWindow } from "./CCateringCompanyAddDishFailWindow";
 
-export function VCourierCompanyAddDishFailWindow(
+export function VCateringCompanyAddDishFailWindow(
   isActive: boolean,
-  ucsCourierCompanyAddNewDish: UCCourierCompanyAddNewDish
+  ucsCateringCompanyAddNewDish: UCCateringCompanyAddNewDish
 ) {
   if (!isActive) return;
 
-  const { pressShowCourierCompanyAddDishWindowBtn } =
-    CCourierCompanyAddDishFailWindow(ucsCourierCompanyAddNewDish);
+  const { pressShowCateringCompanyAddDishWindowBtn } =
+    CCateringCompanyAddDishFailWindow(ucsCateringCompanyAddNewDish);
 
   return (
     <div className="flex flex-col w-screen h-screen items-center justify-center">
@@ -16,7 +16,7 @@ export function VCourierCompanyAddDishFailWindow(
         Adding new dish failed
       </h1>
       <button
-        onClick={pressShowCourierCompanyAddDishWindowBtn}
+        onClick={pressShowCateringCompanyAddDishWindowBtn}
         className="flex items-center text-indigo-400 hover:text-indigo-500 p-4"
       >
         <span className="material-icons">arrow_back</span>

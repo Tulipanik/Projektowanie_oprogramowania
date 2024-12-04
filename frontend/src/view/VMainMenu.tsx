@@ -1,20 +1,20 @@
 import "../styles.css";
 import { UCShowClientMainWindow } from "../use_cases/UCSShowClientWindow";
 import { UCAuthorizeUser } from "../use_cases/UCSAuthorization";
-import { UCShowCourierCompanyMainWindow } from "../use_cases/UCSShowCourierCompanyMainWindow";
+import { UCShowCateringCompanyMainWindow } from "../use_cases/UCSShowCateringCompanyMainWindow";
 import { CMainMenu,CMainMenuLogout } from "./CMainMenu";
 
 export default function VMainMenu(
   isActive: boolean,
   ucsShowClientMainWindow: UCShowClientMainWindow,
-  usShowCourierCompanyMainWindow: UCShowCourierCompanyMainWindow,
+  usShowCateringCompanyMainWindow: UCShowCateringCompanyMainWindow,
   ucsAuthorizeUser:UCAuthorizeUser
 ) {
   if (!isActive) return;
 
-  const { showClientMainWindow, showCourierCompanyMainWindow } = CMainMenu(
+  const { showClientMainWindow, showCateringCompanyMainWindow } = CMainMenu(
     ucsShowClientMainWindow,
-    usShowCourierCompanyMainWindow
+    usShowCateringCompanyMainWindow
   );
   const { showLogoutWindow } = CMainMenuLogout(ucsAuthorizeUser);
 
@@ -30,11 +30,11 @@ export default function VMainMenu(
         Show client window
       </button>
       <button
-        onClick={showCourierCompanyMainWindow}
+        onClick={showCateringCompanyMainWindow}
         className="px-6 py-3 bg-sky-400 text-white rounded-md hover:bg-sky-500 flex flex-row items-center gap-2 justify-center"
       >
         <span className="material-icons">business_center</span>
-        Show courier company window
+        Show catering company window
       </button>
       <button
         onClick={showLogoutWindow}
