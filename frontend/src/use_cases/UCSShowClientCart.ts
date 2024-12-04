@@ -6,13 +6,14 @@ export class UCSShowClientCart {
 	constructor(private pClientCart: PClientCart, private cartApi: ICartApi) {}
 
 	async handleShowClientCartBtnClick(): Promise<void> {
+		this.pClientCart.showCart([]);
 		return await this.cartApi.getCart(1).then((dishes) => {
 			this.pClientCart.showCart(dishes);
 		});
 	}
 
-	async handleRemoveDishFromCartBtnClick(dishId: number) {
-		return await this.cartApi.removeDishFromCart(1, dishId).then((dishes) => {
+	async handleRemoveDishFromCartBtnClick(dishId: number, id: number) {
+		return await this.cartApi.removeDishFromCart(1, dishId, id).then((dishes) => {
 			this.pClientCart.removeDishFromCart(dishes);
 		});
 	}

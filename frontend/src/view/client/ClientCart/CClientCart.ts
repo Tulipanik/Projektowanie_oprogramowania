@@ -14,8 +14,8 @@ export function CClientCart(
     ucsShowClientWindow.handleShowClientMainWindowBtnClick();
   }
 
-  function pressRemoveFromCartBtn(dishId: number) {
-    ucsShowClientCart.handleRemoveDishFromCartBtnClick(dishId);
+  function pressRemoveFromCartBtn(dishId: number, id: number) {
+    ucsShowClientCart.handleRemoveDishFromCartBtnClick(dishId, id);
   }
 
   function setCartDishDate(dish: FindDishDTO, date: Date) {

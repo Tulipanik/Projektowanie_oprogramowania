@@ -3,11 +3,11 @@ import { FindDishDTO, OrderDishDTO } from "../../../../view_model/Dish";
 export function ClientCartList(
 	cart: OrderDishDTO[],
 	error: string,
-	pressRemoveFromCartBtn: (dishId: number) => void,
+	pressRemoveFromCartBtn: (dishId: number, id: number) => void,
 	pressNextBtn: (cart: OrderDishDTO[]) => void,
 	setCartDishDate: (dish: FindDishDTO, date: Date) => void,
-	totalCartPrice = cart.reduce((sum, item) => sum + item.dish.price, 0),
-	totalCalories = cart.reduce((sum, item) => sum + item.dish.calories, 0)
+	totalCartPrice = cart.reduce((sum, item) => sum + item?.dish.price, 0),
+	totalCalories = cart.reduce((sum, item) => sum + item?.dish.calories, 0)
 ) {
 	return (
 		<div className="border border-gray-300 p-4 md:p-8 lg:p-16 m-4 md:m-8 lg:m-16 rounded-md shadow-md">
@@ -68,7 +68,7 @@ export function ClientCartList(
 										</p>
 									</div>
 									<button
-										onClick={() => pressRemoveFromCartBtn(id)}
+										onClick={() => pressRemoveFromCartBtn(item.dish.dishId, id)}
 										className="w-full bg-violet-600 text-white py-2 rounded-md hover:bg-violet-700 flex items-center flex-row justify-center gap-2">
 										<span className="material-icons">delete</span>
 										Remove from Cart
