@@ -4,5 +4,5 @@ public interface ISkarbonka {
 
     float getPiggyBankStatus(int clientId);
 
-    void updatePiggyBankStatus(int clientId, float price);
+    void updatePiggyBankStatus(int clientId, float newBalance);
 }

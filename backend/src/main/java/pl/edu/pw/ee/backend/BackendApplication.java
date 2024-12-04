@@ -36,6 +36,7 @@ public class BackendApplication {
                     .name("Marie Doe")
                     .username("marie.doe@gmail.com")
                     .password(PASSWORD)
+                    .balance(1000.0f)
                     .build();
 
             accountCreationService.createClientAccount(request);

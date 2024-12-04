@@ -24,4 +24,9 @@ public class ClientService implements IClientService {
     public boolean existsById(int id){
         return clientRepository.existsById(id);
     }
+
+    @Override
+    public Client save(Client client) {
+        return clientRepository.save(client);
+    }
 }

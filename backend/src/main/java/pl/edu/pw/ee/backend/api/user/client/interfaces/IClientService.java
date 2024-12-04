@@ -6,4 +6,5 @@ public interface IClientService {
 
     Client findClientById(int id);
     boolean existsById(int id);
+    Client save(Client client);
 }

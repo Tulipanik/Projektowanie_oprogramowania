@@ -44,5 +44,4 @@ public class Client {
     @OneToMany
     @JoinColumn(name = "client_id")
     private List<Order> dishOrders;
-
 }

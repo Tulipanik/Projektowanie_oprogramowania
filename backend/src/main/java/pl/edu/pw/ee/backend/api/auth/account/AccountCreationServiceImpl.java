@@ -43,6 +43,7 @@ public class AccountCreationServiceImpl implements IAccountCreationService {
                 .builder()
                 .user(userService.save(request, Role.CLIENT))
                 .cart(cartService.save(Cart.builder().build()))
+                .balance(request.balance())
                 .build();
 
         client = clientRepository.save(client);
