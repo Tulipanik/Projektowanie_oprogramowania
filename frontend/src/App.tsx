@@ -15,11 +15,15 @@ import { PAuthMenu } from "./view/PAuthMenu";
 import { AuthorizationConst } from "./services/AuthorizationConst";
 import { AuthServiceMock } from "./mock/AuthServiceMock";
 import { AuthService } from "./services/AuthService";
+import { UCSShowCourierMainWindow } from "./use_cases/UCSShowCourierMainWindow";
+import { PCourierMainWindow } from "./view/courier/CourierMainWindow/PCourierMainWindow";
+import { VCourierMainWindow } from "./view/courier/CourierMainWindow/VCourierMainWindow";
 
 const pMainMenu = new PMainMenu();
 const pClientMainWindow = new PClientMainWindow();
 const pCourierCompanyMainWindow = new PCourierCompanyMainWindow();
 const pAuthorization = new PAuthMenu();
+const pCourierMainWindow = new PCourierMainWindow();
 
 const usShowClientMainWindow = new UCShowClientMainWindow(
   pMainMenu,
@@ -30,7 +34,9 @@ const usShowCourierCompanyMainWindow = new UCShowCourierCompanyMainWindow(
   pMainMenu,
   pCourierCompanyMainWindow
 );
-const usAuthorization = new UCAuthorizeUser(pAuthorization,pMainMenu);
+
+const ucsShowCourierMainWindow = new UCSShowCourierMainWindow(pMainMenu, pCourierMainWindow);
+const usAuthorization = new UCAuthorizeUser(pAuthorization, pMainMenu);
 
 function switchView(state: AppState, action: ScreenId) {
   let newState = { ...state };
@@ -52,18 +58,19 @@ export default function App() {
   pClientMainWindow.injectGlobalUpdateView(globalUpdateView);
   pCourierCompanyMainWindow.injectGlobalUpdateView(globalUpdateView);
   pAuthorization.injectGlobalUpdateView(globalUpdateView);
-
+  pCourierMainWindow.injectGlobalUpdateView(globalUpdateView);
   AuthorizationConst.inject(new AuthService());
 
 
   return (
     <div className="App">
-      {VAuthMenu(state.screen === ScreenId.AUTH,usAuthorization)}
+      {VAuthMenu(state.screen === ScreenId.AUTH, usAuthorization)}
       {VMainMenu(
         state.screen === ScreenId.MAIN_MENU,
         usShowClientMainWindow,
-        usShowCourierCompanyMainWindow
-      ,usAuthorization)}
+        usShowCourierCompanyMainWindow,
+        ucsShowCourierMainWindow,
+        usAuthorization)}
       {VClientMainWindow(
         state.screen === ScreenId.CLIENT_MAIN_WINDOW,
         usShowClientMainWindow,
@@ -73,6 +80,11 @@ export default function App() {
         state.screen === ScreenId.COURIER_COMPANY_MAIN_WINDOW,
         usShowCourierCompanyMainWindow,
         pCourierCompanyMainWindow
+      )}
+      {VCourierMainWindow(
+        state.screen === ScreenId.COURIER_MAIN_WINDOW,
+        ucsShowCourierMainWindow,
+        pCourierMainWindow
       )}
     </div>
   );
