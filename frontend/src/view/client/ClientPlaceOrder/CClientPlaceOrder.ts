@@ -11,10 +11,6 @@ export function CClientPlaceOrder(
     ucsShowClientCart.handleShowClientCartBtnClick();
   }
 
-  function pressPlaceOrderBtn(order: orderDTO) {
-    ucsClientPlaceOrder.placeOrder(order);
-  }
-
   function pressNextBtn(cart: OrderDishDTO[]) {
     if (cart.find((item) => item.date === null)) {
       ucsShowClientCart.handleSetErrorMassage(
@@ -38,7 +34,6 @@ export function CClientPlaceOrder(
 
   return {
     pressShowClientCartBtn,
-    pressPlaceOrderBtn,
     pressOrderSummaryBtn,
     pressNextBtn,
   };
