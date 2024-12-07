@@ -1,15 +1,15 @@
 import { UCCateringCompanyAddNewDish } from "../../../../use_cases/UCSCourierCateringAddNewDish";
-import { CManagerAddCourierCompanySuccessWindow } from "./CManagerAddCourierCompanySuccessWindow";
+import { CManagerAddExternalCompanySuccessWindow } from "./CManagerAddExternalCompanySuccessWindow";
 
-export function VCateringCompanyAddDishSuccessWindow(
+export function VManagerAddExternalCompanySuccessWindow(
   isActive: boolean,
-  // ucsCateringCompanyAddNewDish: UCCateringCompanyAddNewDish // TODO dodać odpowiedni ucs
+  // ucsCateringCompanyAddNewDish: UCCateringCompanyAddNewDish // TODO dodać odpowiedni ucs 
 ) {
   if (!isActive) return;
 
-  const { pressShowCourierCompanyListBtn } = CManagerAddCourierCompanySuccessWindow(
+  // const { pressShowCourierCompanyListBtn } = CManagerAddExternalCompanySuccessWindow(
     // ucsCateringCompanyAddNewDish
-  );
+  // );
 
   return (
     <div className="flex flex-col w-screen h-screen items-center justify-center">
@@ -17,7 +17,7 @@ export function VCateringCompanyAddDishSuccessWindow(
         Successfully added new dish
       </h1>
       <button
-        onClick={pressShowCourierCompanyListBtn}
+        // onClick={pressShowCourierCompanyListBtn}
         className="flex items-center text-indigo-400 hover:text-indigo-500 p-4"
       >
         <span className="material-icons">arrow_back</span>

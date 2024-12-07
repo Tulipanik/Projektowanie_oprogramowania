@@ -1,6 +1,6 @@
 import "../styles.css";
 import { UCShowClientMainWindow } from "../use_cases/UCSShowClientWindow";
-import { UCShowAdminMainWindow } from "../use_cases/UCShowAdminMainWindow";
+import { UCShowManagerMainWindow } from "../use_cases/UCShowManagerMainWindow";
 import { UCAuthorizeUser } from "../use_cases/UCSAuthorization";
 import { UCShowCateringCompanyMainWindow } from "../use_cases/UCSShowCateringCompanyMainWindow";
 import { CMainMenu,CMainMenuLogout } from "./CMainMenu";
@@ -9,15 +9,15 @@ export default function VMainMenu(
   isActive: boolean,
   ucsShowClientMainWindow: UCShowClientMainWindow,
   usShowCateringCompanyMainWindow: UCShowCateringCompanyMainWindow,
-  ucShowAdminMainWindow:UCShowAdminMainWindow,
+  ucShowManagerMainWindow:UCShowManagerMainWindow,
   ucsAuthorizeUser:UCAuthorizeUser
 ) {
   if (!isActive) return;
 
-  const { showClientMainWindow, showCateringCompanyMainWindow, showAdminMainWindow } = CMainMenu(
+  const { showClientMainWindow, showCateringCompanyMainWindow, showManagerMainWindow } = CMainMenu(
     ucsShowClientMainWindow,
     usShowCateringCompanyMainWindow,
-    ucShowAdminMainWindow
+    ucShowManagerMainWindow
   );
   const { showLogoutWindow } = CMainMenuLogout(ucsAuthorizeUser);
 
@@ -40,7 +40,7 @@ export default function VMainMenu(
         Show catering company window
       </button>
       <button
-        onClick={showAdminMainWindow}
+        onClick={showManagerMainWindow}
         className="px-6 py-3 bg-sky-400 text-white rounded-md hover:bg-sky-500 flex flex-row items-center gap-2 justify-center"
       >
         <span className="material-icons">computer</span>

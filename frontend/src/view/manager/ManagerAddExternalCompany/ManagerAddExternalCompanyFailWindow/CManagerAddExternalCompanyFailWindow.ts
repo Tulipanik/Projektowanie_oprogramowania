@@ -1,12 +1,12 @@
 
-export function CManagerAddCourierCompanyFailWindow(
+export function CManagerAddExternalCompanyFailWindow(
   // ucsCateringCompanyAddNewDish: UCCateringCompanyAddNewDish // TODO dodać odpowiedni ucs
 ) {
-  function pressShowManagerAddCourierCompanyWindowBtn() {
+  function pressShowManagerAddExternalCompanyWindowBtn() {
     // ucsCateringCompanyAddNewDish.showCateringCompanyAddDishWindow();
   }
 
   return {
-    pressShowManagerAddCourierCompanyWindowBtn,
+    pressShowManagerAddExternalCompanyWindowBtn,
   };
 }

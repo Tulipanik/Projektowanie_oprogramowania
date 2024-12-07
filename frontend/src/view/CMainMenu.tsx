@@ -1,12 +1,12 @@
 import { UCShowClientMainWindow } from "../use_cases/UCSShowClientWindow";
 import { UCAuthorizeUser } from "../use_cases/UCSAuthorization";
 import { UCShowCateringCompanyMainWindow } from "../use_cases/UCSShowCateringCompanyMainWindow";
-import { UCShowAdminMainWindow } from "../use_cases/UCShowAdminMainWindow";
+import { UCShowManagerMainWindow } from "../use_cases/UCShowManagerMainWindow";
 
 export function CMainMenu(
   ucsShowClientMainWindow?: UCShowClientMainWindow,
   usShowCateringCompanyMainWindow?: UCShowCateringCompanyMainWindow,
-  ucShowAdminMainWindow?:UCShowAdminMainWindow
+  ucShowManagerMainWindow?:UCShowManagerMainWindow
 
 ) {
   function showClientMainWindow() {
@@ -17,11 +17,11 @@ export function CMainMenu(
     usShowCateringCompanyMainWindow?.showCateringCompanyMainWindow();
   }
 
-  function showAdminMainWindow(){
-    ucShowAdminMainWindow?.showAdminMainWindow();
+  function showManagerMainWindow(){
+    ucShowManagerMainWindow?.showManagerMainWindow();
   }
 
-  return { showClientMainWindow, showCateringCompanyMainWindow, showAdminMainWindow };
+  return { showClientMainWindow, showCateringCompanyMainWindow, showManagerMainWindow };
 }
 
 export function CMainMenuLogout(ucsAuthorizeUser: UCAuthorizeUser) {

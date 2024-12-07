@@ -3,48 +3,48 @@ import { INITIAL_COURIER_COMPANY_ADD_DISH_VALUES } from "../../../../view_model/
 import { Field, Form, Formik } from "formik";
 
 export function CateringCompanyAddDishForm(
-  pressAddNewDishBtn: (dish: AddDishDTO) => void
+  // pressAddNewDishBtn: (dish: AddDishDTO) => void
 ) {
-  const validate = (values: AddDishDTO) => {
-    let errors: Partial<Record<keyof AddDishDTO, string>> = {};
-    if (!values.name) {
-      errors.name = "Name is required";
-    }
-    if (!values.price) {
-      errors.price = "Price is required";
-    } else if (values.price <= 0) {
-      errors.price = "Price must be greater than zero";
-    }
-    if (!values.calories) {
-      errors.calories = "Calories are required";
-    } else if (values.calories <= 0) {
-      errors.calories = "Calories must be greater than zero";
-    }
-    if (!values.mealType) {
-      errors.mealType = "Meal type is required";
-    }
-    if (!values.kitchenType) {
-      errors.kitchenType = "Kitchen type is required";
-    }
-    if (!values.ingredients) {
-      errors.ingredients = "Ingredients are required";
-    }
-    if (!values.photo) {
-      errors.photo = "Photo URL is required";
-    }
-    return errors;
+  // const validate = (values: AddDishDTO) => {
+  //   let errors: Partial<Record<keyof AddDishDTO, string>> = {};
+  //   if (!values.name) {
+  //     errors.name = "Name is required";
+  //   }
+  //   if (!values.price) {
+  //     errors.price = "Price is required";
+  //   } else if (values.price <= 0) {
+  //     errors.price = "Price must be greater than zero";
+  //   }
+  //   if (!values.calories) {
+  //     errors.calories = "Calories are required";
+  //   } else if (values.calories <= 0) {
+  //     errors.calories = "Calories must be greater than zero";
+  //   }
+  //   if (!values.mealType) {
+  //     errors.mealType = "Meal type is required";
+  //   }
+  //   if (!values.kitchenType) {
+  //     errors.kitchenType = "Kitchen type is required";
+  //   }
+  //   if (!values.ingredients) {
+  //     errors.ingredients = "Ingredients are required";
+  //   }
+  //   if (!values.photo) {
+  //     errors.photo = "Photo URL is required";
+  //   }
+  //   return errors;
   };
 
-  return (
+  // return (
     <Formik
       initialValues={INITIAL_COURIER_COMPANY_ADD_DISH_VALUES}
-      validate={validate}
+      // validate={validate}
       onSubmit={(values) => {
-        const newValues: AddDishDTO = {
-          ...values,
-          ingredients: String(values.ingredients).split(", "),
-        };
-        pressAddNewDishBtn(newValues);
+        // const newValues: AddDishDTO = {
+        //   ...values,
+        //   ingredients: String(values.ingredients).split(", "),
+        // };
+        // pressAddNewDishBtn(newValues);
       }}
     >
       {({ errors, touched, setFieldValue }) => (
@@ -86,11 +86,11 @@ export function CateringCompanyAddDishForm(
               )}
             </div>
             <Field name="mealType" component="select" className="p-2 mx-2">
-              {Object.values(mealType).map((type) => (
+              {/* {Object.values(mealType).map((type) => (
                 <option key={type} value={type}>
                   {type}
                 </option>
-              ))}
+              ))} */}
             </Field>
             {errors.mealType && touched.mealType && (
               <div className="text-red-500 text-sm text-center">
@@ -153,5 +153,5 @@ export function CateringCompanyAddDishForm(
         </div>
       )}
     </Formik>
-  );
-}
+  // );
+// }

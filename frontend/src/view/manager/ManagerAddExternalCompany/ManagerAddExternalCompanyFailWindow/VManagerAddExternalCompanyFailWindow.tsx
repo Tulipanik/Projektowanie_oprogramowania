@@ -1,8 +1,7 @@
-import { CManagerAddCourierCompanyFailWindow } from "./CManagerAddCourierCompanyFailWindow";
 
-export function VCateringCompanyAddDishFailWindow(
+export function VManagerAddExternalCompanyFailWindow(
   isActive: boolean,
-  // ucsCateringCompanyAddNewDish: UCCateringCompanyAddNewDish // TODO dodać odpowiedni ucs
+  // ucsCateringCompanyAddNewDish: UCCateringCompanyAddNewDish // TODO dodać odpowiedni ucs i poprawić html
 ) {
   if (!isActive) return;
 

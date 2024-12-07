@@ -10,18 +10,18 @@ import { AppState, ScreenId } from "./view_model/Types";
 import { PCateringCompanyMainWindow } from "./view/catering_company/CateringCompanyMainWindow/PCateringCompanyMainWindow";
 import { UCShowCateringCompanyMainWindow } from "./use_cases/UCSShowCateringCompanyMainWindow";
 import { VCateringCompanyMainWindow } from "./view/catering_company/CateringCompanyMainWindow/VCateringCompanyMainWindow";
-import { UCShowAdminMainWindow } from "./use_cases/UCShowAdminMainWindow";
-import { PAdminMainWindow } from "./view/admin/AdminMainWindow/PAdminMainWindow";
+import { UCShowManagerMainWindow } from "./use_cases/UCShowManagerMainWindow";
+import { PManagerMainWindow } from "./view/manager/ManagerMainWindow/PManagerMainWindow";
 import { UCAuthorizeUser } from "./use_cases/UCSAuthorization";
 import { PAuthMenu } from "./view/PAuthMenu";
 import { AuthorizationConst } from "./services/AuthorizationConst";
 import { AuthService } from "./services/AuthService";
-import { VAdminMainWindow } from "./view/admin/AdminMainWindow/VAdminMainWindow";
+import { VManagerMainWindow } from "./view/manager/ManagerMainWindow/VManagerMainWindow";
 
 const pMainMenu = new PMainMenu();
 const pClientMainWindow = new PClientMainWindow();
 const pCateringCompanyMainWindow = new PCateringCompanyMainWindow();
-const pAdminMainWindow = new PAdminMainWindow();
+const pManagerMainWindow = new PManagerMainWindow();
 const pAuthorization = new PAuthMenu();
 
 const usShowClientMainWindow = new UCShowClientMainWindow(
@@ -34,9 +34,9 @@ const usShowCateringCompanyMainWindow = new UCShowCateringCompanyMainWindow(
   pCateringCompanyMainWindow
 );
 
-const ucShowAdminMainWindow = new UCShowAdminMainWindow(
+const ucShowManagerMainWindow = new UCShowManagerMainWindow(
   pMainMenu,
-  pAdminMainWindow
+  pManagerMainWindow
 );
 
 const usAuthorization = new UCAuthorizeUser(pAuthorization,pMainMenu);
@@ -59,7 +59,7 @@ export default function App() {
 
   pMainMenu.injectGlobalUpdateView(globalUpdateView);
   pClientMainWindow.injectGlobalUpdateView(globalUpdateView);
-  pAdminMainWindow.injectGlobalUpdateView(globalUpdateView);
+  pManagerMainWindow.injectGlobalUpdateView(globalUpdateView);
   pAuthorization.injectGlobalUpdateView(globalUpdateView);
 
   AuthorizationConst.inject(new AuthService());
@@ -72,7 +72,7 @@ export default function App() {
         state.screen === ScreenId.MAIN_MENU,
         usShowClientMainWindow,
         usShowCateringCompanyMainWindow,
-        ucShowAdminMainWindow,
+        ucShowManagerMainWindow,
         usAuthorization)}
       {VClientMainWindow(
         state.screen === ScreenId.CLIENT_MAIN_WINDOW,
@@ -84,10 +84,10 @@ export default function App() {
         usShowCateringCompanyMainWindow,
         pCateringCompanyMainWindow
       )}
-      {VAdminMainWindow(
+      {VManagerMainWindow(
         state.screen === ScreenId.ADMIN_MAIN_WINDOW,
-        ucShowAdminMainWindow,
-        pAdminMainWindow
+        ucShowManagerMainWindow,
+        pManagerMainWindow
       )}
     </div>
   );

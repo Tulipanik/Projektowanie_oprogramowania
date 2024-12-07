@@ -1,12 +1,12 @@
 
-export function CManagerAddCourierCompanySuccessWindow(
+export function CManagerAddExternalCompanySuccessWindow(
   // ucsCateringCompanyAddNewDish: UCCateringCompanyAddNewDish // TODO dodać odpowiedni ucs
 ) {
-  function pressShowCourierCompanyListBtn() {
+  function pressShowExternalCompanyListBtn() {
     // ucsCateringCompanyAddNewDish.showCateringCompanyDishesList();
   }
 
   return {
-    pressShowCourierCompanyListBtn,
+    pressShowExternalCompanyListBtn,
   };
 }
