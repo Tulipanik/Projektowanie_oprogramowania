@@ -28,7 +28,7 @@ public class Courier {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long courierId;
+    private int courierId;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")

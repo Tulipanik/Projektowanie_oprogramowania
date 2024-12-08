@@ -7,6 +7,8 @@ import pl.edu.pw.ee.backend.api.order.interfaces.IOrderService;
 import pl.edu.pw.ee.backend.entities.order.Order;
 import pl.edu.pw.ee.backend.entities.order.OrderRepository;
 import pl.edu.pw.ee.backend.entities.user.client.ClientRepository;
+import pl.edu.pw.ee.backend.entities.user.courier.CourierRepository;
+import pl.edu.pw.ee.backend.utils.exceptions.order.CourierNotFoundException;
 import pl.edu.pw.ee.backend.utils.exceptions.order.OrderNotFoundException;
 import pl.edu.pw.ee.backend.utils.exceptions.user.client.ClientNotFoundException;
 
@@ -18,6 +20,7 @@ public class OrderService implements IOrderService {
 
     private final OrderRepository orderRepository;
     private final ClientRepository clientRepository;
+    private final CourierRepository courierRepository;
 
 
     @Override
@@ -33,6 +36,13 @@ public class OrderService implements IOrderService {
         }
 
         return orderRepository.findOrdersByClientId(clientId);
+    }
+
+    @Override
+    public List<Order> getOrdersForCourier(int courierId) {
+        return courierRepository.findById(courierId)
+                .orElseThrow(() -> new CourierNotFoundException(HttpStatus.NOT_FOUND, String.format("Courier not found with id: %d", courierId)))
+                .getDeliverOrders();
     }
 
     @Override
