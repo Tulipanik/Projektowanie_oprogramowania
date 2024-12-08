@@ -36,7 +36,7 @@ public class ImageServiceImpl implements IImageService {
         DishImage dishImage = DishImage
                 .builder()
                 .imagePath(imagePath.toString())
-                .imageUrl(Path.of(IMAGE_URL_PATH, newFilename).toString())
+                .imageUrl("%s/%s".formatted(IMAGE_URL_PATH, newFilename))
                 .build();
 
         DishImage savedImage = dishImageRepository.save(dishImage);

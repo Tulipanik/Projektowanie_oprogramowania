@@ -7,6 +7,6 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Builder
-public record OrderDTO(OrderDataDTO orderData, List<OrderDishDTO> meals, LocalDate orderDate, int orderId, float price,
+public record OrderDTO(OrderDataDTO clientData, List<OrderDishDTO> meals, LocalDate orderDate, int orderId, float price,
                        OrderStatus status) {
 }

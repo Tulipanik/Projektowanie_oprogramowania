@@ -5,23 +5,30 @@ import { ICartApi } from "./../services/ICart";
 export class UCSShowClientCart {
 	constructor(private pClientCart: PClientCart, private cartApi: ICartApi) {}
 
-	async showClientCart(): Promise<void> {
+	async handleShowClientCartBtnClick(): Promise<void> {
+		this.pClientCart.showCart([]);
 		return await this.cartApi.getCart(1).then((dishes) => {
 			this.pClientCart.showCart(dishes);
 		});
 	}
 
-	async removeDishFromCart(dishId: number) {
-		return await this.cartApi.removeDishFromCart(1, dishId).then((dishes) => {
+	async handleRemoveDishFromCartBtnClick(dishId: number, id: number) {
+		return await this.cartApi.removeDishFromCart(1, dishId, id).then((dishes) => {
 			this.pClientCart.removeDishFromCart(dishes);
 		});
 	}
 
-	setErrorMassage(message: string) {
+	async handleAddDishToCartBtnClick(dishId: number) {
+		return await this.cartApi.addDishToCart(1, dishId).then((dishes) => {
+			this.pClientCart.addDishToCart(dishes);
+		});
+	}
+
+	handleSetErrorMassage(message: string) {
 		this.pClientCart.setErrorMessage(message);
 	}
 
-	async updateCartDishDate(dishToUpdate: FindDishDTO, dateToUpdate: Date) {
+	async handleUpdateCartDishDateInput(dishToUpdate: FindDishDTO, dateToUpdate: Date) {
 		return await this.cartApi
 			.updateCartDishDate(dishToUpdate, dateToUpdate)
 			.then((value) => {
@@ -31,12 +38,12 @@ export class UCSShowClientCart {
 						date: dateToUpdate,
 					});
 				} else {
-					this.setErrorMassage("All dates must be in the future!");
+					this.handleSetErrorMassage("All dates must be in the future!");
 				}
 			});
 	}
 
-	showClientMainWindow() {
+	handleShowClientMainWindowBtnClick() {
 		this.pClientCart.showClientMainWindow();
 	}
 }

@@ -1,16 +1,6 @@
 package pl.edu.pw.ee.backend.entities.external.company;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -36,6 +26,10 @@ public class ExternalCompany {
 
     @Enumerated(EnumType.ORDINAL)
     private CompanyType companyType;
+
+    private String email;
+
+    private String name;
 
     private String NIP;
 

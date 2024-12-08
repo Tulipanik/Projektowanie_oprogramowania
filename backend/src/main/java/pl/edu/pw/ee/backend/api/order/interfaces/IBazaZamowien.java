@@ -8,4 +8,6 @@ public interface IBazaZamowien {
     List<OrderDTO> getOrdersForCourier(int courierId);
     OrderDTO getOrderData(int orderId);
     int setOrderData(OrderDTO order);
+    boolean changeStatus(int orderId, String status);
+
 }

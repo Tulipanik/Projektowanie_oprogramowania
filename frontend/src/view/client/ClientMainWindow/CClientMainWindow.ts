@@ -11,6 +11,9 @@ export function updateClientViewState(
 	switch (action.type) {
 		case "UPDATE_DISHES":
 			newState.dishes = action.dishes!;
+			if (newState.selectOptions.companies.length === 0) {
+				newState.selectOptions.updateOptionsFromDishList(newState.dishes);
+			}
 			break;
 		case "CHANGE_FILTERS":
 			newState.filters = { ...newState.filters, ...action.filters };
@@ -26,7 +29,7 @@ export function updateClientViewState(
 				(item) => item.dish.dishId !== action.dish?.dish.dishId
 			);
 			if (action.dish) {
-				newState.cart = [ ...newState.cart, action.dish ];
+				newState.cart = [...newState.cart, action.dish];
 			}
 			if (newState.cart.find((item) => item.date === null)) {
 				newState.error = "All dishes must have delivery dates set!";
@@ -36,6 +39,9 @@ export function updateClientViewState(
 			break;
 		case "SET_ERROR_MESSAGE":
 			newState.error = action.message!;
+			break;
+		case "UPDATE_ORDER":
+			newState.order = action.order!;
 			break;
 	}
 	return newState;

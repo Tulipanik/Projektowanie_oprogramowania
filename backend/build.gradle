@@ -52,6 +52,9 @@ dependencies {
     implementation "io.jsonwebtoken:jjwt-impl:${jwtVer}"
     implementation "io.jsonwebtoken:jjwt-jackson:${jwtVer}"
 
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.17.2'
+
+
     compileOnly 'org.projectlombok:lombok'
     runtimeOnly 'org.postgresql:postgresql'
     annotationProcessor 'org.projectlombok:lombok'

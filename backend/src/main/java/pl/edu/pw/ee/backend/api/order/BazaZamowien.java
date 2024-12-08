@@ -35,7 +35,7 @@ public class BazaZamowien implements IBazaZamowien {
     public int setOrderData(OrderDTO orderData) {
         log.info("Creating order for request: {}", orderData);
 
-        OrderDataDTO orderDataDto = orderData.orderData();
+        OrderDataDTO orderDataDto = orderData.clientData();
         List<OrderDishDTO> meals = orderData.meals();
 
         log.info("Retrieving client with id: {}", orderDataDto.clientId());
@@ -97,10 +97,30 @@ public class BazaZamowien implements IBazaZamowien {
         return orderMapper.toOrderDTO(order);
     }
 
+    @Override
+    public boolean changeStatus(int orderId, String status) {
+        log.debug("Changing status for order id: {} to: {}", orderId, status);
+
+        Order order = orderService.findOrderById(orderId);
+
+        log.debug("Found order: {}", order);
+
+        OrderStatus orderStatus = OrderStatus.valueOf(status);
+
+        order.setOrderStatus(orderStatus);
+
+        orderService.saveOrder(order);
+
+        log.debug("Changed status for order id: {} to: {}", orderId, status);
+
+        return true;
+    }
+
 
     private OrderData buildOrderDataToSave(OrderDataDTO orderData, Client client) {
         return OrderData.builder()
                 .email(orderData.email())
+                .name(orderData.name())
                 .city(orderData.city())
                 .comment(orderData.comment())
                 .street(orderData.street())

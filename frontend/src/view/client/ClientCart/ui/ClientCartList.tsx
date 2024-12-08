@@ -3,11 +3,11 @@ import { FindDishDTO, OrderDishDTO } from "../../../../view_model/Dish";
 export function ClientCartList(
 	cart: OrderDishDTO[],
 	error: string,
-	pressRemoveFromCartBtn: (dishId: number) => void,
-	pressOrderBtn: (cart: OrderDishDTO[]) => void,
+	pressRemoveFromCartBtn: (dishId: number, id: number) => void,
+	pressNextBtn: (cart: OrderDishDTO[]) => void,
 	setCartDishDate: (dish: FindDishDTO, date: Date) => void,
-	totalCartPrice = cart.reduce((sum, item) => sum + item.dish.price, 0),
-	totalCalories = cart.reduce((sum, item) => sum + item.dish.calories, 0)
+	totalCartPrice = cart.reduce((sum, item) => sum + item?.dish.price, 0),
+	totalCalories = cart.reduce((sum, item) => sum + item?.dish.calories, 0)
 ) {
 	return (
 		<div className="border border-gray-300 p-4 md:p-8 lg:p-16 m-4 md:m-8 lg:m-16 rounded-md shadow-md">
@@ -22,9 +22,9 @@ export function ClientCartList(
 						<span className="text-violet-600">{totalCalories} kcal</span>
 					</p>
 					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 p-2 md:p-4">
-						{cart.map((item) => (
+						{cart.map((item, id) => (
 							<div
-								key={item.dish.dishId}
+								key={id}
 								className="border border-gray-300 p-4 rounded-md shadow-md flex flex-col md:flex-row">
 								<img
 									src={item.dish.photoLink}
@@ -55,7 +55,9 @@ export function ClientCartList(
 											<input
 												type="date"
 												className="border-2"
-												value={item.date ? item.date.toISOString().split("T")[0] : ""}
+												value={
+													item.date ? item.date.toISOString().split("T")[0] : ""
+												}
 												onInput={(event) =>
 													setCartDishDate(
 														item.dish,
@@ -66,7 +68,7 @@ export function ClientCartList(
 										</p>
 									</div>
 									<button
-										onClick={() => pressRemoveFromCartBtn(item.dish.dishId)}
+										onClick={() => pressRemoveFromCartBtn(item.dish.dishId, id)}
 										className="w-full bg-violet-600 text-white py-2 rounded-md hover:bg-violet-700 flex items-center flex-row justify-center gap-2">
 										<span className="material-icons">delete</span>
 										Remove from Cart
@@ -76,10 +78,10 @@ export function ClientCartList(
 						))}
 					</div>
 					<button
-						onClick={() => pressOrderBtn(cart)}
+						onClick={() => pressNextBtn(cart)}
 						disabled={error !== ""}
 						className="disabled:opacity-75 w-11/12 bg-violet-600 text-white mx-auto center py-2 rounded-md hover:bg-violet-700 disabled:hover:bg-violet-600 flex items-center flex-row justify-center gap-2">
-						Proceed to checkout
+						Next
 					</button>
 					{error !== "" && (
 						<p className="text-lg font-bold text-red-600 mb-2 text-center">

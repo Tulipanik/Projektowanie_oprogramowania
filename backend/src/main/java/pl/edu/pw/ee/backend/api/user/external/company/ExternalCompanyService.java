@@ -14,8 +14,20 @@ public class ExternalCompanyService implements IExternalCompanyService {
     private final ExternalCompanyRepository externalCompanyRepository;
 
     @Override
+    public int addExternalCompany(ExternalCompany externalCompany) {
+        ExternalCompany createdCompany = externalCompanyRepository.save(externalCompany);
+        return createdCompany.getCompanyId();
+    }
+
+    @Override
     public ExternalCompany findById(int cateringCompanyId) {
         return externalCompanyRepository.findById(cateringCompanyId)
                 .orElseThrow(() -> new ExternalCompanyNotFoundException(cateringCompanyId));
     }
+
+    @Override
+    public ExternalCompany save(ExternalCompany externalCompany) {
+        return externalCompanyRepository.save(externalCompany);
+    }
+
 }
