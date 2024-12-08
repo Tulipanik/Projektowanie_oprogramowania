@@ -25,6 +25,9 @@ public class OrderMapperImpl implements IOrderMapper {
                 .meals(order.getDishes().stream()
                         .map(dish -> toOrderDishDTO(order.getOrderDate(), dish))
                         .toList())
+                .orderDate(order.getOrderDate())
+                .price((float)order.getDishes().stream().mapToDouble(Dish::getPrice).sum())
+                .status(order.getOrderStatus())
                 .build();
     }
 
