@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pl.edu.pw.ee.backend.api.order.data.OrderDTO;
+import pl.edu.pw.ee.backend.api.order.data.OrdersCourierDataDTO;
 import pl.edu.pw.ee.backend.api.order.interfaces.IZamowieniaAPI;
 
 import java.util.List;
@@ -40,6 +41,12 @@ public class ZamowieniaApi implements IZamowieniaAPI {
     @GetMapping("/client/{clientId}")
     public List<OrderDTO> getOrdersForClient(@PathVariable int clientId) {
         return managerZamowien.getOrdersForClient(clientId);
+    }
+
+    @Override
+    @GetMapping("/courier/{courierId}")
+    public List<OrdersCourierDataDTO> getOrdersForCourier(@PathVariable int courierId) {
+        return managerZamowien.getOrdersForCourier(courierId);
     }
 
     @Override

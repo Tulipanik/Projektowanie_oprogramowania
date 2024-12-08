@@ -131,10 +131,7 @@ export function VClientMainWindow(
       )} */}
       {VOrderNotPlacedWindow(
         clientState.screen === ClientScreenId.PLACE_ORDER_FAIL,
-        ucsShowClientCart,
-        ucshowClientMainWindow,
-        ucsShowClientDishList,
-        ucsClientPlaceOrder
+        ucsShowClientDishList
       )}
       {VOrderSummaryWindow(
         clientState.screen === ClientScreenId.ORDER_SUMMARY,
