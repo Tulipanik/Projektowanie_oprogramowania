@@ -6,10 +6,12 @@ import pl.edu.pw.ee.backend.api.cart.data.FindDishDTO;
 import pl.edu.pw.ee.backend.api.order.data.OrderDTO;
 import pl.edu.pw.ee.backend.api.order.data.OrderDataDTO;
 import pl.edu.pw.ee.backend.api.order.data.OrderDishDTO;
+import pl.edu.pw.ee.backend.api.order.data.OrdersCourierDataDTO;
 import pl.edu.pw.ee.backend.api.order.interfaces.IOrderMapper;
 import pl.edu.pw.ee.backend.entities.dish.Dish;
 import pl.edu.pw.ee.backend.entities.order.Order;
 import pl.edu.pw.ee.backend.entities.order.data.OrderData;
+import pl.edu.pw.ee.backend.entities.user.client.Client;
 
 import java.time.LocalDate;
 
@@ -60,6 +62,24 @@ public class OrderMapperImpl implements IOrderMapper {
                 .name(dish.getName())
                 .photoLink(dish.getImage().getImageUrl())
                 .price(dish.getPrice())
+                .build();
+    }
+
+    @Override
+    public OrdersCourierDataDTO toOrdersCourierDataDTO(Order order, int courierId) {
+        OrderData orderData = order.getOrderData();
+
+        return OrdersCourierDataDTO.builder()
+                .address(String.format("%s %s %s", orderData.getStreet(), orderData.getZipCode(), orderData.getCity()))
+                .clientName(orderData.getName())
+                .clientSurname(orderData.getSurname())
+                .courierId(courierId)
+                .mealList(order.getDishes().stream()
+                        .map(this::toFindDishDTO)
+                        .toList())
+                .orderId(order.getOrderId())
+                .orderStatus(order.getOrderStatus())
+                .phoneNumber(orderData.getPhone())
                 .build();
     }
 }

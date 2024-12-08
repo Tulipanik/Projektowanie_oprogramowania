@@ -8,6 +8,7 @@ import pl.edu.pw.ee.backend.api.dish.interfaces.IDishService;
 import pl.edu.pw.ee.backend.api.order.data.OrderDTO;
 import pl.edu.pw.ee.backend.api.order.data.OrderDataDTO;
 import pl.edu.pw.ee.backend.api.order.data.OrderDishDTO;
+import pl.edu.pw.ee.backend.api.order.data.OrdersCourierDataDTO;
 import pl.edu.pw.ee.backend.api.order.interfaces.IBazaZamowien;
 import pl.edu.pw.ee.backend.api.order.interfaces.IOrderService;
 import pl.edu.pw.ee.backend.api.order.interfaces.IOrderMapper;
@@ -74,7 +75,7 @@ public class BazaZamowien implements IBazaZamowien {
 
     @Override
     @Transactional
-    public List<OrderDTO> getOrdersForCourier(int courierId) {
+    public List<OrdersCourierDataDTO> getOrdersForCourier(int courierId) {
         log.debug("Retrieving orders for courier id: {}", courierId);
 
         List<Order> orders = orderService.getOrdersForCourier(courierId);
@@ -82,7 +83,7 @@ public class BazaZamowien implements IBazaZamowien {
         log.debug("Found {} orders for courier", orders.size());
 
         return  orders.stream()
-                .map(orderMapper::toOrderDTO)
+                .map(order -> orderMapper.toOrdersCourierDataDTO(order, courierId))
                 .toList();
     }
 
