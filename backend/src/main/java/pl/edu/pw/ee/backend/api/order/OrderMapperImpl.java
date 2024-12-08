@@ -25,6 +25,12 @@ public class OrderMapperImpl implements IOrderMapper {
                 .meals(order.getDishes().stream()
                         .map(dish -> toOrderDishDTO(order.getOrderDate(), dish))
                         .toList())
+                .orderDate(order.getOrderDate())
+                .orderId(order.getOrderId())
+                .price(order.getDishes().stream()
+                        .map(Dish::getPrice)
+                        .reduce(0.0f, Float::sum))
+                .status(order.getOrderStatus())
                 .build();
     }
 
@@ -33,12 +39,13 @@ public class OrderMapperImpl implements IOrderMapper {
         return OrderDataDTO.builder()
                 .city(orderData.getCity())
                 .clientId(orderData.getClient().getClientId())
+                .comment(orderData.getComment())
                 .email(orderData.getEmail())
                 .name(orderData.getName())
+                .phone(orderData.getPhone())
                 .street(orderData.getStreet())
                 .surname(orderData.getSurname())
                 .zipCode(orderData.getZipCode())
-                .comment(orderData.getComment())
                 .build();
     }
 
