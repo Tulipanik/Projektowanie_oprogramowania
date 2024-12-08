@@ -37,13 +37,12 @@ export function VClientOrderDetails(
       </div>
 
       {/* Order Details Card */}
-      <div className="border border-gray-200 bg-indigo-300 w-auto m-auto h-auto rounded-lg p-10 space-y-4">
+      <div className="border border-gray-200 bg-indigo-300 w-auto m-auto h-auto rounded-lg p-10 space-y-4 text-left">
         <p>
           <span className="font-semibold">Order:</span> #{orderDetails.orderId}
         </p>
         <p>
-          <span className="font-semibold">Status:</span>{" "}
-          {orderStatus[orderDetails.status]}
+          <span className="font-semibold">Status:</span> {orderDetails.status}
         </p>
         <p>
           <span className="font-semibold">Price:</span> ${orderDetails.price}
@@ -84,7 +83,7 @@ export function VClientOrderDetails(
             {orderDetails.meals.map((meal, index) => (
               <div
                 key={index}
-                className="border border-gray-400 bg-white rounded-md p-4"
+                className="border border-gray-400 bg-indigo-200 rounded-md p-4"
               >
                 <p>
                   <span className="font-semibold">Dish Name:</span>{" "}

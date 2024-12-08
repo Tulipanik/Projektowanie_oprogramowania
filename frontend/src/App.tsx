@@ -61,6 +61,7 @@ export default function App() {
   pClientMainWindow.injectGlobalUpdateView(globalUpdateView);
   pAdminMainWindow.injectGlobalUpdateView(globalUpdateView);
   pAuthorization.injectGlobalUpdateView(globalUpdateView);
+  pCateringCompanyMainWindow.injectGlobalUpdateView(globalUpdateView);
 
   AuthorizationConst.inject(new AuthService());
 
@@ -80,7 +81,7 @@ export default function App() {
         pClientMainWindow
       )}
       {VCateringCompanyMainWindow(
-        state.screen === ScreenId.COURIER_COMPANY_MAIN_WINDOW,
+        state.screen === ScreenId.CATERING_COMPANY_MAIN_WINDOW,
         usShowCateringCompanyMainWindow,
         pCateringCompanyMainWindow
       )}
