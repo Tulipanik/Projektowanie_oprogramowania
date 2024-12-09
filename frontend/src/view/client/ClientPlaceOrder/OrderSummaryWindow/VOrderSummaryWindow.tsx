@@ -1,7 +1,7 @@
 import { UCSClientPlaceOrder } from "../../../../use_cases/UCSClientPlaceOrder";
 import { UCSShowClientCart } from "../../../../use_cases/UCSShowClientCart";
 import { ClientViewState } from "../../../../view_model/Client";
-import { CClientPlaceOrder } from "../CClientPlaceOrder";
+import { COrderSummaryWindow } from "./COrderSummaryWindow";
 
 export function VOrderSummaryWindow(
   isActive: boolean,
@@ -11,7 +11,7 @@ export function VOrderSummaryWindow(
 ) {
   if (!isActive) return;
 
-  const { pressPlaceOrderBtn, pressNextBtn } = CClientPlaceOrder(
+  const { pressPlaceOrderBtn, pressNextBtn } = COrderSummaryWindow(
     ucsClientPlaceOrder,
     ucsShowClientCart
   );

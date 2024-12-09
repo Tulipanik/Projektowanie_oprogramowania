@@ -1,3 +1,7 @@
+import { MOCK_FIND_DISH_DTO } from "../mock/findDishDto.mock";
+import { FindDishDTO } from "./Dish";
+import { orderStatus } from "./Order";
+
 export interface OrderCourierDataDto {
   address: string,
   clientName: string,
@@ -5,6 +9,8 @@ export interface OrderCourierDataDto {
   courierId: number,
   orderId: number,
   phoneNumber: string,
+  mealList: FindDishDTO[],
+  orderStatus: orderStatus,
 }
 
 export enum CourierScreenId {
@@ -30,7 +36,9 @@ export const ORDER_COURIER_DATA_MOCK: OrderCourierDataDto[] = [
     clientSurname: "Doe",
     courierId: 1,
     orderId: 101,
-    phoneNumber: "555-1234"
+    phoneNumber: "555-1234",
+    mealList: MOCK_FIND_DISH_DTO,
+    orderStatus: orderStatus.RECEIVED_BY_COURIER
   },
   {
     address: "456 Elm St",
@@ -38,7 +46,9 @@ export const ORDER_COURIER_DATA_MOCK: OrderCourierDataDto[] = [
     clientSurname: "Smith",
     courierId: 2,
     orderId: 102,
-    phoneNumber: "555-5678"
+    phoneNumber: "555-5678",
+    mealList: [],
+    orderStatus: orderStatus.RECEIVED_BY_COURIER
   },
   {
     address: "789 Oak St",
@@ -46,7 +56,9 @@ export const ORDER_COURIER_DATA_MOCK: OrderCourierDataDto[] = [
     clientSurname: "Johnson",
     courierId: 3,
     orderId: 103,
-    phoneNumber: "555-8765"
+    phoneNumber: "555-8765",
+    mealList: [],
+    orderStatus: orderStatus.RECEIVED_BY_COURIER
   },
   {
     address: "321 Pine St",
@@ -54,7 +66,9 @@ export const ORDER_COURIER_DATA_MOCK: OrderCourierDataDto[] = [
     clientSurname: "Brown",
     courierId: 4,
     orderId: 104,
-    phoneNumber: "555-4321"
+    phoneNumber: "555-4321",
+    mealList: MOCK_FIND_DISH_DTO,
+    orderStatus: orderStatus.RECEIVED_BY_COURIER
   },
   {
     address: "654 Maple St",
@@ -62,6 +76,8 @@ export const ORDER_COURIER_DATA_MOCK: OrderCourierDataDto[] = [
     clientSurname: "Davis",
     courierId: 5,
     orderId: 105,
-    phoneNumber: "555-6789"
+    phoneNumber: "555-6789",
+    mealList: [],
+    orderStatus: orderStatus.RECEIVED_BY_COURIER
   }
 ]

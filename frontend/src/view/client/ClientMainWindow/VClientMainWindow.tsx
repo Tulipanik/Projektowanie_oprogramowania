@@ -24,8 +24,16 @@ import { UCSClientPayForOrder } from "../../../use_cases/UCSClientPayForOrder";
 import { VClientPayForOrder } from "../ClientPayForOrder/VClientPayForOrder";
 import { VOrderPaidWindow } from "../ClientPayForOrder/OrderPaidWindow/VOrderPaidWindow";
 import { VOrderNotPaidWindow } from "../ClientPayForOrder/OrderNotPaidWindow/VOrderNotPaidWindow";
+import { UCShowClientOrderList } from "../../../use_cases/UCSShowClientOrderList";
+import { PClientOrders } from "../ClientOrders/PClientOrders";
+import { VClientOrders } from "../ClientOrders/VClientOrders";
+import { PClientOrderDetails } from "../ClientOrders/ClientOrderDetails/PClientOrderDetails";
+import { UCShowClientOrderDetails } from "../../../use_cases/UCSShowClientOrderDetails";
+import { VClientOrderDetails } from "../ClientOrders/ClientOrderDetails/VClientOrderDetails";
 
 const pClientDishes = new PClientDishes();
+const pClientOrderDetails = new PClientOrderDetails();
+const pClientOrders = new PClientOrders();
 const pClientCart = new PClientCart();
 const pClientPlaceOrder = new PClientPlaceOrder();
 const pClientPayForOrder = new PClientPayForOrder();
@@ -39,7 +47,15 @@ const ucsShowClientDishList = new UCSShowClientDishList(
 );
 const ucsShowClientCart = new UCSShowClientCart(pClientCart, iCart);
 const ucsClientPlaceOrder = new UCSClientPlaceOrder(pClientPlaceOrder, iOrder);
-const ucsClientPayForOrder = new UCSClientPayForOrder(pClientPayForOrder, iOrder);
+const ucsClientPayForOrder = new UCSClientPayForOrder(
+  pClientPayForOrder,
+  iOrder
+);
+const ucsShowClientOrderList = new UCShowClientOrderList(pClientOrders, iOrder);
+const ucsShowClientOrderDetails = new UCShowClientOrderDetails(
+  iOrder,
+  pClientOrderDetails
+);
 
 export function VClientMainWindow(
   isActive: boolean,
@@ -54,6 +70,8 @@ export function VClientMainWindow(
   if (!isActive) return;
 
   pClientDishes.injectClientDispatch(clientStateUpdate);
+  pClientOrders.injectClientDispatch(clientStateUpdate);
+  pClientOrderDetails.injectClientDispatch(clientStateUpdate);
   pClientCart.injectClientDispatch(clientStateUpdate);
   pClientMainWindow.injectClientDispatch(clientStateUpdate);
   pClientPlaceOrder.injectClientDispatch(clientStateUpdate);
@@ -65,14 +83,34 @@ export function VClientMainWindow(
         clientState.screen === ClientScreenId.MAIN_WINDOW,
         ucshowClientMainWindow,
         ucsShowClientDishList,
-        ucsShowClientCart
+        ucsShowClientCart,
+        ucsShowClientOrderList
+      )}
+      {VClientOrders(
+        clientState.screen === ClientScreenId.ORDERS,
+        {
+          orderList: clientState.orderList,
+        },
+        ucsShowClientOrderDetails,
+        ucshowClientMainWindow
+      )}
+      {VClientOrderDetails(
+        clientState.screen === ClientScreenId.ORDER_DETAILS,
+        {
+          orderDetails: clientState.orderDetails,
+        },
+        ucsShowClientOrderList
       )}
       {VClientDishes(
         clientState.screen === ClientScreenId.DISHES,
         ucsShowClientDishList,
         ucshowClientMainWindow,
         ucsShowClientCart,
-        { dishes: clientState.dishes, filters: clientState.filters, selectOptions: clientState.selectOptions }
+        {
+          dishes: clientState.dishes,
+          filters: clientState.filters,
+          selectOptions: clientState.selectOptions,
+        }
       )}
       {VClientCart(
         clientState.screen === ClientScreenId.CART,
@@ -93,10 +131,7 @@ export function VClientMainWindow(
       )} */}
       {VOrderNotPlacedWindow(
         clientState.screen === ClientScreenId.PLACE_ORDER_FAIL,
-        ucsShowClientCart,
-        ucshowClientMainWindow,
-        ucsShowClientDishList,
-        ucsClientPlaceOrder
+        ucsShowClientDishList
       )}
       {VOrderSummaryWindow(
         clientState.screen === ClientScreenId.ORDER_SUMMARY,
@@ -109,20 +144,21 @@ export function VClientMainWindow(
         }
       )}
       {VClientPayForOrder(
-				clientState.screen === ClientScreenId.PLACE_ORDER_SUCESS,
-				ucsClientPayForOrder,
-				ucshowClientMainWindow,
-				{ order: clientState.order }
+        clientState.screen === ClientScreenId.PLACE_ORDER_SUCESS,
+        ucsClientPayForOrder,
+        ucshowClientMainWindow,
+        { order: clientState.order }
       )}
       {VOrderPaidWindow(
-				clientState.screen === ClientScreenId.PAY_ORDER_SUCCESS,
-				ucshowClientMainWindow,
-				ucsClientPayForOrder
+        clientState.screen === ClientScreenId.PAY_ORDER_SUCCESS,
+        ucshowClientMainWindow,
+        ucsClientPayForOrder
       )}
-      {VOrderNotPaidWindow(clientState.screen === ClientScreenId.PAY_ORDER_FAIL,
-				ucshowClientMainWindow,
-				ucsClientPayForOrder,
-				{ order: clientState.order }
+      {VOrderNotPaidWindow(
+        clientState.screen === ClientScreenId.PAY_ORDER_FAIL,
+        ucshowClientMainWindow,
+        ucsClientPayForOrder,
+        { order: clientState.order }
       )}
     </div>
   );

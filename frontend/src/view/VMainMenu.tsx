@@ -1,23 +1,26 @@
 import "../styles.css";
 import { UCShowClientMainWindow } from "../use_cases/UCSShowClientWindow";
+import { UCShowAdminMainWindow } from "../use_cases/UCShowAdminMainWindow";
 import { UCAuthorizeUser } from "../use_cases/UCSAuthorization";
-import { UCShowCourierCompanyMainWindow } from "../use_cases/UCSShowCourierCompanyMainWindow";
 import { CMainMenu, CMainMenuLogout } from "./CMainMenu";
 import { UCSShowCourierMainWindow } from "../use_cases/UCSShowCourierMainWindow";
+import { UCShowCateringCompanyMainWindow } from "../use_cases/UCSShowCateringCompanyMainWindow";
 
 export default function VMainMenu(
   isActive: boolean,
   ucsShowClientMainWindow: UCShowClientMainWindow,
-  usShowCourierCompanyMainWindow: UCShowCourierCompanyMainWindow,
-  ucsShowCourierMainWindow: UCSShowCourierMainWindow,
+  usShowCateringCompanyMainWindow: UCShowCateringCompanyMainWindow,
+  ucShowAdminMainWindow: UCShowAdminMainWindow,
   ucsAuthorizeUser: UCAuthorizeUser,
+  ucsShowCourierMainWindow: UCSShowCourierMainWindow
 ) {
   if (!isActive) return;
 
-  const { showClientMainWindow, showCourierCompanyMainWindow, showCourierMainWindow } = CMainMenu(
+  const { showClientMainWindow, showCateringCompanyMainWindow, showAdminMainWindow, showCourierMainWindow } = CMainMenu(
     ucsShowClientMainWindow,
-    usShowCourierCompanyMainWindow,
-    ucsShowCourierMainWindow,
+    usShowCateringCompanyMainWindow,
+    ucShowAdminMainWindow,
+    ucsShowCourierMainWindow
   );
   const { showLogoutWindow } = CMainMenuLogout(ucsAuthorizeUser);
 
@@ -33,11 +36,18 @@ export default function VMainMenu(
         Show client window
       </button>
       <button
-        onClick={showCourierCompanyMainWindow}
+        onClick={showCateringCompanyMainWindow}
         className="px-6 py-3 bg-sky-400 text-white rounded-md hover:bg-sky-500 flex flex-row items-center gap-2 justify-center"
       >
         <span className="material-icons">business_center</span>
-        Show courier company window
+        Show catering company window
+      </button>
+      <button
+        onClick={showAdminMainWindow}
+        className="px-6 py-3 bg-sky-400 text-white rounded-md hover:bg-sky-500 flex flex-row items-center gap-2 justify-center"
+      >
+        <span className="material-icons">computer</span>
+        Show admin window
       </button>
       <button
         onClick={showCourierMainWindow}

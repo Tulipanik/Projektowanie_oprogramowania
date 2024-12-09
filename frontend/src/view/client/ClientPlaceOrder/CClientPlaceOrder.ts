@@ -8,16 +8,12 @@ export function CClientPlaceOrder(
   ucsShowClientCart: UCSShowClientCart
 ) {
   function pressShowClientCartBtn() {
-    ucsShowClientCart.showClientCart();
-  }
-
-  function pressPlaceOrderBtn(order: orderDTO) {
-    ucsClientPlaceOrder.placeOrder(order);
+    ucsShowClientCart.handleShowClientCartBtnClick();
   }
 
   function pressNextBtn(cart: OrderDishDTO[]) {
     if (cart.find((item) => item.date === null)) {
-      ucsShowClientCart.setErrorMassage(
+      ucsShowClientCart.handleSetErrorMassage(
         "All dishes must have delivery dates set!"
       );
     } else {
@@ -38,7 +34,6 @@ export function CClientPlaceOrder(
 
   return {
     pressShowClientCartBtn,
-    pressPlaceOrderBtn,
     pressOrderSummaryBtn,
     pressNextBtn,
   };
