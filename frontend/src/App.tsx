@@ -16,6 +16,9 @@ import { UCAuthorizeUser } from "./use_cases/UCSAuthorization";
 import { PAuthMenu } from "./view/PAuthMenu";
 import { AuthorizationConst } from "./services/AuthorizationConst";
 import { AuthService } from "./services/AuthService";
+import { UCSShowCourierMainWindow } from "./use_cases/UCSShowCourierMainWindow";
+import { PCourierMainWindow } from "./view/courier/CourierMainWindow/PCourierMainWindow";
+import { VCourierMainWindow } from "./view/courier/CourierMainWindow/VCourierMainWindow";
 import { VAdminMainWindow } from "./view/admin/AdminMainWindow/VAdminMainWindow";
 
 const pMainMenu = new PMainMenu();
@@ -23,6 +26,7 @@ const pClientMainWindow = new PClientMainWindow();
 const pCateringCompanyMainWindow = new PCateringCompanyMainWindow();
 const pAdminMainWindow = new PAdminMainWindow();
 const pAuthorization = new PAuthMenu();
+const pCourierMainWindow = new PCourierMainWindow();
 
 const usShowClientMainWindow = new UCShowClientMainWindow(
   pMainMenu,
@@ -34,12 +38,13 @@ const usShowCateringCompanyMainWindow = new UCShowCateringCompanyMainWindow(
   pCateringCompanyMainWindow
 );
 
+const ucsShowCourierMainWindow = new UCSShowCourierMainWindow(pMainMenu, pCourierMainWindow);
 const ucShowAdminMainWindow = new UCShowAdminMainWindow(
   pMainMenu,
   pAdminMainWindow
 );
 
-const usAuthorization = new UCAuthorizeUser(pAuthorization,pMainMenu);
+const usAuthorization = new UCAuthorizeUser(pAuthorization, pMainMenu);
 
 function switchView(state: AppState, action: ScreenId) {
   let newState = { ...state };
@@ -61,6 +66,7 @@ export default function App() {
   pClientMainWindow.injectGlobalUpdateView(globalUpdateView);
   pAdminMainWindow.injectGlobalUpdateView(globalUpdateView);
   pAuthorization.injectGlobalUpdateView(globalUpdateView);
+  pCourierMainWindow.injectGlobalUpdateView(globalUpdateView);
   pCateringCompanyMainWindow.injectGlobalUpdateView(globalUpdateView);
 
   AuthorizationConst.inject(new AuthService());
@@ -68,13 +74,14 @@ export default function App() {
 
   return (
     <div className="App">
-      {VAuthMenu(state.screen === ScreenId.AUTH,usAuthorization)}
+      {VAuthMenu(state.screen === ScreenId.AUTH, usAuthorization)}
       {VMainMenu(
         state.screen === ScreenId.MAIN_MENU,
         usShowClientMainWindow,
         usShowCateringCompanyMainWindow,
         ucShowAdminMainWindow,
-        usAuthorization)}
+        usAuthorization,
+        ucsShowCourierMainWindow)}
       {VClientMainWindow(
         state.screen === ScreenId.CLIENT_MAIN_WINDOW,
         usShowClientMainWindow,
@@ -89,6 +96,11 @@ export default function App() {
         state.screen === ScreenId.ADMIN_MAIN_WINDOW,
         ucShowAdminMainWindow,
         pAdminMainWindow
+      )}
+      {VCourierMainWindow(
+        state.screen === ScreenId.COURIER_MAIN_WINDOW,
+        ucsShowCourierMainWindow,
+        pCourierMainWindow
       )}
     </div>
   );
