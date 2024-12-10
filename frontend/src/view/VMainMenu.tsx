@@ -1,6 +1,6 @@
 import "../styles.css";
 import { UCShowClientMainWindow } from "../use_cases/UCSShowClientWindow";
-import { UCShowAdminMainWindow } from "../use_cases/UCShowAdminMainWindow";
+import { UCShowManagerMainWindow } from "../use_cases/UCShowManagerMainWindow";
 import { UCAuthorizeUser } from "../use_cases/UCSAuthorization";
 import { CMainMenu, CMainMenuLogout } from "./CMainMenu";
 import { UCSShowCourierMainWindow } from "../use_cases/UCSShowCourierMainWindow";
@@ -10,16 +10,16 @@ export default function VMainMenu(
   isActive: boolean,
   ucsShowClientMainWindow: UCShowClientMainWindow,
   usShowCateringCompanyMainWindow: UCShowCateringCompanyMainWindow,
-  ucShowAdminMainWindow: UCShowAdminMainWindow,
+  ucShowManagerMainWindow: UCShowManagerMainWindow,
   ucsAuthorizeUser: UCAuthorizeUser,
   ucsShowCourierMainWindow: UCSShowCourierMainWindow
 ) {
   if (!isActive) return;
 
-  const { showClientMainWindow, showCateringCompanyMainWindow, showAdminMainWindow, showCourierMainWindow } = CMainMenu(
+  const { showClientMainWindow, showCateringCompanyMainWindow, showManagerMainWindow, showCourierMainWindow } = CMainMenu(
     ucsShowClientMainWindow,
     usShowCateringCompanyMainWindow,
-    ucShowAdminMainWindow,
+    ucShowManagerMainWindow,
     ucsShowCourierMainWindow
   );
   const { showLogoutWindow } = CMainMenuLogout(ucsAuthorizeUser);
@@ -43,11 +43,11 @@ export default function VMainMenu(
         Show catering company window
       </button>
       <button
-        onClick={showAdminMainWindow}
+        onClick={showManagerMainWindow}
         className="px-6 py-3 bg-sky-400 text-white rounded-md hover:bg-sky-500 flex flex-row items-center gap-2 justify-center"
       >
         <span className="material-icons">computer</span>
-        Show admin window
+        Show manager window
       </button>
       <button
         onClick={showCourierMainWindow}
