@@ -14,7 +14,7 @@ export function VCourierMenu(
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
-      <h1 className="text-3xl font-bold mb-6">Client Main Window</h1>
+      <h1 className="text-3xl font-bold mb-6">Courier Main Window</h1>
       <div className="flex flex-row justify-between gap-2">
         <button
           onClick={pressBackToMainWindowBtn}
