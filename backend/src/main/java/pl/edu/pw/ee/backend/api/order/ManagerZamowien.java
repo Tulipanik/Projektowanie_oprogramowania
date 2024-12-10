@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import pl.edu.pw.ee.backend.api.order.data.OrderDTO;
+import pl.edu.pw.ee.backend.api.order.data.OrdersCourierDataDTO;
 import pl.edu.pw.ee.backend.api.order.interfaces.IBazaZamowien;
 import pl.edu.pw.ee.backend.api.order.interfaces.IZamowieniaAPI;
 import pl.edu.pw.ee.backend.application.payment.interfaces.IPlatnosc;
@@ -25,6 +26,11 @@ public class ManagerZamowien implements IZamowieniaAPI {
     @Override
     public List<OrderDTO> getOrdersForClient(int clientId) {
         return bazaZamowien.getOrdersForClient(clientId);
+    }
+
+    @Override
+    public List<OrdersCourierDataDTO> getOrdersForCourier(int courierId) {
+        return bazaZamowien.getOrdersForCourier(courierId);
     }
 
     @Override

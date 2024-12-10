@@ -3,7 +3,7 @@ import { PCateringCompanyAddDish } from "../view/catering_company/CateringCompan
 import { PCateringCompanyDishes } from "../view/catering_company/CateringCompanyDishes/PCateringCompanyDishes";
 import { AddDishDTO } from "../view_model/Dish";
 
-const MOCK_CLIENT_ID = 1;
+export const MOCK_CLIENT_ID = 1;
 
 export class UCCateringCompanyAddNewDish {
   constructor(

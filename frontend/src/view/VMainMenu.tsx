@@ -2,22 +2,25 @@ import "../styles.css";
 import { UCShowClientMainWindow } from "../use_cases/UCSShowClientWindow";
 import { UCShowManagerMainWindow } from "../use_cases/UCShowManagerMainWindow";
 import { UCAuthorizeUser } from "../use_cases/UCSAuthorization";
+import { CMainMenu, CMainMenuLogout } from "./CMainMenu";
+import { UCSShowCourierMainWindow } from "../use_cases/UCSShowCourierMainWindow";
 import { UCShowCateringCompanyMainWindow } from "../use_cases/UCSShowCateringCompanyMainWindow";
-import { CMainMenu,CMainMenuLogout } from "./CMainMenu";
 
 export default function VMainMenu(
   isActive: boolean,
   ucsShowClientMainWindow: UCShowClientMainWindow,
   usShowCateringCompanyMainWindow: UCShowCateringCompanyMainWindow,
-  ucShowManagerMainWindow:UCShowManagerMainWindow,
-  ucsAuthorizeUser:UCAuthorizeUser
+  ucShowManagerMainWindow: UCShowManagerMainWindow,
+  ucsAuthorizeUser: UCAuthorizeUser,
+  ucsShowCourierMainWindow: UCSShowCourierMainWindow
 ) {
   if (!isActive) return;
 
-  const { showClientMainWindow, showCateringCompanyMainWindow, showManagerMainWindow } = CMainMenu(
+  const { showClientMainWindow, showCateringCompanyMainWindow, showManagerMainWindow, showCourierMainWindow } = CMainMenu(
     ucsShowClientMainWindow,
     usShowCateringCompanyMainWindow,
-    ucShowManagerMainWindow
+    ucShowManagerMainWindow,
+    ucsShowCourierMainWindow
   );
   const { showLogoutWindow } = CMainMenuLogout(ucsAuthorizeUser);
 
@@ -46,6 +49,14 @@ export default function VMainMenu(
         <span className="material-icons">computer</span>
         Show manager window
       </button>
+      <button
+        onClick={showCourierMainWindow}
+        className="px-6 py-3 bg-orange-400 text-white rounded-md hover:bg-orange-500 flex flex-row items-center gap-2 justify-center"
+      >
+        <span className="material-icons">local_shipping</span>
+        Show courier window
+      </button>
+
       <button
         onClick={showLogoutWindow}
         className="m-1 px-6 py-3 bg-red-500 text-white rounded-md hover:bg-red-600 flex flex-row items-center gap-2 justify-center"

@@ -20,7 +20,7 @@ export class PCateringCompanyMainWindow extends PresentationDispatcher {
   }
 
   showCateringCompanyMainWindow() {
-    this.globalUpdateView?.(ScreenId.COURIER_COMPANY_MAIN_WINDOW);
+    this.globalUpdateView?.(ScreenId.CATERING_COMPANY_MAIN_WINDOW);
     this.cateringCompanyDispatch &&
       this.cateringCompanyDispatch({
         type: "CHANGE_SCREEN",
