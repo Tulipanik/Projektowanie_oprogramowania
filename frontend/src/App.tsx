@@ -61,6 +61,7 @@ export default function App() {
   pClientMainWindow.injectGlobalUpdateView(globalUpdateView);
   pManagerMainWindow.injectGlobalUpdateView(globalUpdateView);
   pAuthorization.injectGlobalUpdateView(globalUpdateView);
+  pCateringCompanyMainWindow.injectGlobalUpdateView(globalUpdateView);
 
   AuthorizationConst.inject(new AuthService());
 

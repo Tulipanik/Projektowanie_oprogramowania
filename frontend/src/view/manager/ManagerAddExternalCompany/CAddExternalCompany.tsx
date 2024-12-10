@@ -1,13 +1,17 @@
-import { UCShowManagerAddExternalCompanyForm } from "../../../use_cases/UCShowManagerAddExternalCompanyForm";
+import { UCSManagerAddExternalCompany } from "../../../use_cases/UCSManagerAddExternalCompany";
 import { UCShowManagerMainWindow } from "../../../use_cases/UCShowManagerMainWindow";
+import { ExternalCompanyDataDTO } from "../../../view_model/ExternalCompany";
 
 export function CAddExternalCompany(
-  ucShowManagerAddExternalCompanyForm:UCShowManagerAddExternalCompanyForm,
-  ucShowManagerMainWindow:UCShowManagerMainWindow
-  ) {
-    function pressShowManagerMainWindowBtn() {
-      ucShowManagerMainWindow.backSelected();
-    }
+	ucsManagerAddExternalCompany: UCSManagerAddExternalCompany,
+	ucShowManagerMainWindow: UCShowManagerMainWindow
+) {
+	function pressShowManagerMainWindowBtn() {
+		ucShowManagerMainWindow.showManagerMainWindow();
+	}
 
-    return {pressShowManagerMainWindowBtn}
-  }
+	function pressAddNewCompanyBtn(data: ExternalCompanyDataDTO) {
+		ucsManagerAddExternalCompany.addNewExternalCompany(data);
+	}
+	return { pressShowManagerMainWindowBtn, pressAddNewCompanyBtn };
+}

@@ -1,157 +1,127 @@
-import { INITIAL_COURIER_COMPANY_ADD_DISH_VALUES } from "../../../../view_model/CateringCompany";
-// import { ExternalCompanyDataDTO } from "../../../../view_model/Manager"; // TODO mogą być błędy bo ja nie tworzyłem tego pliku, bo nie wiedziałem, czy Szymon go stworzył
 import { Field, Form, Formik } from "formik";
+import { INITIAL_MANAGER_ADD_COURIER_COMPANY_VALUES } from "../../../../view_model/Manager";
+import {
+	CompanyType,
+	ExternalCompanyDataDTO,
+} from "../../../../view_model/ExternalCompany";
 
-export function CateringCompanyAddDishForm(
-  // pressAddNewDishBtn: (dish: AddDishDTO) => void
+export function ManagerAddExternalCompanyForm(
+	companyType: CompanyType,
+	pressAddNewCompanyBtn: (data: ExternalCompanyDataDTO) => void
 ) {
-  // const validate = (values: AddDishDTO) => {
-  //   let errors: Partial<Record<keyof AddDishDTO, string>> = {};
-  //   if (!values.name) {
-  //     errors.name = "Name is required";
-  //   }
-  //   if (!values.price) {
-  //     errors.price = "Price is required";
-  //   } else if (values.price <= 0) {
-  //     errors.price = "Price must be greater than zero";
-  //   }
-  //   if (!values.calories) {
-  //     errors.calories = "Calories are required";
-  //   } else if (values.calories <= 0) {
-  //     errors.calories = "Calories must be greater than zero";
-  //   }
-  //   if (!values.mealType) {
-  //     errors.mealType = "Meal type is required";
-  //   }
-  //   if (!values.kitchenType) {
-  //     errors.kitchenType = "Kitchen type is required";
-  //   }
-  //   if (!values.ingredients) {
-  //     errors.ingredients = "Ingredients are required";
-  //   }
-  //   if (!values.photo) {
-  //     errors.photo = "Photo URL is required";
-  //   }
-  //   return errors;
-  };
-
-  // return (
-    <Formik
-      initialValues={INITIAL_COURIER_COMPANY_ADD_DISH_VALUES}
-      // validate={validate}
-      onSubmit={(values) => {
-        // const newValues: AddDishDTO = {
-        //   ...values,
-        //   ingredients: String(values.ingredients).split(", "),
-        // };
-        // pressAddNewDishBtn(newValues);
-      }}
-    >
-      {({ errors, touched, setFieldValue }) => (
-        <div className="w-1/2 bg-sky-200 p-6 rounded-md shadow-md m-auto mt-5">
-          <Form className="flex flex-col gap-4">
-            <div className="flex gap-4 justify-center items-center px-4">
-              <label htmlFor="name" className="text-left">
-                Name
-              </label>
-              <Field name="name" className="p-2 border rounded-md w-full" />
-              {errors.name && touched.name && (
-                <div className="text-red-500 text-sm">{errors.name}</div>
-              )}
-            </div>
-            <div className="flex gap-4 justify-center items-center px-4">
-              <label htmlFor="price" className="text-left">
-                Price
-              </label>
-              <Field
-                name="price"
-                type="number"
-                className="p-2 border rounded-md w-full"
-              />
-              {errors.price && touched.price && (
-                <div className="text-red-500 text-sm">{errors.price}</div>
-              )}
-            </div>
-            <div className="flex gap-4 justify-center items-center px-4">
-              <label htmlFor="calories" className="text-left">
-                Calories
-              </label>
-              <Field
-                name="calories"
-                type="number"
-                className="p-2 border rounded-md w-full"
-              />
-              {errors.calories && touched.calories && (
-                <div className="text-red-500 text-sm">{errors.calories}</div>
-              )}
-            </div>
-            <Field name="mealType" component="select" className="p-2 mx-2">
-              {/* {Object.values(mealType).map((type) => (
-                <option key={type} value={type}>
-                  {type}
-                </option>
-              ))} */}
-            </Field>
-            {errors.mealType && touched.mealType && (
-              <div className="text-red-500 text-sm text-center">
-                {errors.mealType}
-              </div>
-            )}
-            <div className="flex gap-2 justify-center items-center px-4">
-              <label htmlFor="kitchenType" className="text-left">
-                Kitchen Type
-              </label>
-              <Field
-                name="kitchenType"
-                className="p-2 border rounded-md w-full"
-              />
-              {errors.kitchenType && touched.kitchenType && (
-                <div className="text-red-500 text-sm">{errors.kitchenType}</div>
-              )}
-            </div>
-            <div className="flex gap-4 justify-center items-center px-4">
-              <label htmlFor="photo" className="text-left">
-                Photo
-              </label>
-              <input
-                id="photo"
-                name="photo"
-                type="file"
-                accept="image/*"
-                className="p-2 border rounded-md w-full"
-                onChange={(event) => {
-                  const file = event.currentTarget.files
-                    ? event.currentTarget.files[0]
-                    : null;
-                  setFieldValue("photo", file);
-                }}
-              />
-              {errors.photo && touched.photo && (
-                <div className="text-red-500 text-sm">{"Incorrect file"}</div>
-              )}
-            </div>
-            <div className="flex gap-4 justify-center items-center px-4">
-              <label htmlFor="ingredients" className="text-left">
-                Ingredients
-              </label>
-              <Field
-                placeholder="Ingredients should be separated by a comma. For example: 'rice,
-                chicken, salt'"
-                name="ingredients"
-                className="p-2 border rounded-md w-full"
-                component="textarea"
-                rows={3}
-              />
-              {errors.ingredients && touched.ingredients && (
-                <div className="text-red-500 text-sm">{errors.ingredients}</div>
-              )}
-            </div>
-            <button type="submit" className="p-2 bg-sky-300 hover:bg-sky-500">
-              Submit
-            </button>
-          </Form>
-        </div>
-      )}
-    </Formik>
-  // );
-// }
+	const validate = (values: ExternalCompanyDataDTO) => {
+		let errors: Partial<Record<keyof ExternalCompanyDataDTO, string>> = {};
+		if (!values.name) {
+			errors.name = "Name is required";
+		}
+		if (!values.username) {
+			errors.username = "Email is required";
+		}
+		if (!values.address) {
+			errors.address = "Address is required";
+		}
+		if (!values.NIP) {
+			errors.NIP = "NIP is required";
+		}
+		if (!values.phoneNumber) {
+			errors.phoneNumber = "Phone number is required";
+		}
+		if (!values.password) {
+			errors.password = "Password is required";
+		}
+		return errors;
+	};
+	return (
+		<Formik
+			initialValues={INITIAL_MANAGER_ADD_COURIER_COMPANY_VALUES}
+			validate={validate}
+			onSubmit={(values) => {
+				const newValues: ExternalCompanyDataDTO = {
+					...values,
+					companyType,
+				};
+				console.log(newValues);
+				pressAddNewCompanyBtn(newValues);
+			}}>
+			{({ errors, touched, setFieldValue }) => (
+				<div className="w-1/2 bg-sky-200 p-6 rounded-md shadow-md m-auto mt-5">
+					<Form className="flex flex-col gap-4">
+						<div className="flex gap-4 justify-center items-center px-4">
+							<label htmlFor="name" className="text-left">
+								Name
+							</label>
+							<Field name="name" className="p-2 border rounded-md w-full" />
+							{errors.name && touched.name && (
+								<div className="text-red-500 text-sm">{errors.name}</div>
+							)}
+						</div>
+						{/* <div className="flex gap-4 justify-center items-center px-4">
+							<label htmlFor="email" className="text-left">
+								Email
+							</label>
+							<Field name="email" className="p-2 border rounded-md w-full" />
+							{errors.email && touched.email && (
+								<div className="text-red-500 text-sm">{errors.email}</div>
+							)}
+						</div> */}
+						<div className="flex gap-4 justify-center items-center px-4">
+							<label htmlFor="username" className="text-left">
+								Email
+							</label>
+							<Field
+								name="username"
+								type="email"
+								className="p-2 border rounded-md w-full"
+							/>
+							{errors.username && touched.username && (
+								<div className="text-red-500 text-sm">{errors.username}</div>
+							)}
+						</div>
+						<div className="flex gap-4 justify-center items-center px-4">
+							<label htmlFor="address" className="text-left">
+								Address
+							</label>
+							<Field name="address" className="p-2 border rounded-md w-full" />
+							{errors.address && touched.address && (
+								<div className="text-red-500 text-sm">{errors.address}</div>
+							)}
+						</div>
+						<div className="flex gap-4 justify-center items-center px-4">
+							<label htmlFor="NIP" className="text-left">
+								NIP
+							</label>
+							<Field name="NIP" className="p-2 border rounded-md w-full" />
+							{errors.NIP && touched.NIP && (
+								<div className="text-red-500 text-sm">{errors.NIP}</div>
+							)}
+						</div>
+						<div className="flex gap-4 justify-center items-center px-4">
+							<label htmlFor="phoneNumber" className="text-left">
+								Phone
+							</label>
+							<Field
+								name="phoneNumber"
+								className="p-2 border rounded-md w-full"
+							/>
+							{errors.phoneNumber && touched.phoneNumber && (
+								<div className="text-red-500 text-sm">{errors.phoneNumber}</div>
+							)}
+						</div>
+						<div className="flex gap-4 justify-center items-center px-4">
+							<label htmlFor="password" className="text-left">
+								Password
+							</label>
+							<Field name="password" className="p-2 border rounded-md w-full" />
+							{errors.password && touched.password && (
+								<div className="text-red-500 text-sm">{errors.password}</div>
+							)}
+						</div>
+						<button type="submit" className="p-2 bg-sky-300 hover:bg-sky-500">
+							Submit
+						</button>
+					</Form>
+				</div>
+			)}
+		</Formik>
+	);
+}

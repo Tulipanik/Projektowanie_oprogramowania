@@ -1,16 +1,24 @@
-import { UCShowManagerAddExternalCompanyForm } from "../../../use_cases/UCShowManagerAddExternalCompanyForm";
+import { UCSManagerAddExternalCompany } from "../../../use_cases/UCSManagerAddExternalCompany";
 import { UCShowManagerMainWindow } from "../../../use_cases/UCShowManagerMainWindow";
 
-export function CManagerMenu(ucShowManagerMainWindow:UCShowManagerMainWindow,
-  ucShowManagerAddCateringCompanyForm: UCShowManagerAddExternalCompanyForm
+export function CManagerMenu(
+	ucShowManagerMainWindow: UCShowManagerMainWindow,
+	ucsManagerAddExternalCompany: UCSManagerAddExternalCompany
 ) {
-    function pressBackToMainWindowBtn() {
-      ucShowManagerMainWindow.backSelected();
-    };
+	function pressBackToMainWindowBtn() {
+		ucShowManagerMainWindow.backSelected();
+	}
 
-    function pressShowAddExternalCompanyForm(){
-      ucShowManagerAddCateringCompanyForm.showAddExternalCompanyForm();
-    };
+	function pressAddNewCateringCompanyBtn() {
+		ucsManagerAddExternalCompany.handleAddNewCateringCompanyBtnClick();
+	}
+	function pressAddNewCourierCompanyBtn() {
+		ucsManagerAddExternalCompany.handleAddNewCourierCompanyBtnClick();
+	}
 
-  return { pressBackToMainWindowBtn,pressShowAddExternalCompanyForm };
+	return {
+		pressBackToMainWindowBtn,
+		pressAddNewCateringCompanyBtn,
+		pressAddNewCourierCompanyBtn,
+	};
 }

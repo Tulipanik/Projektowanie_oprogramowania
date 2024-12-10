@@ -44,7 +44,7 @@ export default function VMainMenu(
         className="px-6 py-3 bg-sky-400 text-white rounded-md hover:bg-sky-500 flex flex-row items-center gap-2 justify-center"
       >
         <span className="material-icons">computer</span>
-        Show admin window
+        Show manager window
       </button>
       <button
         onClick={showLogoutWindow}

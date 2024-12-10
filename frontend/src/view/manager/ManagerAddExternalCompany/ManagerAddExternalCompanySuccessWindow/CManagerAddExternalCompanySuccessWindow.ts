@@ -1,12 +1,14 @@
+import { UCShowManagerMainWindow } from "../../../../use_cases/UCShowManagerMainWindow";
 
 export function CManagerAddExternalCompanySuccessWindow(
-  // ucsCateringCompanyAddNewDish: UCCateringCompanyAddNewDish // TODO dodać odpowiedni ucs
+	ucShowManagerMainWindow: UCShowManagerMainWindow
 ) {
-  function pressShowExternalCompanyListBtn() {
-    // ucsCateringCompanyAddNewDish.showCateringCompanyDishesList();
-  }
+	function pressShowManagerMainWindowBtn() {
+		ucShowManagerMainWindow.showManagerMainWindow();
+		// ucsCateringCompanyAddNewDish.showCateringCompanyDishesList();
+	}
 
-  return {
-    pressShowExternalCompanyListBtn,
-  };
+	return {
+		pressShowManagerMainWindowBtn,
+	};
 }

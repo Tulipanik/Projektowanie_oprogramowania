@@ -1,10 +1,10 @@
 import { Dispatch } from "react";
-import { ManagerScreenId } from "../../view_model/Manager";
+import { UpdateManagerStateAction } from "../../view_model/Manager";
 
 export class ManagerPresentationDispatcher {
-  managerDispatch!: Dispatch<ManagerScreenId>;
+	managerDispatch!: Dispatch<UpdateManagerStateAction>;
 
-  injectManagerDispatch(dispatch: Dispatch<ManagerScreenId>) {
-    this.managerDispatch = dispatch;
-  }
+	injectManagerDispatch(dispatch: Dispatch<UpdateManagerStateAction>) {
+		this.managerDispatch = dispatch;
+	}
 }
