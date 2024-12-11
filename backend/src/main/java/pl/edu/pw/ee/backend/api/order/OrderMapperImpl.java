@@ -3,7 +3,11 @@ package pl.edu.pw.ee.backend.api.order;
 
 import org.springframework.stereotype.Component;
 import pl.edu.pw.ee.backend.api.cart.data.FindDishDTO;
-import pl.edu.pw.ee.backend.api.order.data.*;
+import pl.edu.pw.ee.backend.api.order.data.OrderDTO;
+import pl.edu.pw.ee.backend.api.order.data.OrderDataDTO;
+import pl.edu.pw.ee.backend.api.order.data.OrderDishDTO;
+import pl.edu.pw.ee.backend.api.order.data.OrdersCourierDataDTO;
+import pl.edu.pw.ee.backend.api.order.data.StoreKeeperOrderDTO;
 import pl.edu.pw.ee.backend.api.order.interfaces.IOrderMapper;
 import pl.edu.pw.ee.backend.entities.dish.Dish;
 import pl.edu.pw.ee.backend.entities.order.Order;
