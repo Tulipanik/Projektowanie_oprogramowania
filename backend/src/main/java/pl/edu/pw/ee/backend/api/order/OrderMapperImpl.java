@@ -7,11 +7,11 @@ import pl.edu.pw.ee.backend.api.order.data.OrderDTO;
 import pl.edu.pw.ee.backend.api.order.data.OrderDataDTO;
 import pl.edu.pw.ee.backend.api.order.data.OrderDishDTO;
 import pl.edu.pw.ee.backend.api.order.data.OrdersCourierDataDTO;
+import pl.edu.pw.ee.backend.api.order.data.StoreKeeperOrderDTO;
 import pl.edu.pw.ee.backend.api.order.interfaces.IOrderMapper;
 import pl.edu.pw.ee.backend.entities.dish.Dish;
 import pl.edu.pw.ee.backend.entities.order.Order;
 import pl.edu.pw.ee.backend.entities.order.data.OrderData;
-import pl.edu.pw.ee.backend.entities.user.client.Client;
 
 import java.time.LocalDate;
 
@@ -87,6 +87,19 @@ public class OrderMapperImpl implements IOrderMapper {
                 .orderId(order.getOrderId())
                 .orderStatus(order.getOrderStatus())
                 .phoneNumber(orderData.getPhone())
+                .build();
+    }
+
+    @Override
+    public StoreKeeperOrderDTO toStoreKeeperOrderDTO(Order order) {
+        return StoreKeeperOrderDTO.builder()
+                .orderId(order.getOrderId())
+                .meals(order.getDishes().stream()
+                        .map(Dish::getName)
+                        .toList())
+                .mealsIds(order.getDishes().stream()
+                        .map(Dish::getDishId)
+                        .toList())
                 .build();
     }
 }

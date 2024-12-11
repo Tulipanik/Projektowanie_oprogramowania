@@ -12,5 +12,7 @@ public interface IOrderService {
 
     List<Order> getOrdersForCourier(int courierId);
 
+    List<Order> getOrdersForStorekeeper();
+
     Order saveOrder(Order order);
 }
