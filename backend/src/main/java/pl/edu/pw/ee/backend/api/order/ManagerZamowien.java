@@ -5,6 +5,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import pl.edu.pw.ee.backend.api.order.data.OrderDTO;
 import pl.edu.pw.ee.backend.api.order.data.OrdersCourierDataDTO;
+import pl.edu.pw.ee.backend.api.order.data.StoreKeeperOrderDTO;
 import pl.edu.pw.ee.backend.api.order.interfaces.IBazaZamowien;
 import pl.edu.pw.ee.backend.api.order.interfaces.IZamowieniaAPI;
 import pl.edu.pw.ee.backend.application.payment.interfaces.IPlatnosc;
@@ -31,6 +32,11 @@ public class ManagerZamowien implements IZamowieniaAPI {
     @Override
     public List<OrdersCourierDataDTO> getOrdersForCourier(int courierId) {
         return bazaZamowien.getOrdersForCourier(courierId);
+    }
+
+    @Override
+    public List<StoreKeeperOrderDTO> getOrdersForStorekeeper(int storekeeperId) {
+        return bazaZamowien.getOrdersForStorekeeper(storekeeperId);
     }
 
     @Override

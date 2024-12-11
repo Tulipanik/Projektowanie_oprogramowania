@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import pl.edu.pw.ee.backend.api.order.interfaces.IOrderService;
 import pl.edu.pw.ee.backend.entities.order.Order;
 import pl.edu.pw.ee.backend.entities.order.OrderRepository;
+import pl.edu.pw.ee.backend.entities.order.OrderStatus;
 import pl.edu.pw.ee.backend.entities.user.client.ClientRepository;
 import pl.edu.pw.ee.backend.entities.user.courier.CourierRepository;
 import pl.edu.pw.ee.backend.utils.exceptions.order.CourierNotFoundException;
@@ -43,6 +44,11 @@ public class OrderService implements IOrderService {
         return courierRepository.findById(courierId)
                 .orElseThrow(() -> new CourierNotFoundException(HttpStatus.NOT_FOUND, String.format("Courier not found with id: %d", courierId)))
                 .getDeliverOrders();
+    }
+
+    @Override
+    public List<Order> getOrdersForStorekeeper() {
+        return orderRepository.findOrdersByOrderStatus(OrderStatus.IN_REALIZATION);
     }
 
     @Override

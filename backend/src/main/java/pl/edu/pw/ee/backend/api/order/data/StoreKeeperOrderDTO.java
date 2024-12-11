@@ -5,5 +5,5 @@ import lombok.Builder;
 import java.util.List;
 
 @Builder
-public record StoreKeeperOrderDTO(List<MealDTO> meals, int orderId) {
+public record StoreKeeperOrderDTO(List<String> meals, List<Integer> mealsIds, int orderId) {
 }

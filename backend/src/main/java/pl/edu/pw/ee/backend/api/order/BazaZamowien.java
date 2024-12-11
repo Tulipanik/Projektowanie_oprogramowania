@@ -5,10 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.edu.pw.ee.backend.api.dish.interfaces.IDishService;
-import pl.edu.pw.ee.backend.api.order.data.OrderDTO;
-import pl.edu.pw.ee.backend.api.order.data.OrderDataDTO;
-import pl.edu.pw.ee.backend.api.order.data.OrderDishDTO;
-import pl.edu.pw.ee.backend.api.order.data.OrdersCourierDataDTO;
+import pl.edu.pw.ee.backend.api.order.data.*;
 import pl.edu.pw.ee.backend.api.order.interfaces.IBazaZamowien;
 import pl.edu.pw.ee.backend.api.order.interfaces.IOrderService;
 import pl.edu.pw.ee.backend.api.order.interfaces.IOrderMapper;
@@ -88,6 +85,20 @@ public class BazaZamowien implements IBazaZamowien {
     }
 
     @Override
+    @Transactional
+    public List<StoreKeeperOrderDTO> getOrdersForStorekeeper(int storekeeperId) {
+        log.info("Retrieving orders for storekeeper id: {}", storekeeperId);
+
+        List<Order> orders = orderService.getOrdersForStorekeeper();
+
+        log.info("Found {} orders for storekeeper", orders.size());
+
+        return orders.stream()
+                .map(orderMapper::toStoreKeeperOrderDTO)
+                .toList();
+    }
+
+    @Override
     public OrderDTO getOrderData(int orderId) {
         log.debug("Retrieving order data for order id: {}", orderId);
 
@@ -135,7 +146,7 @@ public class BazaZamowien implements IBazaZamowien {
     private Order buildOrderToSave(OrderData orderData, List<Dish> dishes) {
         return Order.builder()
                 .orderDate(LocalDate.now())
-                .orderStatus(OrderStatus.PLACED)
+                .orderStatus(OrderStatus.IN_REALIZATION)
                 .orderData(orderData)
                 .dishes(dishes)
                 .build();
