@@ -1,5 +1,4 @@
 import { UCShowStorekeeperMainWindow } from "../../../use_cases/UCShowStorekeeperMainWindow";
-import { UCStorekeeperChangeOrderStatus } from "../../../use_cases/UCStorekeeperChangeOrderStatus";
 import { CStorekeeperChangeStatusSuccessWindow } from "./CStorekeeperChangeStatusSuccessWindow";
 
 export function VStorekeeperChangeStatusSuccessWindow(

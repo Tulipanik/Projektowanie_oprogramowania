@@ -1,4 +1,4 @@
-import { orderDTO } from "../view_model/Order";
+import { orderDTO, storekeeperOrderDTO } from "../view_model/Order";
 import { OrderCourierDataDto } from "../view_model/Courier";
 import { AuthorizationConst } from "./AuthorizationConst";
 
@@ -9,6 +9,7 @@ export interface IOrderAPi {
   getOrdersForClient(clientId: number): Promise<orderDTO[]>;
   getOrderData(orderId: number): Promise<orderDTO>;
   setOrderStatus(orderId: number, status: string): Promise<boolean>;
+  getOrdersForStorekeeper(storekeeperId: number): Promise<storekeeperOrderDTO[]>
 }
 
 export class OrderProxy implements IOrderAPi {
@@ -155,4 +156,33 @@ export class OrderProxy implements IOrderAPi {
         return false;
       }
   }
+
+  async getOrdersForStorekeeper(storekeeperId: number): Promise<storekeeperOrderDTO[]> {
+    const url = `http://localhost:8080/api/v1/orders/storekeeper/${storekeeperId}`;
+
+    const requestOptions: RequestInit = {
+      method: "GET",
+      headers: {
+        accept: "*/*",
+        Authorization: `Bearer ${AuthorizationConst.token}`,
+      },
+    };
+
+    try {
+      const response = await fetch(url, requestOptions);
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data: storekeeperOrderDTO[] = await response.json();
+      console.log("otrzymałem z backendu: ", data)
+
+      return data;
+    } catch (error) {
+      console.error("Error getting orders:", error);
+      throw error;
+    }
+  }
+
 }

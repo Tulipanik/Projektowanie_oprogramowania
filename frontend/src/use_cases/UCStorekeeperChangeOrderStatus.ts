@@ -16,9 +16,9 @@ export class UCStorekeeperChangeOrderStatus {
 
     async handleShowStorekeeperOrderListBtn() {
         return this.orderApi
-        .getOrdersForClient(MOCK_CLIENT_ID)
+        .getOrdersForStorekeeper(MOCK_CLIENT_ID)
         .then((orderList) => {
-            this.pStorekeeperChangeOrderStatus.showOrderList(orderList) // TODO: zmienic na odpowiedni endpoint od backendowcow
+            this.pStorekeeperChangeOrderStatus.showOrderList(orderList)
         });
     }
 
