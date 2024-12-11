@@ -8,6 +8,7 @@ import pl.edu.pw.ee.backend.entities.order.Order;
 import pl.edu.pw.ee.backend.entities.order.OrderRepository;
 import pl.edu.pw.ee.backend.entities.order.OrderStatus;
 import pl.edu.pw.ee.backend.entities.user.client.ClientRepository;
+import pl.edu.pw.ee.backend.entities.user.courier.Courier;
 import pl.edu.pw.ee.backend.entities.user.courier.CourierRepository;
 import pl.edu.pw.ee.backend.utils.exceptions.order.CourierNotFoundException;
 import pl.edu.pw.ee.backend.utils.exceptions.order.OrderNotFoundException;
@@ -54,5 +55,15 @@ public class OrderService implements IOrderService {
     @Override
     public Order saveOrder(Order order) {
         return orderRepository.save(order);
+    }
+
+    @Override
+    public void setOrderStatus(Order order, OrderStatus orderStatus) {
+        Courier courier = courierRepository.findById(1).orElseThrow();
+
+        order.setCourier(courier);
+        order.setOrderStatus(orderStatus);
+
+        orderRepository.save(order);
     }
 }
