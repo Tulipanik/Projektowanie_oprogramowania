@@ -4,20 +4,23 @@ import { UCShowAdminMainWindow } from "../use_cases/UCShowAdminMainWindow";
 import { UCAuthorizeUser } from "../use_cases/UCSAuthorization";
 import { UCShowCateringCompanyMainWindow } from "../use_cases/UCSShowCateringCompanyMainWindow";
 import { CMainMenu,CMainMenuLogout } from "./CMainMenu";
+import { UCShowStorekeeperMainWindow } from "../use_cases/UCShowStorekeeperMainWindow";
 
 export default function VMainMenu(
   isActive: boolean,
   ucsShowClientMainWindow: UCShowClientMainWindow,
   usShowCateringCompanyMainWindow: UCShowCateringCompanyMainWindow,
   ucShowAdminMainWindow:UCShowAdminMainWindow,
+  ucShowStorekeeperMainWindow:UCShowStorekeeperMainWindow,
   ucsAuthorizeUser:UCAuthorizeUser
 ) {
   if (!isActive) return;
 
-  const { showClientMainWindow, showCateringCompanyMainWindow, showAdminMainWindow } = CMainMenu(
+  const { showClientMainWindow, showCateringCompanyMainWindow, showAdminMainWindow, showStorekeeperMainWindow } = CMainMenu(
     ucsShowClientMainWindow,
     usShowCateringCompanyMainWindow,
-    ucShowAdminMainWindow
+    ucShowAdminMainWindow,
+    ucShowStorekeeperMainWindow
   );
   const { showLogoutWindow } = CMainMenuLogout(ucsAuthorizeUser);
 
@@ -45,6 +48,13 @@ export default function VMainMenu(
       >
         <span className="material-icons">computer</span>
         Show admin window
+      </button>
+      <button
+        onClick={showStorekeeperMainWindow}
+        className="px-6 py-3 bg-sky-400 text-white rounded-md hover:bg-sky-500 flex flex-row items-center gap-2 justify-center"
+      >
+        <span className="material-icons">store</span>
+        Show storekeeper window
       </button>
       <button
         onClick={showLogoutWindow}

@@ -1,4 +1,4 @@
-import { orderDTO } from "../view_model/Order";
+import { orderDTO, orderStatus } from "../view_model/Order";
 import { AuthorizationConst } from "./AuthorizationConst";
 
 export interface IOrderAPi {
@@ -6,6 +6,7 @@ export interface IOrderAPi {
   payForOrder(orderId: number): Promise<boolean>;
   getOrdersForClient(clientId: number): Promise<orderDTO[]>;
   getOrderData(orderId: number): Promise<orderDTO>;
+  setOrderStatus(orderId: number, status: String): Promise<boolean>;
 }
 
 export class OrderProxy implements IOrderAPi {
@@ -110,5 +111,27 @@ export class OrderProxy implements IOrderAPi {
       console.error("Error getting order data:", error);
       throw error;
     }
+  }
+
+  async setOrderStatus(orderId: number, status: String): Promise<boolean> {
+      const url = `http://localhost:8080/api/v1/orders/${orderId}/status`;
+
+      const statusEnum: orderStatus = orderStatus.COMPLETION_IN_PROGRESS
+
+      const requestOptions: RequestInit = {
+        method: "POST",
+        headers: {
+          accept: "*/*",
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${AuthorizationConst.token}`,
+        },
+        body: statusEnum,
+      };
+      let response = await fetch(url, requestOptions);
+      if (response.status === 200) {
+        return response.json();
+      } else {
+        return false;
+      }
   }
 }

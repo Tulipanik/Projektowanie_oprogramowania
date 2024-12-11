@@ -21,12 +21,18 @@ export interface orderDTO {
   status: orderStatus;
 }
   
+export interface storekeeperOrderDTO {
+  meals: string[];
+  mealsId: number[];
+  orderId: number;
+}
+
 export enum orderStatus {
-PLACED,
-PAID,
-IN_REALIZATION,
-COMPLETION_IN_PROGRESS,
-READY_TO_DELIVER,
-RECEIVED_BY_COURIER,
-DELIVERED,
+PLACED = "PLACED",
+PAID = "PAID",
+IN_REALIZATION = "IN_REALIZATION",
+COMPLETION_IN_PROGRESS = "COMPLETION_IN_PROGRESS",
+READY_TO_DELIVER = "READY_TO_DELIVER",
+RECEIVED_BY_COURIER = "RECEIVED_BY_COURIER",
+DELIVERED = "DELIVERED",
 }

@@ -17,11 +17,16 @@ import { PAuthMenu } from "./view/PAuthMenu";
 import { AuthorizationConst } from "./services/AuthorizationConst";
 import { AuthService } from "./services/AuthService";
 import { VAdminMainWindow } from "./view/admin/AdminMainWindow/VAdminMainWindow";
+import { UCShowStorekeeperMainWindow } from "./use_cases/UCShowStorekeeperMainWindow";
+import { PStorekeeperMainWindow } from "./view/storekeeper/StorekeeperMainWindow/PStorekeeperMainWindow";
+import { VStorekeeperMainWindow } from "./view/storekeeper/StorekeeperMainWindow/VStorekeeperMainWindow";
+import { UCStorekeeperChangeOrderStatus } from "./use_cases/UCStorekeeperChangeOrderStatus";
 
 const pMainMenu = new PMainMenu();
 const pClientMainWindow = new PClientMainWindow();
 const pCateringCompanyMainWindow = new PCateringCompanyMainWindow();
 const pAdminMainWindow = new PAdminMainWindow();
+const pStorekeeperMainWindow = new PStorekeeperMainWindow();
 const pAuthorization = new PAuthMenu();
 
 const usShowClientMainWindow = new UCShowClientMainWindow(
@@ -37,6 +42,11 @@ const usShowCateringCompanyMainWindow = new UCShowCateringCompanyMainWindow(
 const ucShowAdminMainWindow = new UCShowAdminMainWindow(
   pMainMenu,
   pAdminMainWindow
+);
+
+const ucShowStorekeeperMainWindow = new UCShowStorekeeperMainWindow(
+  pMainMenu, 
+  pStorekeeperMainWindow
 );
 
 const usAuthorization = new UCAuthorizeUser(pAuthorization,pMainMenu);
@@ -62,6 +72,7 @@ export default function App() {
   pAdminMainWindow.injectGlobalUpdateView(globalUpdateView);
   pAuthorization.injectGlobalUpdateView(globalUpdateView);
   pCateringCompanyMainWindow.injectGlobalUpdateView(globalUpdateView);
+  pStorekeeperMainWindow.injectGlobalUpdateView(globalUpdateView);
 
   AuthorizationConst.inject(new AuthService());
 
@@ -74,6 +85,7 @@ export default function App() {
         usShowClientMainWindow,
         usShowCateringCompanyMainWindow,
         ucShowAdminMainWindow,
+        ucShowStorekeeperMainWindow,
         usAuthorization)}
       {VClientMainWindow(
         state.screen === ScreenId.CLIENT_MAIN_WINDOW,
@@ -89,6 +101,11 @@ export default function App() {
         state.screen === ScreenId.ADMIN_MAIN_WINDOW,
         ucShowAdminMainWindow,
         pAdminMainWindow
+      )}
+      {VStorekeeperMainWindow(
+        state.screen === ScreenId.STOREKEEPER_MAIN_WINDOW,
+        ucShowStorekeeperMainWindow,
+        pStorekeeperMainWindow,
       )}
     </div>
   );
