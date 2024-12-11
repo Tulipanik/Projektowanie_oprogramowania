@@ -65,7 +65,7 @@ export function VStorekeeperChangeOrderStatus(
                   className="bg-violet-500 text-white p-2 rounded-md hover:opacity-80 mt-4"
                   onClick={() => pressChangeOrderStatusBtn(order.orderId!, orderStatus.READY_TO_DELIVER)}
                 >
-                  Change order status to completion in progress
+                  Change order status to ready to deliver
                 </button>
               </div>
             );
