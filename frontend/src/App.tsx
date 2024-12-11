@@ -19,7 +19,6 @@ import { AuthService } from "./services/AuthService";
 import { UCShowStorekeeperMainWindow } from "./use_cases/UCShowStorekeeperMainWindow";
 import { PStorekeeperMainWindow } from "./view/storekeeper/StorekeeperMainWindow/PStorekeeperMainWindow";
 import { VStorekeeperMainWindow } from "./view/storekeeper/StorekeeperMainWindow/VStorekeeperMainWindow";
-import { UCStorekeeperChangeOrderStatus } from "./use_cases/UCStorekeeperChangeOrderStatus";
 import { UCSShowCourierMainWindow } from "./use_cases/UCSShowCourierMainWindow";
 import { PCourierMainWindow } from "./view/courier/CourierMainWindow/PCourierMainWindow";
 import { VCourierMainWindow } from "./view/courier/CourierMainWindow/VCourierMainWindow";

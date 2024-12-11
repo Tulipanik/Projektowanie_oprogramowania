@@ -15,7 +15,6 @@ export class UCStorekeeperChangeOrderStatus {
     }
 
     async handleShowStorekeeperOrderListBtn() {
-        // console.log("wcisnalem")
         return this.orderApi
         .getOrdersForClient(MOCK_CLIENT_ID)
         .then((orderList) => {

@@ -10,8 +10,6 @@ export class UCShowStorekeeperMainWindow {
 }
 
   handleShowStorekeeperMainWindowBtnClick() {
-    // console.log("powrót")
-    // console.log("pokaz storekeepermainwindow")
     this.pStorekeeperMainWindow.showStorekeeperMainWindow();
   }
 

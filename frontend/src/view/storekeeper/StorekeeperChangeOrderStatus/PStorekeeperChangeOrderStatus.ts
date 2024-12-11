@@ -1,4 +1,4 @@
-import { orderDTO, storekeeperOrderDTO } from "../../../view_model/Order";
+import { orderDTO } from "../../../view_model/Order";
 import { StorekeeperScreenId } from "../../../view_model/Storekeeper";
 import { StorekeeperPresentationDispatcher } from "../StorekeeperPresentationDispatcher";
 
