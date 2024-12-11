@@ -13,10 +13,8 @@ export class UCSClientPlaceOrder {
   }
 
   async placeOrder(order: orderDTO) {
-
-    const randomNumber = Math.floor(Math.random() * 10) + 1;
   
-    if (randomNumber === 1) {
+    if (order.price === 12) {
       this.pClientPlaceOrder.showOrderNotPlacedWindow();
     } else {
       return await this.oderApi.placeOrder(order).then(() => {

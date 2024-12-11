@@ -5,20 +5,23 @@ import { UCAuthorizeUser } from "../use_cases/UCSAuthorization";
 import { CMainMenu, CMainMenuLogout } from "./CMainMenu";
 import { UCSShowCourierMainWindow } from "../use_cases/UCSShowCourierMainWindow";
 import { UCShowCateringCompanyMainWindow } from "../use_cases/UCSShowCateringCompanyMainWindow";
+import { UCShowStorekeeperMainWindow } from "../use_cases/UCShowStorekeeperMainWindow";
 
 export default function VMainMenu(
   isActive: boolean,
   ucsShowClientMainWindow: UCShowClientMainWindow,
   usShowCateringCompanyMainWindow: UCShowCateringCompanyMainWindow,
+  ucShowStorekeeperMainWindow: UCShowStorekeeperMainWindow,
   ucShowManagerMainWindow: UCShowManagerMainWindow,
   ucsAuthorizeUser: UCAuthorizeUser,
   ucsShowCourierMainWindow: UCSShowCourierMainWindow
 ) {
   if (!isActive) return;
 
-  const { showClientMainWindow, showCateringCompanyMainWindow, showManagerMainWindow, showCourierMainWindow } = CMainMenu(
+  const { showClientMainWindow, showCateringCompanyMainWindow, showStorekeeperMainWindow, showManagerMainWindow, showCourierMainWindow } = CMainMenu(
     ucsShowClientMainWindow,
     usShowCateringCompanyMainWindow,
+    ucShowStorekeeperMainWindow,
     ucShowManagerMainWindow,
     ucsShowCourierMainWindow
   );
@@ -50,19 +53,25 @@ export default function VMainMenu(
         Show manager window
       </button>
       <button
+        onClick={showStorekeeperMainWindow}
+        className="px-6 py-3 bg-sky-400 text-white rounded-md hover:bg-sky-500 flex flex-row items-center gap-2 justify-center"
+      >
+        <span className="material-icons">store</span>
+        Show storekeeper window
+      </button>
+      <button
         onClick={showCourierMainWindow}
         className="px-6 py-3 bg-orange-400 text-white rounded-md hover:bg-orange-500 flex flex-row items-center gap-2 justify-center"
       >
         <span className="material-icons">local_shipping</span>
         Show courier window
       </button>
-
       <button
         onClick={showLogoutWindow}
         className="m-1 px-6 py-3 bg-red-500 text-white rounded-md hover:bg-red-600 flex flex-row items-center gap-2 justify-center"
       >
         Logout
       </button>
-    </div>
+    </div >
   );
 }

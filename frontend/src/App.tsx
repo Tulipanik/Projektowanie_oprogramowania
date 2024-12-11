@@ -16,6 +16,9 @@ import { UCAuthorizeUser } from "./use_cases/UCSAuthorization";
 import { PAuthMenu } from "./view/PAuthMenu";
 import { AuthorizationConst } from "./services/AuthorizationConst";
 import { AuthService } from "./services/AuthService";
+import { UCShowStorekeeperMainWindow } from "./use_cases/UCShowStorekeeperMainWindow";
+import { PStorekeeperMainWindow } from "./view/storekeeper/StorekeeperMainWindow/PStorekeeperMainWindow";
+import { VStorekeeperMainWindow } from "./view/storekeeper/StorekeeperMainWindow/VStorekeeperMainWindow";
 import { UCSShowCourierMainWindow } from "./use_cases/UCSShowCourierMainWindow";
 import { PCourierMainWindow } from "./view/courier/CourierMainWindow/PCourierMainWindow";
 import { VCourierMainWindow } from "./view/courier/CourierMainWindow/VCourierMainWindow";
@@ -24,6 +27,7 @@ import { VManagerMainWindow } from "./view/manager/ManagerMainWindow/VManagerMai
 const pMainMenu = new PMainMenu();
 const pClientMainWindow = new PClientMainWindow();
 const pCateringCompanyMainWindow = new PCateringCompanyMainWindow();
+const pStorekeeperMainWindow = new PStorekeeperMainWindow();
 const pManagerMainWindow = new PManagerMainWindow();
 const pAuthorization = new PAuthMenu();
 const pCourierMainWindow = new PCourierMainWindow();
@@ -44,7 +48,12 @@ const ucShowManagerMainWindow = new UCShowManagerMainWindow(
   pManagerMainWindow
 );
 
-const usAuthorization = new UCAuthorizeUser(pAuthorization, pMainMenu);
+const ucShowStorekeeperMainWindow = new UCShowStorekeeperMainWindow(
+  pMainMenu, 
+  pStorekeeperMainWindow
+);
+
+const usAuthorization = new UCAuthorizeUser(pAuthorization,pMainMenu);
 
 function switchView(state: AppState, action: ScreenId) {
   let newState = { ...state };
@@ -68,6 +77,7 @@ export default function App() {
   pAuthorization.injectGlobalUpdateView(globalUpdateView);
   pCourierMainWindow.injectGlobalUpdateView(globalUpdateView);
   pCateringCompanyMainWindow.injectGlobalUpdateView(globalUpdateView);
+  pStorekeeperMainWindow.injectGlobalUpdateView(globalUpdateView);
 
   AuthorizationConst.inject(new AuthService());
 
@@ -79,6 +89,7 @@ export default function App() {
         state.screen === ScreenId.MAIN_MENU,
         usShowClientMainWindow,
         usShowCateringCompanyMainWindow,
+        ucShowStorekeeperMainWindow,
         ucShowManagerMainWindow,
         usAuthorization,
         ucsShowCourierMainWindow)}
@@ -101,6 +112,11 @@ export default function App() {
         state.screen === ScreenId.COURIER_MAIN_WINDOW,
         ucsShowCourierMainWindow,
         pCourierMainWindow
+      )}
+      {VStorekeeperMainWindow(
+        state.screen === ScreenId.STOREKEEPER_MAIN_WINDOW,
+        ucShowStorekeeperMainWindow,
+        pStorekeeperMainWindow,
       )}
     </div>
   );
