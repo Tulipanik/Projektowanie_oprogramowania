@@ -1,9 +1,9 @@
-import { orderDTO } from "../../../view_model/Order";
+import { storekeeperOrderDTO } from "../../../view_model/Order";
 import { StorekeeperScreenId } from "../../../view_model/Storekeeper";
 import { StorekeeperPresentationDispatcher } from "../StorekeeperPresentationDispatcher";
 
 export class PStorekeeperChangeOrderStatus extends StorekeeperPresentationDispatcher {
-    showOrderList(orderList: orderDTO[]) { // TODO: jak sie be ogarnie to zmienic typ na storekeeperOrderDTO[]
+    showOrderList(orderList: storekeeperOrderDTO[]) { 
         this.storekeeperDispatch?.({
             type: "UPDATE_ORDER_LIST",
             orderList: orderList,

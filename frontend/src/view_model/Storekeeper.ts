@@ -1,4 +1,4 @@
-import { orderDTO, storekeeperOrderDTO } from "./Order";
+import { storekeeperOrderDTO } from "./Order";
 
 export enum StorekeeperScreenId {
     MAIN_WINDOW = "MAIN_WINDOW",
@@ -9,16 +9,13 @@ export enum StorekeeperScreenId {
 
 export class StorekeeperViewState {
     screen: StorekeeperScreenId = StorekeeperScreenId.MAIN_WINDOW;
-    orderList: orderDTO[] = [];
+    orderList: storekeeperOrderDTO[] = [];
 }
 
 export interface UpdateStorekeeperViewAction {
     type:
         "UPDATE_ORDER_LIST"
     |   "CHANGE_SCREEN"
-    |   "UPDATE_ORDER_STATUS";
     screen?: StorekeeperScreenId;
-    order?: orderDTO;
-    orderList?: orderDTO[]; // TODO: jak sie be ogarnie to zmienic typ na storekeeperOrderDTO[]
-    orderDetails?: orderDTO;
+    orderList?: storekeeperOrderDTO[];
 }

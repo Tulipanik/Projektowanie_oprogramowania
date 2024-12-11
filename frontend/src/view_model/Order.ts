@@ -23,7 +23,7 @@ export interface orderDTO {
   
 export interface storekeeperOrderDTO {
   meals: string[];
-  mealsId: number[];
+  mealsIds: number[];
   orderId: number;
 }
 
