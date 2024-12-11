@@ -150,7 +150,7 @@ public class BazaZamowien implements IBazaZamowien {
     private Order buildOrderToSave(OrderData orderData, List<Dish> dishes) {
         return Order.builder()
                 .orderDate(LocalDate.now())
-                .orderStatus(OrderStatus.IN_REALIZATION)
+                .orderStatus(OrderStatus.COMPLETION_IN_PROGRESS)
                 .orderData(orderData)
                 .dishes(dishes)
                 .build();

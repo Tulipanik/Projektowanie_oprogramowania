@@ -48,7 +48,7 @@ public class OrderService implements IOrderService {
 
     @Override
     public List<Order> getOrdersForStorekeeper() {
-        return orderRepository.findOrdersByOrderStatus(OrderStatus.IN_REALIZATION);
+        return orderRepository.findOrdersByOrderStatus(OrderStatus.COMPLETION_IN_PROGRESS);
     }
 
     @Override
