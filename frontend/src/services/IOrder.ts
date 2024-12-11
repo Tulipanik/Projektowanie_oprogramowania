@@ -1,9 +1,11 @@
 import { orderDTO, orderStatus } from "../view_model/Order";
+import { ORDER_COURIER_DATA_MOCK, OrderCourierDataDto } from "../view_model/Courier";
 import { AuthorizationConst } from "./AuthorizationConst";
 
 export interface IOrderAPi {
   placeOrder(order: orderDTO): Promise<number>;
   payForOrder(orderId: number): Promise<boolean>;
+  getOrdersForCourier(courierId: number): Promise<OrderCourierDataDto[]>;
   getOrdersForClient(clientId: number): Promise<orderDTO[]>;
   getOrderData(orderId: number): Promise<orderDTO>;
   setOrderStatus(orderId: number, status: String): Promise<boolean>;
@@ -56,6 +58,27 @@ export class OrderProxy implements IOrderAPi {
       return response.json();
     } else {
       return false;
+    }
+  }
+
+
+  async getOrdersForCourier(courierId: number): Promise<OrderCourierDataDto[]> {
+    const url = `http://localhost:8080/api/v1/orders/courier/${courierId}`;
+
+    // return new Promise((resolve, reject) => { resolve(ORDER_COURIER_DATA_MOCK) });
+
+    const requestOptions: RequestInit = {
+      method: "GET",
+      headers: {
+        accept: "*/*",
+        "Authorization": `Bearer ${AuthorizationConst.token}`,
+      }
+    };
+    let response = await fetch(url, requestOptions);
+    if (response.ok) {
+      return response.json() as Promise<OrderCourierDataDto[]>;
+    } else {
+      return [];
     }
   }
 

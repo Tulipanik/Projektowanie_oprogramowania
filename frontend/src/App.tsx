@@ -10,24 +10,28 @@ import { AppState, ScreenId } from "./view_model/Types";
 import { PCateringCompanyMainWindow } from "./view/catering_company/CateringCompanyMainWindow/PCateringCompanyMainWindow";
 import { UCShowCateringCompanyMainWindow } from "./use_cases/UCSShowCateringCompanyMainWindow";
 import { VCateringCompanyMainWindow } from "./view/catering_company/CateringCompanyMainWindow/VCateringCompanyMainWindow";
-import { UCShowAdminMainWindow } from "./use_cases/UCShowAdminMainWindow";
-import { PAdminMainWindow } from "./view/admin/AdminMainWindow/PAdminMainWindow";
+import { UCShowManagerMainWindow } from "./use_cases/UCShowManagerMainWindow";
+import { PManagerMainWindow } from "./view/manager/ManagerMainWindow/PManagerMainWindow";
 import { UCAuthorizeUser } from "./use_cases/UCSAuthorization";
 import { PAuthMenu } from "./view/PAuthMenu";
 import { AuthorizationConst } from "./services/AuthorizationConst";
 import { AuthService } from "./services/AuthService";
-import { VAdminMainWindow } from "./view/admin/AdminMainWindow/VAdminMainWindow";
 import { UCShowStorekeeperMainWindow } from "./use_cases/UCShowStorekeeperMainWindow";
 import { PStorekeeperMainWindow } from "./view/storekeeper/StorekeeperMainWindow/PStorekeeperMainWindow";
 import { VStorekeeperMainWindow } from "./view/storekeeper/StorekeeperMainWindow/VStorekeeperMainWindow";
 import { UCStorekeeperChangeOrderStatus } from "./use_cases/UCStorekeeperChangeOrderStatus";
+import { UCSShowCourierMainWindow } from "./use_cases/UCSShowCourierMainWindow";
+import { PCourierMainWindow } from "./view/courier/CourierMainWindow/PCourierMainWindow";
+import { VCourierMainWindow } from "./view/courier/CourierMainWindow/VCourierMainWindow";
+import { VManagerMainWindow } from "./view/manager/ManagerMainWindow/VManagerMainWindow";
 
 const pMainMenu = new PMainMenu();
 const pClientMainWindow = new PClientMainWindow();
 const pCateringCompanyMainWindow = new PCateringCompanyMainWindow();
-const pAdminMainWindow = new PAdminMainWindow();
 const pStorekeeperMainWindow = new PStorekeeperMainWindow();
+const pManagerMainWindow = new PManagerMainWindow();
 const pAuthorization = new PAuthMenu();
+const pCourierMainWindow = new PCourierMainWindow();
 
 const usShowClientMainWindow = new UCShowClientMainWindow(
   pMainMenu,
@@ -39,9 +43,10 @@ const usShowCateringCompanyMainWindow = new UCShowCateringCompanyMainWindow(
   pCateringCompanyMainWindow
 );
 
-const ucShowAdminMainWindow = new UCShowAdminMainWindow(
+const ucsShowCourierMainWindow = new UCSShowCourierMainWindow(pMainMenu, pCourierMainWindow);
+const ucShowManagerMainWindow = new UCShowManagerMainWindow(
   pMainMenu,
-  pAdminMainWindow
+  pManagerMainWindow
 );
 
 const ucShowStorekeeperMainWindow = new UCShowStorekeeperMainWindow(
@@ -69,8 +74,9 @@ export default function App() {
 
   pMainMenu.injectGlobalUpdateView(globalUpdateView);
   pClientMainWindow.injectGlobalUpdateView(globalUpdateView);
-  pAdminMainWindow.injectGlobalUpdateView(globalUpdateView);
+  pManagerMainWindow.injectGlobalUpdateView(globalUpdateView);
   pAuthorization.injectGlobalUpdateView(globalUpdateView);
+  pCourierMainWindow.injectGlobalUpdateView(globalUpdateView);
   pCateringCompanyMainWindow.injectGlobalUpdateView(globalUpdateView);
   pStorekeeperMainWindow.injectGlobalUpdateView(globalUpdateView);
 
@@ -79,14 +85,15 @@ export default function App() {
 
   return (
     <div className="App">
-      {VAuthMenu(state.screen === ScreenId.AUTH,usAuthorization)}
+      {VAuthMenu(state.screen === ScreenId.AUTH, usAuthorization)}
       {VMainMenu(
         state.screen === ScreenId.MAIN_MENU,
         usShowClientMainWindow,
         usShowCateringCompanyMainWindow,
-        ucShowAdminMainWindow,
         ucShowStorekeeperMainWindow,
-        usAuthorization)}
+        ucShowManagerMainWindow,
+        usAuthorization,
+        ucsShowCourierMainWindow)}
       {VClientMainWindow(
         state.screen === ScreenId.CLIENT_MAIN_WINDOW,
         usShowClientMainWindow,
@@ -97,10 +104,15 @@ export default function App() {
         usShowCateringCompanyMainWindow,
         pCateringCompanyMainWindow
       )}
-      {VAdminMainWindow(
+      {VManagerMainWindow(
         state.screen === ScreenId.ADMIN_MAIN_WINDOW,
-        ucShowAdminMainWindow,
-        pAdminMainWindow
+        ucShowManagerMainWindow,
+        pManagerMainWindow
+      )}
+      {VCourierMainWindow(
+        state.screen === ScreenId.COURIER_MAIN_WINDOW,
+        ucsShowCourierMainWindow,
+        pCourierMainWindow
       )}
       {VStorekeeperMainWindow(
         state.screen === ScreenId.STOREKEEPER_MAIN_WINDOW,

@@ -95,5 +95,7 @@ export function ClientDishesForm(
 }
 
 export const upperSnakeCaseToCapitalized = (str: string) => {
+  if (!str)
+    str = '';
   return str.split('_').map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join(' ');
 }
