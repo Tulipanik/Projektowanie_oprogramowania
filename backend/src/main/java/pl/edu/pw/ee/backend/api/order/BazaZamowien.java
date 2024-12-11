@@ -123,9 +123,7 @@ public class BazaZamowien implements IBazaZamowien {
 
         OrderStatus orderStatus = OrderStatus.valueOf(status);
 
-        order.setOrderStatus(orderStatus);
-
-        orderService.saveOrder(order);
+        orderService.setOrderStatus(order, orderStatus);
 
         log.debug("Changed status for order id: {} to: {}", orderId, status);
 
