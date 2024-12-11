@@ -111,7 +111,7 @@ export function ManagerAddExternalCompanyForm(
 							<label htmlFor="password" className="text-left">
 								Password
 							</label>
-							<Field name="password" className="p-2 border rounded-md w-full" />
+							<Field name="password" type="password" className="p-2 border rounded-md w-full" />
 							{errors.password && touched.password && (
 								<div className="text-red-500 text-sm">{errors.password}</div>
 							)}
