@@ -1,0 +1,3 @@
+Mock używa jako hasła i username "admin"
+
+Przykładowe konto dla prawdziwego backendu to username "john.doe@gmail.com" password "123"
